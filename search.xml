@@ -10217,7 +10217,7 @@ class="math inline">\(B\)</span> 都是偶数</li>
 <p>不难得到 <span class="math inline">\(n \times m\)</span> 是偶数。</p>
 <p>由于要保证 <span class="math inline">\(A\)</span> 是偶数，所以答案是
 <span class="math display">\[
-\sum_{2 \mid A} C_{n \cdot m} ^A \cdot k^A \cdot l^B
+\sum_{2 \mid A}^{nm} C_{nm} ^A \cdot k^A \cdot l^B
 \]</span> 其中 <span class="math inline">\(k\)</span> 是 <span
 class="math inline">\([L,R]\)</span> 中的奇数个数，<span
 class="math inline">\(l\)</span> 为 <span
@@ -10234,7 +10234,7 @@ class="math inline">\(B\)</span>。</p>
 <p>由于 <span class="math inline">\(B = n \times m -
 A\)</span>，所以将两式相加，<span class="math inline">\(a\)</span>
 是奇数时相抵消，<span class="math inline">\(a\)</span>
-是偶数时算了两边，最终答案是 <span class="math display">\[
+是偶数时算了两遍，最终答案是 <span class="math display">\[
 \frac{(k+l)^{nm} + (k-l)^{nm}}{2}
 \]</span></p>
 <h2 id="code">CODE</h2>
@@ -10508,7 +10508,7 @@ priority_queue<span class="token operator">&lt;</span>node<span class="token ope
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js"></script><p>这篇文章还没有写完……</p>
 <span id="more"></span>
 <h2 id="高斯消元">高斯消元</h2>
-<p>很有用的<del>小学奥数</del>知识，但是在初中阶段基本都是解二元一次方程组，完全体现不出来。</p>
+<p>很有用的<del>小学奥数</del>知识，但是在初中阶段基本都是解二元一次方程组，完全体现不出来它的强大之处。</p>
 <p>但是你总不能用代码直接模拟解 <span class="math inline">\(n\)</span>
 元 1 次方程组吧，所以在 OI
 中还是很有用处的，而且牵扯到很多线性代数里的概念。</p>
@@ -10541,23 +10541,25 @@ class="math display">\[
 <li>用一个非 0 的数乘某一行，加到另一行上。</li>
 <li>交换两行的位置。</li>
 </ol>
-此三子者，称为矩阵的“初等行变换”。对以上使用若干次初等行变换，可以得到
-$$
-<span class="math display">\[\begin{bmatrix}
+<p>此三子者，称为矩阵的“初等行变换”。对以上使用若干次初等行变换，可以得到
+<span class="math display">\[
+\begin{bmatrix}
 1 &amp; 2 &amp; -1 &amp; -6
 \\
 0 &amp; 1 &amp; 1 &amp; 1
 \\
 0 &amp; 0 &amp; 1 &amp; 3
-\end{bmatrix}\]</span>
-<span class="math display">\[\begin{cases}
+\end{bmatrix}
+\]</span> 代表着 <span class="math display">\[
+\begin{cases}
 x_1 + 2x_2 - x_3 = -6
 \\
 x_2 + x_3 = 1
 \\
 x_3 = 3
-\end{cases}\]</span>
-<p>$$ 这样只要回代，就能求了。</p>
+\end{cases}
+\]</span></p>
+<p>这样只要回代，就能求了。</p>
 <p>这个矩阵称为“阶梯形矩阵”，其系数矩阵部分称为“上三角矩阵”。通过这个形状大致就能明白什么意思了。</p>
 <p>最后化简为 <span class="math display">\[
 \begin{bmatrix}
