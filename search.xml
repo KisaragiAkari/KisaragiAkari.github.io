@@ -7019,20 +7019,19 @@ class="math inline">\(j\)</span> 的位置，所获得的最大收益。</p>
 <span class="math inline">\(B\)</span> 是不能加的。 <span
 class="math display">\[
 f(i-1,j,t +\Delta t,0) =
-\max \left\{ \begin{aligned}
+\max \begin{cases}
 f(i,j,t,0) + B_{i-1}
 \\
 f(i,j,t,1) + B_{i-1}
-\end{aligned} \right.
+\end{cases}
 \]</span></p>
 <p><span class="math display">\[
 f(i,j+1,t +\Delta t,1) =
-\max \left\{ \begin{aligned}
+\max \begin{cases}
 f(i,j,t,0) + B_{j+1}
 \\
 f(i,j,t,1) + B_{j+1}
-\end{aligned}
-\right.
+\end{cases}
 \]</span></p>
 <p>计算 <span class="math inline">\(\Delta t\)</span>
 只需要将对应的编号相减就行了。</p>
@@ -7041,11 +7040,11 @@ f(i,j,t,1) + B_{j+1}
 的宝可梦，而不是房子编号，不然复杂度不对。这一步就相当于离散化。</p>
 <p>边界为 <span class="math display">\[
 f(i,j,t,0/1) =
-\left\{ \begin{aligned}
+\begin{cases}
 0 &amp; i=j=k
 \\
 -\infty &amp; \text{otherwise}
-\end{aligned} \right.
+\end{cases}
 \]</span> 复杂度 <span class="math inline">\(O(m^2 \max
 T)\)</span>。</p>
 <h2 id="code">CODE</h2>
