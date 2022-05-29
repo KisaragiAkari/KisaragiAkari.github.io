@@ -10850,22 +10850,23 @@ class="math inline">\(X_A \cdot (k+T) &gt; X_B\)</span>。</p>
 X_A \ge X_B \cdot(k-T)
 \]</span></p>
 <p><span class="math display">\[
-\log_2 (X_A) - \log_2(X_B) \ge  \log2(k-T)
+\log_2 (X_A) - \log_2 (X_B) \ge  \log2 (k-T)
 \]</span></p>
 <p>从 <span class="math inline">\(B\)</span> 向 <span
 class="math inline">\(A\)</span> 连一条权值为 <span
-class="math inline">\(\log2(k-T)\)</span> 的边。 <span
+class="math inline">\(\log2 (k-T)\)</span> 的边。 <span
 class="math display">\[
 X_A \cdot (k+T) &gt; X_B
 \]</span></p>
 <p><span class="math display">\[
-\log_2(X_A) + \log_2(k+T) &gt; X_B
+\log_2 (X_A) + \log_2 (k+T) &gt; \log_2 (X_B)
 \]</span></p>
 <p><span class="math display">\[
-\log_2(X_A) - \log_2 (X_B) &gt; -\log_2(k+T)
+\log_2(X_A) - \log_2 (X_B) &gt; - \log_2(k+T)
 \]</span></p>
 <p>从 <span class="math inline">\(B\)</span> 向 <span
-class="math inline">\(A\)</span> 连一条权值为 $ -_2(k+T)$ 的边。</p>
+class="math inline">\(A\)</span> 连一条权值为 <span
+class="math inline">\(- \log_2 (k+T)\)</span> 的边。</p>
 <p>虽然两个式子一个是大于等于一个是大于，但是允许 <span
 class="math inline">\(10^{-4}\)</span>
 的精度误差存在，所以这样连边是没问题的。</p>
@@ -10888,8 +10889,7 @@ class="math inline">\(0\)</span> 向 <span
 class="math inline">\(C\)</span> 连一条权值为 <span
 class="math inline">\(\log_2(x)\)</span> 的边，由 <span
 class="math inline">\(C\)</span> 向 <span
-class="math inline">\(0\)</span> 连一条权值为 <span
-class="math inline">\(-\log_2(x)\)</span>
+class="math inline">\(0\)</span> 连一条权值为 $ - _2(x)$
 的边。这是常见的维护差分约束系统中已知量与未知量相对大小的套路。</p>
 <p>这样做比直接连 <span class="math inline">\(n+1\)</span> 要快大概
 200ms。</p>
