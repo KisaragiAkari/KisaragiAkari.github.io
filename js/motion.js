@@ -18,7 +18,7 @@ NexT.motion.integrator = {
     if (!CONFIG.motion.async) this.queue = [this.queue];
     this.queue.forEach(sequence => {
       const timeline = window.anime.timeline({
-        duration: 140,
+        duration: 200,
         easing  : 'linear'
       });
       sequence.forEach(item => {
@@ -51,7 +51,7 @@ NexT.motion.middleWares = {
       });
     }
 
-    pushToSequence('.header');
+    pushToSequence('header.header');
     CONFIG.scheme === 'Mist' && getMistLineSettings('.logo-line');
     CONFIG.scheme === 'Muse' && pushToSequence('.custom-logo-image');
     pushToSequence('.site-title');
