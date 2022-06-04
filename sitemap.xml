@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://miku01ck.xyz/2022/notes-graph-1/</loc>
+    
+    <lastmod>2022-06-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://miku01ck.xyz/2022/notes-graph-2-1/</loc>
+    
+    <lastmod>2022-06-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://miku01ck.xyz/2022/notes-probblty-2/</loc>
     
     <lastmod>2022-06-04</lastmod>
@@ -705,24 +723,6 @@
   
   <url>
     <loc>https://miku01ck.xyz/2022/uva1623-solution/</loc>
-    
-    <lastmod>2022-02-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://miku01ck.xyz/2022/notes-graph-1/</loc>
-    
-    <lastmod>2022-02-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://miku01ck.xyz/2022/notes-graph-2-1/</loc>
     
     <lastmod>2022-02-16</lastmod>
     
@@ -1521,13 +1521,6 @@
   
   <url>
     <loc>https://miku01ck.xyz/categories/%E9%A2%98%E8%A7%A3/</loc>
-    <lastmod>2022-06-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://miku01ck.xyz/categories/%E5%9B%BE%E8%AE%BA/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
