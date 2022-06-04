@@ -627,7 +627,7 @@ DFS，求出每个从每个节点以它为根的深度和出发能够到达的�
 document.addEventListener('page:loaded', () => {
   NexT.utils.loadComments(CONFIG.twikoo.el)
     .then(() => NexT.utils.getScript(
-      'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
       { condition: window.twikoo }
     ))
     .then(() => {
@@ -635,6 +635,14 @@ document.addEventListener('page:loaded', () => {
     });
 });
 </script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
 
 </body>
 </html>
