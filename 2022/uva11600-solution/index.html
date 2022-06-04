@@ -79,7 +79,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">112</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">113</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -151,13 +151,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">113</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -264,7 +264,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-05 15:16:25" itemprop="dateModified" datetime="2022-03-05T15:16:25+08:00">2022-03-05</time>
+      <time title="修改时间：2022-06-04 12:08:10" itemprop="dateModified" datetime="2022-06-04T12:08:10+08:00">2022-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -290,7 +290,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>1.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -309,36 +309,44 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="分析">分析</h2>
-<p>一个好的思路就是只把有怪物的边看作边，能够不经过有怪物的边到达的点可以缩成一个点。</p>
-<p>因为不经过有怪物的边到达的点，他们对答案产生的贡献是相同的。</p>
-<span id="more"></span>
+<p>不经过有怪物的边到达的点，他们对答案产生的贡献是相同的。所以把能够不经过有怪物的边到达的点集分别缩成一个点。</p>
 <p>问题就转化为了，期望走多少次，才能遍历缩点后的图。</p>
+<span id="more"></span>
 <p>设 <span class="math inline">\(f(S)\)</span> 为当前经过的点集为 <span
 class="math inline">\(S\)</span> 时，还需要的最小期望次数。</p>
 <p>设当前集合 <span class="math inline">\(S\)</span> 中共有 <span
 class="math inline">\(sz_S\)</span> 个原图的点，点 <span
 class="math inline">\(j\)</span> 中有 <span
-class="math inline">\(sz_j\)</span> 个原图的点。 <span
+class="math inline">\(sz_j\)</span> 个原图的点。称为这个点的大小。 <span
 class="math display">\[
-f(S) = \frac{sz_S-1}{n-1} \cdot \big( f(S)+1 \big) + \sum_{j \notin S}
-{\frac{sz_j}{n-1} \cdot \big( f(S \cup \{j\}) + 1} \big)
-\]</span> 显然求不出来这个式子，化简。</p>
-<p>令 <span class="math inline">\(p = \frac{sz_S-1}{n-1}\)</span>，<span
+f(S) = \frac{sz_S-1}{n-1} \cdot \Big( f(S)+1 \Big) + \sum_{j \notin S}
+{\frac{sz_j}{n-1} \cdot \Big( f(S \cup \{j\}) + 1} \Big)
+\]</span> 选到 <span class="math inline">\(S\)</span> 内的点，概率为
+<span
+class="math inline">\(\frac{sz_S-1}{n-1}\)</span>，注意不能选到自己所在的点。那么就要在
+<span class="math inline">\(S\)</span> 里面多留一天，权值为 <span
+class="math inline">\(f(S)+1\)</span>。选到 <span
+class="math inline">\(S\)</span> 外的点 <span
+class="math inline">\(j\)</span>，由于点的大小不同，所以概率也不同，进而权值也不同。选到哪个点就将它加入几何中并呆上一天。</p>
+<p>显然求不出来这个式子，化简。</p>
+<p>令 <span class="math inline">\(P = \frac{sz_S-1}{n-1}\)</span>，<span
 class="math inline">\(p_j = \frac{sz_j}{n-1}\)</span>。</p>
 <p>则 <span class="math display">\[
-f(S) = p \cdot \big( f(S)+1 \big) + \sum_{j \notin S} {p_j \cdot \big(
-f(S \cup \{j\}) + 1} \big)
+f(S) = P \cdot \Big( f(S)+1 \Big) + \sum_{j \notin S} {p_j \cdot \Big(
+f(S \cup \{j\}) + 1} \Big)
 \]</span> <span class="math display">\[
-f(S) \cdot (1-p) = p + \sum_{j \notin S} {p_j \cdot \big( f(S \cup
-\{j\}) + 1} \big)
+f(S) \cdot (1-P) = P + \sum_{j \notin S} {p_j \cdot \Big( f(S \cup
+\{j\}) + 1} \Big)
 \]</span></p>
 <p><span class="math display">\[
-f(S) = \frac{ p + (n-sz_S) + \sum_{j \notin S} f(S \cup \{ j \}) } {1-p}
+f(S) = \frac{ P + (n-sz_S) + \sum_{j \notin S} f(S \cup \{ j \}) } {1-P}
 \]</span></p>
 <p>代入，得 <span class="math display">\[
 f(S) = \frac{n-1}{n-sz_S} + \sum_{j \notin S} { f(S \cup \{j\}) \cdot
 \frac{sz_j}{n-sz_s}}
-\]</span> 这个集合是不断扩大的，可以记忆化搜索。</p>
+\]</span>
+转移是显式的拓扑序，可以记忆化搜索。但由于是无向图，所以不必考虑边的问题。答案是
+<span class="math inline">\(f(1)\)</span>。</p>
 <p>复杂度 <span class="math inline">\(O(2^n)\)</span>，状态数量有 <span
 class="math inline">\(2^n\)</span> 个，数组开不下，可以用 map 存。</p>
 <h2 id="code">CODE</h2>
@@ -351,7 +359,7 @@ class="math inline">\(2^n\)</span> 个，数组开不下，可以用 map 存。<
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">pb</span> <span class="token expression">push_back</span></span>
 <span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">35</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> t<span class="token punctuation">,</span> _<span class="token punctuation">,</span> n<span class="token punctuation">,</span> m<span class="token punctuation">,</span> num<span class="token punctuation">,</span> sz<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token comment">// num 缩点后点的个数，sz[i] 缩点后第i个点包含的节点个数</span>
+<span class="token comment">// num 缩点后点的个数，sz[i]缩点后第i个点的大小</span>
 <span class="token keyword">bool</span> v<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
 vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> w<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token comment">// 存没有怪物的边</span>
@@ -367,10 +375,12 @@ map<span class="token operator">&lt;</span><span class="token keyword">int</span
 <span class="token punctuation">&#125;</span>
 <span class="token keyword">double</span> <span class="token function">dp</span><span class="token punctuation">(</span><span class="token keyword">int</span> s<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 	<span class="token keyword">if</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>s<span class="token punctuation">]</span><span class="token operator">></span><span class="token number">1e-9</span><span class="token punctuation">)</span> <span class="token keyword">return</span> f<span class="token punctuation">[</span>s<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// 注意精度</span>
 	<span class="token keyword">int</span> tot<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
 	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>num<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">&amp;</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span> tot<span class="token operator">+=</span>sz<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token comment">// tot 集合s的节点个数</span>
 	<span class="token keyword">if</span><span class="token punctuation">(</span>tot<span class="token operator">==</span>n<span class="token punctuation">)</span> <span class="token keyword">return</span> f<span class="token punctuation">[</span>s<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token comment">// 已经遍历完整张图</span>
 	f<span class="token punctuation">[</span>s<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">1.0</span><span class="token operator">/</span><span class="token punctuation">(</span>n<span class="token operator">-</span>tot<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>num<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>s<span class="token operator">&amp;</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 		f<span class="token punctuation">[</span>s<span class="token punctuation">]</span><span class="token operator">+=</span><span class="token function">dp</span><span class="token punctuation">(</span>s<span class="token operator">|</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span>sz<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">1.0</span><span class="token operator">/</span><span class="token punctuation">(</span>n<span class="token operator">-</span>tot<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -379,11 +389,9 @@ map<span class="token operator">&lt;</span><span class="token keyword">int</span
 <span class="token punctuation">&#125;</span>
 <span class="token keyword">void</span> <span class="token function">sol</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 	num<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-	<span class="token function">memset</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">memset</span><span class="token punctuation">(</span>sz<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>sz<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">,</span><span class="token operator">&amp;</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	f<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>sz<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 		<span class="token keyword">int</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
 		<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>x<span class="token punctuation">,</span><span class="token operator">&amp;</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
