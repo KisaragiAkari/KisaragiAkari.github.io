@@ -258,7 +258,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-06-11 15:54:53 / 修改时间：16:12:04" itemprop="dateCreated datePublished" datetime="2022-06-11T15:54:53+08:00">2022-06-11</time>
+      <time title="创建时间：2022-06-11 15:54:53 / 修改时间：18:25:17" itemprop="dateCreated datePublished" datetime="2022-06-11T15:54:53+08:00">2022-06-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -284,7 +284,7 @@
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
+      <span>7 分钟</span>
     </span>
 </div>
 
@@ -436,7 +436,7 @@ ll <span class="token function">query</span><span class="token punctuation">(</s
 	<span class="token function">modify</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>b<span class="token punctuation">,</span><span class="token function">abs</span><span class="token punctuation">(</span>a<span class="token operator">-</span>x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>Q<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 		ll dlt<span class="token operator">=</span><span class="token function">abs</span><span class="token punctuation">(</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>x<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> r1<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1ll</span><span class="token operator">&lt;&lt;</span><span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">,</span> r2<span class="token punctuation">,</span> r3<span class="token punctuation">;</span>
-<span class="token comment">//		r1=query(1,q[i],q[i],0)+dlt;</span>
+<span class="token comment">//		r1=query(1,x[i],x[i],0)+dlt;</span>
 		r2<span class="token operator">=</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
 		r3<span class="token operator">=</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>n<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">-</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
 		r1<span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>r1<span class="token punctuation">,</span><span class="token function">min</span><span class="token punctuation">(</span>r2<span class="token punctuation">,</span>r3<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -484,6 +484,26 @@ ll <span class="token function">query</span><span class="token punctuation">(</s
     <div class="comments"><div id="twikoo-comments"></div></div>
 </div>
   </main>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+  <div>
+	<meting-js
+		server="netease" 
+		type="playlist" 
+		id="6917863608"
+		fixed="true" 
+		autoplay="false"
+		loop="all"
+		order="random"
+		preload="auto"
+		list-folded="ture"
+		list-max-height="500px"
+		lrc-type="1">
+	</meting-js>	
+  </div>
+
 
   <footer class="footer">
     <div class="footer-inner">
