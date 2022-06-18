@@ -1117,7 +1117,7 @@ class="math inline">\(Concatenate(i) \bmod m\)</span> 的值。</p>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-18 16:54:12" itemprop="dateModified" datetime="2022-06-18T16:54:12+08:00">2022-06-18</time>
+      <time title="修改时间：2022-06-18 17:02:43" itemprop="dateModified" datetime="2022-06-18T17:02:43+08:00">2022-06-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1160,186 +1160,14 @@ class="math inline">\(Concatenate(i) \bmod m\)</span> 的值。</p>
 元 1 次方程组吧，所以在 OI
 中还是很有用处的，而且牵扯到很多线性代数里的概念。</p>
 <p>进入正题。</p>
-<!--nore-->
-<p><strong>线性方程组</strong>定义为由 <span
-class="math inline">\(m\)</span> 个 <span
-class="math inline">\(n\)</span> 元一次方程构成的方程组，举个例子 <span
-class="math display">\[
-\begin{cases}
-x_1 + 2x_2 - x_3 = -6
-\\
-2x_1 + x_2 - 3x_3 = -9
-\\
--x_1 - x_2 + 2x_3 = 7
-\end{cases}
-\]</span> 把每个未知数的系数提出来，组成一个 <span
-class="math inline">\(n \times m\)</span>
-的矩阵，称为“系数矩阵”，加上右侧的常数，就成为了 "增广矩阵"。 <span
-class="math display">\[
-\begin{bmatrix}
-1 &amp; 2 &amp; -1 &amp; -6
-\\
-2 &amp; 1 &amp; -3 &amp; -9
-\\
--1 &amp; -1 &amp; 2 &amp; 7
-\end{bmatrix}
-\]</span> 求解这个方程组的步骤可以概括成对增广矩阵的三类操作。</p>
-<ol type="1">
-<li>用一个非 0 的数乘某一行。</li>
-<li>用一个非 0 的数乘某一行，加到另一行上。</li>
-<li>交换两行的位置。</li>
-</ol>
-<p>此三子者，称为矩阵的“初等行变换”。对以上使用若干次初等行变换，可以得到
-<span class="math display">\[
-\begin{bmatrix}
-1 &amp; 2 &amp; -1 &amp; -6
-\\
-0 &amp; 1 &amp; 1 &amp; 1
-\\
-0 &amp; 0 &amp; 1 &amp; 3
-\end{bmatrix}
-\]</span> 代表着 <span class="math display">\[
-\begin{cases}
-x_1 + 2x_2 - x_3 = -6
-\\
-x_2 + x_3 = 1
-\\
-x_3 = 3
-\end{cases}
-\]</span></p>
-<p>这样只要回代，就能求了。</p>
-<p>这个矩阵称为“阶梯形矩阵”，其系数矩阵部分称为“上三角矩阵”。通过这个形状大致就能明白什么意思了。</p>
-<p>最后化简为 <span class="math display">\[
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 1
-\\
-0 &amp; 1 &amp; 0 &amp; -2
-\\
-0 &amp; 0 &amp; 1 &amp; 3
-\end{bmatrix}
-\]</span>
-这样就能直接看出每一个未知数的值。这个矩阵称为“简化阶梯矩阵”，其系数矩阵部分为“对角矩阵”。依旧是感性理解。</p>
-<p><strong>通过初等行变换，把增广矩阵变为简化阶梯形矩阵，从而求解线性方正组的算法</strong>，就是<strong>高斯消元</strong>。</p>
-<p>其思想为，对于每个未知数 <span
-class="math inline">\(x_i\)</span>，找到一个 <span
-class="math inline">\(x_i\)</span> 系数非 0，但是 <span
-class="math inline">\(x_1 \sim x_{i-1}\)</span> 的系数都是 0
-的方程，运用初等行变换把其他方程的 <span
-class="math inline">\(x_i\)</span> 项系数都变为 0。</p>
-<p>对于方程组 <span class="math display">\[
-\begin{cases}
-x_1 + 2x_2 - x_3 = 3
-\\
-2x_1 + 4x_2 - 8x_3 = 0
-\\
--x_1 - 2x_2 + 6x_3 = 2
-\end{cases}
-\]</span> 经过一系列变换后，发现在化成简化阶梯型矩阵过程中，只能得到
-<span class="math display">\[
-\begin{bmatrix}
-1 &amp; 2 &amp; 0 &amp; 4
-\\
-0 &amp; 0 &amp; 1 &amp; 1
-\\
-0 &amp; 0 &amp; 0 &amp;  0
-\end{bmatrix}
-\]</span> 无法让 <span class="math inline">\(x_2\)</span> 的系数不为 0
-且其他 <span class="math inline">\(x_i\)</span> 的系数为
-0，但是它的解可以写作 <span class="math display">\[
-\begin{cases}
-x_1 = 4-2x_2
-\\
-x_3 = 1
-\end{cases}
-\]</span> 其中 <span class="math inline">\(x_2\)</span>
-可以取任何值，并且都能找到对应的满足原方程组的 <span
-class="math inline">\(x_1\)</span>。所以原方程组有无数个解。</p>
-<p>称 <span class="math inline">\(x_1\)</span> 与 <span
-class="math inline">\(x_3\)</span> 这样的未知数为主元，<span
-class="math inline">\(x_2\)</span> 这样的未知数为自由元。对于一个主元
-<span
-class="math inline">\(x_0\)</span>，在它所在的方程组的简化阶梯形矩阵中，能且仅能找到一个位置
-<span class="math inline">\((i,j)\)</span>，满足 <span
-class="math inline">\(x_0\)</span> 系数为 0，且第 <span
-class="math inline">\(j\)</span> 列其他位置都是 0，第 <span
-class="math inline">\(i\)</span> 行的 <span class="math inline">\(1 \sim
-i-1\)</span> 列为 0。</p>
-<p>仔细考虑一下，为什么会出现这种情况呢？写出他的系数矩阵 <span
-class="math display">\[
-\begin{bmatrix}
-1 &amp; 2 &amp; -1 &amp; 3
-\\
-2 &amp; 4 &amp; -8 &amp; 0
-\\
--1 &amp; -2 &amp; 6 &amp;  2
-\end{bmatrix}
-\]</span>
-不难发现，对于每一行，前两个数字构成的向量是<strong>线性相关</strong>的，那么
-3 个方程描述的关于 <span class="math inline">\(x_1\)</span> 与 <span
-class="math inline">\(x_2\)</span> 信息是同一个量。也就是说，令 <span
-class="math inline">\(x_4=x_1+2x_2\)</span>，照样能写出等价于原方程组的方程组，最后解出来是
-<span class="math inline">\(x_4 = 4\)</span>，<span
-class="math inline">\(x_3=1\)</span>。</p>
-<p>另外对于某个矩阵，其中有一行（或列）与其他行（或列）线性相关，那么用它来变换一个向量就会丢维，造成“降维打击”。比如变换一个二维向量，那么最终得到一条直线。</p>
-<p> </p>
-<p>对于 <span class="math inline">\(n \times n\)</span> 的矩阵，主元有
-<span class="math inline">\(k\)</span> 个。当 <span
-class="math inline">\(k=n\)</span> 时有唯一解，<span
-class="math inline">\(k &lt; n\)</span> 时有无数解。</p>
-<p>还有一种情况是当某一行系数全为 0，常数不为 0 时，原方程组无解。</p>
-<h2 id="矩阵行列式">矩阵行列式</h2>
-<p>对于 <span class="math inline">\(2 \times 2\)</span> 的矩阵 <span
-class="math inline">\(A \begin{bmatrix} a &amp; b \\ c &amp; d
-\end{bmatrix}\)</span>，他的行列式为 <span class="math inline">\(ad -
-bc\)</span>，记为 <span class="math inline">\(\det (A)\)</span>。</p>
-<p>在二维平面中，将一个图形经过一个矩阵变换后，得到的新图形与原图形面积之比即为行列式的值。会出现负数是因为向量的方向改变了。</p>
-<p>三维的</p>
-<p><img data-src="https://img-blog.csdnimg.cn/20210104163632662.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2tpY2luaW8=,size_16,color_FFFFFF,t_70#pic_center" /></p>
-<p>对角行列式</p>
-<p><img data-src="https://img-blog.csdnimg.cn/20210105225239138.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2tpY2luaW8=,size_16,color_FFFFFF,t_70#pic_center" /></p>
-<p>上三角和下三角行列式</p>
-<p><img data-src="https://img-blog.csdnimg.cn/20210105225248894.jpg#pic_center" /></p>
-<p>我是盗图的懒狗。侵删。</p>
-<p>更一般的，一个 $n n $
-矩阵的行列式等于其任意行（或列）的元素与对应的代数余子式乘积之和。</p>
-<p>好吧我暂时不懂，有时间补上。</p>
-<ul>
-<li>矩阵某两行(列)交换，行列式 <span class="math inline">\(\times
-(-1)\)</span>。</li>
-<li>矩阵某一行(列)加上另一行(列)，行列式不变。</li>
-<li>矩阵某一行(列) <span class="math inline">\(\times k\)</span>，行列式
-<span class="math inline">\(\times
-k\)</span>。所以可以对矩阵“提公因式”。</li>
-<li>矩阵中存在某一行（列）与其他行（列）线性相关，行列式为 0。</li>
-</ul>
-<h2 id="关于矩阵向量乘法">关于矩阵向量乘法</h2>
-<p>貌似这个手算时用的比较多，我总结了一个式子。</p>
-<p>把向量 <span class="math inline">\(\vec v\)</span> 写成n 行 1
-列的矩阵 <span class="math inline">\(A\)</span> 的形式，用一个 <span
-class="math inline">\(n \times n\)</span> 的矩阵 <span
-class="math inline">\(B\)</span>，变换它，得到的矩阵 <span
-class="math inline">\(C\)</span> 为 <span class="math display">\[
-C_{i,1} = \sum_{k=1}^n B_{i,k} A_{k,1}
-\]</span> 举个例子 <span class="math display">\[
-\begin{bmatrix}
-x_1 &amp; x_2
-\\
-y_1 &amp; y_2
-\end{bmatrix}
-\begin{bmatrix}
-a
-\\
-b
-\end{bmatrix}
-=
-\begin{bmatrix}
-a x_1 + b x_1
-\\
-a y_1 + b y_1
-\end{bmatrix}
-\]</span> 就写这么多了，再难的就超出我的能力范围了。</p>
-<p>为什么高斯消元不配上代码？因为我一段时间之内不想再写代码了。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/notes-linear-algebra-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

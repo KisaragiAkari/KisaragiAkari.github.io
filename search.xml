@@ -10869,7 +10869,7 @@ OI 也就没意义了吧。</p>
 元 1 次方程组吧，所以在 OI
 中还是很有用处的，而且牵扯到很多线性代数里的概念。</p>
 <p>进入正题。</p>
-<!--nore-->
+<span id="more"></span>
 <p><strong>线性方程组</strong>定义为由 <span
 class="math inline">\(m\)</span> 个 <span
 class="math inline">\(n\)</span> 元一次方程构成的方程组，举个例子 <span
