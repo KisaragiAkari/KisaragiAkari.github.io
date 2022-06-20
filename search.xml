@@ -11621,19 +11621,19 @@ class="math inline">\(r=R\)</span> 时操作结束。</p>
 <li>当 <span class="math inline">\(L \le l\)</span> 时，必须满足 <span
 class="math inline">\(L &lt; l\)</span> 才能让 <span
 class="math inline">\(L\)</span> 与 <span
-class="math inline">\(l\)</span> 配对。当满足 <span
+class="math inline">\(l\)</span> 配对，满足 <span
 class="math inline">\(r \le R\)</span> 时就能让 <span
 class="math inline">\(L\)</span> 与 <span
 class="math inline">\(r\)</span> 配对。</li>
 <li>当 <span class="math inline">\(r \le R\)</span> 时，必须满足 <span
-class="math inline">\(L &lt; l\)</span> 就能让 <span
+class="math inline">\(L \le l\)</span> 就能让 <span
 class="math inline">\(R\)</span> 与 <span
-class="math inline">\(l\)</span> 配对。当满足 <span
+class="math inline">\(l\)</span> 配对，满足 <span
 class="math inline">\(r &lt; R\)</span> 时才能让 <span
 class="math inline">\(R\)</span> 与 <span
 class="math inline">\(r\)</span> 配对。</li>
 </ol>
-<p>由于只有能够称为回文串才贪心操作，所以第一次到达 <span
+<p>由于只有能够成为回文串才贪心操作，所以第一次到达 <span
 class="math inline">\(l = L\)</span> 且 <span class="math inline">\(r =
 R\)</span> 时一定是字典序最小的回文串。</p>
 <p>复杂度 <span class="math inline">\(O(Tn)\)</span></p>
