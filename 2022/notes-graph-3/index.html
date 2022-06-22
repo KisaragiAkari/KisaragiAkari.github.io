@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/4.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/4.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="j1x0aj8z_yTzMf4418HVYztivD-T9K_6wF6q48fGAm4">
+  <meta name="msvalidate.01" content="de7409d7fe91436eab14ea4062b1ba87">
+  <meta name="baidu-site-verification" content="7kBMv6UJrb5yCmuU">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"miku01ck.xyz","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://miku01ck.xyz/2022/notes-graph-3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://miku01ck.xyz/2022/notes-graph-3/","path":"2022/notes-graph-3/","title":"「图论学习笔记」#3 二分图匹配"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>「图论学习笔记」#3 二分图匹配 | Sz_zUwu's blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sz_zUwu's blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">φ(゜▽゜*)♪</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">120</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%A4%E5%AE%9A"><span class="nav-number">1.</span> <span class="nav-text">二分图的定义与判定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E5%AE%9A"><span class="nav-number">1.2.</span> <span class="nav-text">判定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D"><span class="nav-number">2.</span> <span class="nav-text">二分图最大匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">匈牙利算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E5%A4%9A%E9%87%8D%E5%8C%B9%E9%85%8D"><span class="nav-number">3.</span> <span class="nav-text">二分图多重匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E5%B8%A6%E6%9D%83%E5%8C%B9%E9%85%8D-km-%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">二分图带权匹配 &amp; KM 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%A4%87%E5%8C%B9%E9%85%8D"><span class="nav-number">4.1.</span> <span class="nav-text">完备匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B6%E6%A0%87"><span class="nav-number">4.2.</span> <span class="nav-text">顶标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E7%AD%89%E5%AD%90%E5%9B%BE"><span class="nav-number">4.3.</span> <span class="nav-text">相等子图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E9%94%99%E6%A0%91%E5%8C%88%E7%89%99%E5%88%A9%E6%A0%91"><span class="nav-number">4.4.</span> <span class="nav-text">交错树（匈牙利树）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">4.5.</span> <span class="nav-text">流程</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sz_zUwu"
+      src="/images/1.jpg">
+  <p class="site-author-name" itemprop="name">Sz_zUwu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sz-zUwu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sz-zUwu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/295357491" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;295357491" rel="noopener" target="_blank"><i class="fas fa-tv fa-fw"></i>BiliBili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/user/home?id=564152236" title="网易云音乐 → https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;564152236" rel="noopener" target="_blank"><i class="fas fa-music fa-fw"></i>网易云音乐</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;" rel="noopener" target="_blank"><i class="fas fa-blog fa-fw"></i>知乎</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/444418" title="洛谷 → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;444418" rel="noopener" target="_blank"><i class="fas fa-code fa-fw"></i>洛谷</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://loj.ac/u/Sz_zUwu" title="LibreOJ → https:&#x2F;&#x2F;loj.ac&#x2F;u&#x2F;Sz_zUwu" rel="noopener" target="_blank"><i class="fas fa-code fa-fw"></i>LibreOJ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.pixiv.net/users/61482901" title="pixiv → https:&#x2F;&#x2F;www.pixiv.net&#x2F;users&#x2F;61482901" rel="noopener" target="_blank"><i class="fas fa-image fa-fw"></i>pixiv</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/Sz_zUwu" title="Codeforces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;Sz_zUwu" rel="noopener" target="_blank"><i class="fas fa-coffee fa-fw"></i>Codeforces</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://miku01ck.xyz/2022/notes-graph-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.jpg">
+      <meta itemprop="name" content="Sz_zUwu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sz_zUwu's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="「图论学习笔记」#3 二分图匹配 | Sz_zUwu's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「图论学习笔记」#3 二分图匹配
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-06-22 11:38:32 / 修改时间：11:42:39" itemprop="dateCreated datePublished" datetime="2022-06-22T11:38:32+08:00">2022-06-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>10 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="二分图的定义与判定">二分图的定义与判定</h2>
+<h3 id="定义">定义</h3>
+<p>对于一张有 <span class="math inline">\(n\)</span>
+个节点的无向图（<span class="math inline">\(n \ge
+2\)</span>），可以分成两个集合 <span class="math inline">\(A\)</span> 与
+<span class="math inline">\(B\)</span> 两个非空集合，满足 <span
+class="math inline">\(A \cap B =
+\varnothing\)</span>，且任意一个集合内的点之间都没有边相连。那么称这张图为二分图。</p>
+<span id="more"></span>
+<h3 id="判定">判定</h3>
+<p>不加证明地给出一个定理：</p>
+<blockquote>
+<p>一张无向图是二分图，当且仅当图中不存在奇环。</p>
+</blockquote>
+<p>根据这个定理，可以用染色的方法进行二分图判定。用黑白二色标记图中节点，当一个节点被交际后，将所有与它直接相连的点标记为与它相反的颜色。那么对于一个点
+<span class="math inline">\(x\)</span>，颜色为 <span
+class="math inline">\(col_x\)</span>，存在与它直接相连且已经被染色的点
+<span class="math inline">\(y\)</span>，满足 <span
+class="math inline">\(col_x = col_y\)</span>，那么说明图中存在奇环。</p>
+<p>复杂度 <span class="math inline">\(O(n+m)\)</span>，其中 <span
+class="math inline">\(n\)</span> 为点数，<span
+class="math inline">\(m\)</span> 为边数。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> color<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	v<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span>color<span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>h<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token punctuation">;</span>i<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>nxt<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">int</span> y<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>to<span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>v<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">==</span>color<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>v<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">&amp;&amp;</span><span class="token operator">!</span><span class="token function">dfs</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span><span class="token number">3</span><span class="token operator">-</span>color<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="二分图最大匹配">二分图最大匹配</h2>
+<p>如果一个边集满足「任意两条边都没有公共端点」，那么这个<strong>边集</strong>称为该图的一组<strong>匹配</strong>。在二分图中，包含边数最多的一组匹配称为<strong>二分图的最大匹配</strong>。</p>
+<p>对于一组匹配 <span class="math inline">\(S\)</span>，属于 <span
+class="math inline">\(S\)</span>
+的边称为“匹配边”，不属于它的边称为“非匹配边”。匹配边的端点称为“匹配点”，其他节点称为“非匹配点”。</p>
+<p>在二分图中，如果存在链接两个非匹配点的路径 <span
+class="math inline">\(p\)</span>，且非匹配边与匹配边在 <span
+class="math inline">\(p\)</span> 上交替出现，那么 <span
+class="math inline">\(p\)</span> 就是 <span
+class="math inline">\(S\)</span> 的<strong>增广路</strong>。</p>
+<p>它必然有以下性质：</p>
+<ul>
+<li>长度 <span class="math inline">\(l\)</span>
+为奇数。否则连接某一个端点的增广路上的边是匹配边，与它是非匹配点相矛盾。</li>
+<li>路径上第 <span class="math inline">\(1,3,5,\cdots l\)</span>
+条边是非匹配边，<span class="math inline">\(2,4,6,\cdots l-1\)</span>
+条边为匹配边。由定义不难得出。</li>
+</ul>
+<p>由于这两条性质，得出在增广路上，匹配边的数量必定是非匹配边的数量
+-1，那么如果将路径上所有的边的状态取反，那么就能减少一条增广路，得到一个新的匹配
+<span class="math inline">\(S&#39;\)</span>，其中匹配边的数量为 <span
+class="math inline">\(S\)</span> 中匹配边的数量 +1。进而得到推论：</p>
+<blockquote>
+<p>二分图的一组匹配 <span class="math inline">\(S\)</span>
+为最大匹配，当且仅当图中不存在 <span class="math inline">\(S\)</span>
+的增广路</p>
+</blockquote>
+<h3 id="匈牙利算法">匈牙利算法</h3>
+<p>又称为增广路算法，用于计算二分图最大匹配，其过程为：</p>
+<ol type="1">
+<li>设 <span class="math inline">\(S =
+\varnothing\)</span>，即图中所有边都是非匹配边。</li>
+<li>寻找增广路 <span
+class="math inline">\(p\)</span>，并且所有状态取反，得到更大的匹配 <span
+class="math inline">\(S&#39;\)</span>。</li>
+<li>重复第 2 步，直到图中不存在增广路，此时得到的 <span
+class="math inline">\(S&#39;&#39;\)</span> 即为改二分图的最大匹配。</li>
+</ol>
+<p>这个算法的核心为寻找增广路。</p>
+<p>称 <span class="math inline">\(x\)</span> 与 <span
+class="math inline">\(y\)</span> 匹配当且仅当 <span
+class="math inline">\((x \rightarrow y)\)</span> 在匹配 <span
+class="math inline">\(S\)</span>
+之内。匈牙利算法依次尝试给每一个左部节点 <span
+class="math inline">\(x\)</span> 寻找一个匹配的右部节点 <span
+class="math inline">\(y\)</span>。<span class="math inline">\(x\)</span>
+与 <span class="math inline">\(y\)</span>
+能够匹配，需要满足以下条件之一。</p>
+<ol type="1">
+<li><p><span class="math inline">\(y\)</span> 本身是非匹配点。那么 <span
+class="math inline">\((x \rightarrow y)\)</span>
+就是一条非匹配边，构成长度为 1 的增广路。</p></li>
+<li><p><span class="math inline">\(y\)</span> 已经与左部节点 <span
+class="math inline">\(x&#39;\)</span> 匹配，但是从 <span
+class="math inline">\(x&#39;\)</span> 出发能够找到一个右部节点 <span
+class="math inline">\(y&#39;\)</span> 与它匹配。此时 <span
+class="math inline">\(x \rightarrow y \rightarrow x&#39; \rightarrow
+y&#39;\)</span> 是一条增广路。</p></li>
+</ol>
+<p>找到增广路之后直接回溯，将路径上的匹配状态取反， <span
+class="math inline">\(S\)</span> 中边的个数就 +1。</p>
+<p>这个算法的正确性基于：当一个节点成为匹配点后，至多因为找到新的增广路而更换匹配对象，但不会变为非匹配边。</p>
+<p>复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">bool</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>h<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token punctuation">;</span>i<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>nxt<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">int</span> y<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>to<span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>v<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			v<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>match<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">||</span><span class="token function">dfs</span><span class="token punctuation">(</span>match<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> match<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">=</span>x<span class="token punctuation">;</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">signed</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">memset</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">dfs</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">++</span>ans<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// ans即为最大匹配</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="二分图多重匹配">二分图多重匹配</h2>
+<p>二分图，<span class="math inline">\(N\)</span> 个左部点，<span
+class="math inline">\(M\)</span> 个右部点，从中选出尽可能多的边，使得第
+<span class="math inline">\(i\)</span> 个左部节点至多与 <span
+class="math inline">\(kl_i\)</span> 条选出的边相连，第 <span
+class="math inline">\(j\)</span> 个右部点最多与 <span
+class="math inline">\(kr_j\)</span>
+条选出的边相连。称之为二分图的多重匹配。</p>
+<p>有 4 中解决方案。</p>
+<ol type="1">
+<li>拆点。把第 <span class="math inline">\(i\)</span> 个左部点拆成 <span
+class="math inline">\(kl_i\)</span> 个点，把第 <span
+class="math inline">\(j\)</span> 个右部点拆成 <span
+class="math inline">\(kr_j\)</span> 个右部点。对于原图中的边 <span
+class="math inline">\((i,j)\)</span>，在 <span
+class="math inline">\(i\)</span> 与 <span
+class="math inline">\(j\)</span>
+拆成的节点之间分别连边。然后跑最大匹配。</li>
+<li>如果所有的 <span class="math inline">\(kl\)</span> 都为 1 或者所有的
+<span class="math inline">\(kr\)</span> 都为
+1，那么只有一侧是多重的。假如左侧是多重的，方法是在匈牙利算法让每个<span
+class="math inline">\(i\)</span> 执行 <span
+class="math inline">\(kl_i\)</span> 次 DFS。</li>
+<li>在上一种方案中，左右两侧是可以交换的。设右侧为多重，那么让每个右部节点
+<span class="math inline">\(i\)</span> 可以匹配 <span
+class="math inline">\(kr_i\)</span>
+次，超过匹配次数后，依次递归每个匹配的左部点。</li>
+<li>网络流。</li>
+</ol>
+<h2 id="二分图带权匹配-km-算法">二分图带权匹配 &amp; KM 算法</h2>
+<p>对一张带权的二分图求最大匹配，称为二分图带权最大匹配。注意前提是<strong>匹配数最大</strong>，再<strong>最大化边权和</strong>。</p>
+<p>想了好久，找到了相对比较好理解的讲解方法。</p>
+<p>先引入几个概念。</p>
+<h3 id="完备匹配">完备匹配</h3>
+<p>给定一张二分图，其左右节点数均为 <span
+class="math inline">\(n\)</span>。如果改二分图最大匹配含有 <span
+class="math inline">\(n\)</span>
+条边，那么该二分图具有完备匹配。也就是从每个节点出发寻找匹配都能成功。</p>
+<h3 id="顶标">顶标</h3>
+<p>在二分图中，给左部节点 <span class="math inline">\(i\)</span>
+一个权值 <span class="math inline">\(A_i\)</span>，右部节点 <span
+class="math inline">\(j\)</span> 一个权值 <span
+class="math inline">\(B_j\)</span>。满足 <span class="math inline">\(A_i
++ B_j \ge w(i,j)\)</span>，其中 <span
+class="math inline">\(w(i,j)\)</span> 为两点之间的边权。这样的 <span
+class="math inline">\(A_i\)</span> 与 <span
+class="math inline">\(B_j\)</span> 成为顶标。</p>
+<h3 id="相等子图">相等子图</h3>
+<p>二分图中所有节点与满足 <span class="math inline">\(A_i + B_j =
+w(i,j)\)</span> 的边 <span class="math inline">\((i,j)\)</span>
+构成的子图叫做这张二分图的相等子图。</p>
+<blockquote>
+<p>若相等子图中存在完备匹配，则这个完备匹配就是二分图的带权最大匹配。</p>
+<p>证明：</p>
+<p>在相等子图中，完备匹配的边权和为 <span
+class="math inline">\(\sum_{i=1}^n (A_i +
+B_i)\)</span>，也就是顶标之和。</p>
+<p>因为 <span class="math inline">\(A_i + B_j \ge
+w(i,j)\)</span>，所以在二分图中，任何一组匹配的边权和都不大于顶标之和。</p>
+</blockquote>
+<h3 id="交错树匈牙利树">交错树（匈牙利树）</h3>
+<p>在匈牙利算法的过程中，如果从某个左部结点出发寻找匹配失败，那么在 DFS
+的过程中，访问过的节点和边构成一棵树，满足根为一个左部节点，叶子均为左部节点，且奇数层的边均为非匹配边，偶数层的边均为匹配边。这样的树称为交错树。</p>
+<p>一个没用的推论，交错树高度为奇数。</p>
+<p>匈牙利算法中的<code>dfs(i)=1</code>就代表不存在以 <span
+class="math inline">\(i\)</span> 为根的交错树。</p>
+<p>很多地方没有提到的一点就是，如果有交错树，那么必然没有完备匹配，否则与每个从节点出发都能找到匹配相矛盾。这也是下文一系列操作的基础——修改标顶使得尽可能多的边进入相等子图。</p>
+<p>知道大概就行了，深入讲真的不太好理解，可能更加学术一点？总而言之，我们的相等子图中不能存在交错树，否则就没有完备匹配，就没有带权最大匹配了！</p>
+<p> </p>
+<h3 id="流程">流程</h3>
+<p>对于 <span class="math inline">\(i\)</span>，可以把 <span
+class="math inline">\(B_i\)</span> 设置为 0，<span
+class="math inline">\(A_i\)</span> 设置为 <span
+class="math inline">\(\max_{(i \rightarrow j)}{\{ w(i,j)
+\}}\)</span>，这样一定满足条件。</p>
+<p>调整顶标是为了让更多的边 <span class="math inline">\((i,j)\)</span>
+满足 <span class="math inline">\(A_i + B_j =
+w(i,j)\)</span>，也就是扩大相等子图。</p>
+<p>设当前节点为 <span class="math inline">\(k\)</span>
+且满足<strong>在相等子图中</strong>存在以它为根的交错树。找到 <span
+class="math inline">\((i,j)\)</span>，满足 <span
+class="math inline">\(i\)</span> 在以 <span
+class="math inline">\(k\)</span> 为根的交错树中但是 <span
+class="math inline">\(j\)</span> 不在，那么如果把 <span
+class="math inline">\((i,j)\)</span>
+加入相等子图，就能够消去这棵交错树了。</p>
+<p>如果把这棵交错树中所有左部节点的顶标都减去一个 <span
+class="math inline">\(\Delta\)</span>，右部节点都加上一个 <span
+class="math inline">\(\Delta\)</span>，那么对于相等子图中一左一右两个节点
+<span class="math inline">\((u,v)\)</span>，<span
+class="math inline">\(A_u + B_v\)</span> 和不变，仍然在相等子图中。而
+<span class="math inline">\(A_i + B_j\)</span> 变小了，因为 <span
+class="math inline">\(j\)</span> 不在交错树中。</p>
+<p>怎么样保证 <span class="math inline">\((i,j)\)</span>
+一定进入相等子图呢？这要求 <span class="math inline">\(A_i + B_j =
+w(i,j)\)</span>。找到交错树中的任意节点 <span
+class="math inline">\(i\)</span>，令 <span
+class="math inline">\(\Delta=A_i+B_j-w(i,j)\)</span>，那么就相当于 <span
+class="math display">\[
+A_i - (A_i + B_j - w(i,j)) + B_j = w(i,j)
+\]</span></p>
+<p>这个显然是成立的。至于 <span class="math inline">\(i\)</span>
+是啥我们不关心，只要这样做就能让 <span
+class="math inline">\((i,j)\)</span>
+加入相等子图。如果减去太多导致某两个点的顶标和小于边权和了怎么办呢？对于
+<span class="math inline">\(j \in [1,n]\)</span>，取 <span
+class="math inline">\(A_i + B_j - w(i,j)\)</span>
+的最小值。这个可以在匈牙利算法的过程中预处理出来，记为 <span
+class="math inline">\(slack(j)\)</span>。</p>
+<p>最终只要把边权和加起来就是答案了。</p>
+<p>这么一来最优情况下复杂度是 <span
+class="math inline">\(O(n^3)\)</span>，但是很容易就会被卡到 <span
+class="math inline">\(O(n^4)\)</span>。使用 BFS 优化匈牙利算法可以做到
+<span class="math inline">\(O(n^3)\)</span>，有时间再写。</p>
+<p>KM
+算法代码较简单，且在稠密图上表现较好，但是只适用于“原图一定存在完备匹配”的情况。至于费用流的算法，以后再说咯~</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">bool</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	va<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> y<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>y<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>y<span class="token punctuation">)</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>vb<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>la<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">+</span>lb<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">==</span>w<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// la[x]+lb[y]=w[x][y]，(x,y)在相等子图中</span>
+            <span class="token comment">// vb[y]=1表示如果村子交错树，那么y必定在其中</span>
+			vb<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>match<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">||</span><span class="token function">dfs</span><span class="token punctuation">(</span>match<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+				match<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">=</span>x<span class="token punctuation">;</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> slack<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>slack<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">,</span>la<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">+</span>lb<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">-</span>w<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 不在相等子图中就更新slack</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">int</span> <span class="token function">KM</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		la<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token operator">-</span>inf<span class="token punctuation">,</span> lb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+		match<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span> la<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>la<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span> v<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token operator">=</span>v<span class="token punctuation">[</span>b<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> slack<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>inf<span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">dfs</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token comment">// 这样就没有交错树了</span>
+		dlt<span class="token operator">=</span>inf<span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>vb<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> dlt<span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>dlt<span class="token punctuation">,</span>slack<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 取最小值修改标顶</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>va<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> la<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">-=</span>dlt<span class="token punctuation">;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>vb<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> lb<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+=</span>dlt<span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> ans<span class="token operator">+=</span>w<span class="token punctuation">[</span>match<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// ans+=la[i]+lb[i]</span>
+    <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"># 图论</a>
+              <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" rel="tag"># 二分图</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/lg7961-solution/" rel="prev" title="luogu7961 数列 题解">
+                  <i class="fa fa-chevron-left"></i> luogu7961 数列 题解
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+  <div>
+	<meting-js
+		server="netease" 
+		type="playlist" 
+		id="6917863608"
+		fixed="true" 
+		autoplay="false"
+		loop="all"
+		order="random"
+		preload="auto"
+		list-folded="ture"
+		list-max-height="500px"
+		lrc-type="1">
+	</meting-js>	
+  </div>
+
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sz_zUwu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://miku01ck.xyz/2022/notes-graph-3/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"myhexo-0g6qpsti0d3fe3af","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+</body>
+</html>
