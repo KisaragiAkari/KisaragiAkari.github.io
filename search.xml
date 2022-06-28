@@ -4276,17 +4276,20 @@ priority_queue<span class="token operator">&lt;</span>node<span class="token ope
     <title>luogu3574 FarmCraft 题解</title>
     <url>/2021/lg3574-solution/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js"></script><p>树形 DP。</p>
-<p>设 $ f_x$ 为完成以 <span class="math inline">\(x\)</span>
-为根的配送的最短时间。</p>
-<p>引入 <span class="math inline">\(g_x\)</span> 作为遍历以 $ x$
-为根的子树并回到 $ x$，所需要的时间。</p>
+<p>设 <span class="math inline">\(f_x\)</span> 为完成以 <span
+class="math inline">\(x\)</span> 为根的配送的最短时间。</p>
+<p>引入 <span class="math inline">\(g_x\)</span> 作为遍历以 <span
+class="math inline">\(x\)</span> 为根的子树并回到 <span
+class="math inline">\(x\)</span>，所需要的时间。</p>
 <span id="more"></span>
 <p>首先考虑 <span class="math inline">\(g\)</span>
-的求法，因为每遍历完一棵子树都要回到 x$，所以有 <span
-class="math display">\[
+的求法，因为每遍历完一棵子树都要回到 <span
+class="math inline">\(x\)</span>，所以有 <span class="math display">\[
 g_x = \sum_{y \in son(x)} g_y+2
-\]</span> 而 <span class="math inline">\(g_x\)</span> 对求出 $ f_x$
-有用，当且仅当 $ g_x$ 处于 $ f_x$ 的前一棵子树的阶段。</p>
+\]</span> 而 <span class="math inline">\(g_x\)</span> 对求出 <span
+class="math inline">\(f_x\)</span> 有用，当且仅当 <span
+class="math inline">\(g_x\)</span> 处于 <span
+class="math inline">\(f_x\)</span> 的前一棵子树的阶段。</p>
 <p>具体地说，设 <span class="math inline">\(x\)</span> 子节点集合为
 <span class="math inline">\(son(x)\)</span>，则 <span
 class="math display">\[
@@ -4295,8 +4298,10 @@ y \in son(x) \quad g_x \text{ 处于 $y-1$ 阶段，} f_x \text{ 处于 $y$
 \]</span> 转移为 <span class="math display">\[
 f_x = \max{ \{  c_x,f_y+g_x+1 \} } \quad y \in son(x)
 \]</span> <span class="math inline">\(+1\)</span> 是因为 <span
-class="math inline">\(g_x\)</span> 表示的状态已经回到了 $ x$，但还没有到
-$ f_y$ 表示的 $ y$，所以要加上一条路的时间。</p>
+class="math inline">\(g_x\)</span> 表示的状态已经回到了 <span
+class="math inline">\(x\)</span>，但还没有到 <span
+class="math inline">\(f_y\)</span> 表示的 <span
+class="math inline">\(y\)</span>，所以要加上一条路的时间。</p>
 <p>而取最大值，则是配置电脑可以在配送的同时进行，如果能处理完时间更长的状态，那么时间更短的状态一定被处理完了。</p>
 <p>特别的，当 $ x=1$ 时，不能先在比特安萨尔处安装，所以 <span
 class="math display">\[
@@ -5696,13 +5701,16 @@ ll ans<span class="token operator">=</span><span class="token operator">-</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%lld\n"</span><span class="token punctuation">,</span>ans<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>考虑优化。</p>
-<p>注意原转移方程中，<span class="math inline">\(\large a_i \times
-j\)</span> 是个定值，将其提出后，我们要做的就是快速查找 $ $</p>
-<p>使用单调队列维护 $ f_{i-1,k}$ 单调减，队首即为最优决策。用 $ q_l$
+<p>注意原转移方程中，<span class="math inline">\(a_i\times j\)</span>
+是个定值，将其提出后，我们要做的就是快速查找 <span
+class="math inline">\(\max{\{ f_{i-1,k} \}}\)</span></p>
+<p>使用单调队列维护 <span class="math inline">\(f_{i-1,k}\)</span>
+单调减，队首即为最优决策。用 <span class="math inline">\(q_l\)</span>
 表示队首，则转移方程为 <span class="math display">\[
 f_{i,j}=\max_{j \in [1,\min(i,w)]}{\{ f_{i-1,j-1},f_{i-1,q_l} \}}
 \]</span> 前者为「不拿走」，后者为「拿就拿波大的」</p>
-<p>注意，为了保证队列中的决策都是 $ f_{i-1,j}$ 时状态， <span
+<p>注意，为了保证队列中的决策都是 <span
+class="math inline">\(f_{i-1,j}\)</span> 时状态， <span
 class="math inline">\(j\)</span> 这一维必须倒序循环。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstring></span></span>
