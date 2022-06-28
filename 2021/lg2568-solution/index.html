@@ -263,7 +263,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-26 11:26:43" itemprop="dateModified" datetime="2022-03-26T11:26:43+08:00">2022-03-26</time>
+      <time title="修改时间：2022-06-28 09:26:17" itemprop="dateModified" datetime="2022-06-28T09:26:17+08:00">2022-06-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -282,7 +282,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>813</span>
+      <span>826</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -301,16 +301,19 @@
     
     <div class="post-body" itemprop="articleBody">
         <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2568">link</a></p>
-<p>设 $ p$ 为质数且 $ pn$。</p>
+<p>设 $ p$ 为质数且 <span class="math inline">\(p \le n\)</span>。</p>
 <p>显然的，若 $ (x,y)=1$，则 $ (x p,y p)=p$。</p>
 <p>问题转化为求互质的数对 $ (x,y)$ 的个数。</p>
 <span id="more"></span>
 <p>这时候就要用上大毒瘤欧拉的欧拉函数了！</p>
 <p>由于欧拉函数是与一个数互质，那么用前缀和。</p>
-<p>由于 <span class="math inline">\((x,y)\)</span> 与 $ (y,x)$
+<p>由于 <span class="math inline">\((x,y)\)</span> 与 <span
+class="math inline">\((y,x)\)</span>
 算两种，所以计数时要乘2，但是会多加一次 <span
 class="math inline">\(\phi(1)\)</span>，减去就好了。</p>
-<p>设 $ m$ 为 $ n$ 的约数个数，$ p_i$ 为 <span
+<p>设 <span class="math inline">\(m\)</span> 为 <span
+class="math inline">\(n\)</span> 的约数个数，<span
+class="math inline">\(p_i\)</span> 为 <span
 class="math inline">\(n\)</span> 的第 <span
 class="math inline">\(i\)</span> 个约数。</p>
 <p>则答案为 <span class="math display">\[

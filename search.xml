@@ -986,16 +986,19 @@ ll <span class="token function">C</span><span class="token punctuation">(</span>
     <title>luogu2568 GCD 题解</title>
     <url>/2021/lg2568-solution/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js"></script><p><a href="https://www.luogu.com.cn/problem/P2568">link</a></p>
-<p>设 $ p$ 为质数且 $ pn$。</p>
+<p>设 $ p$ 为质数且 <span class="math inline">\(p \le n\)</span>。</p>
 <p>显然的，若 $ (x,y)=1$，则 $ (x p,y p)=p$。</p>
 <p>问题转化为求互质的数对 $ (x,y)$ 的个数。</p>
 <span id="more"></span>
 <p>这时候就要用上大毒瘤欧拉的欧拉函数了！</p>
 <p>由于欧拉函数是与一个数互质，那么用前缀和。</p>
-<p>由于 <span class="math inline">\((x,y)\)</span> 与 $ (y,x)$
+<p>由于 <span class="math inline">\((x,y)\)</span> 与 <span
+class="math inline">\((y,x)\)</span>
 算两种，所以计数时要乘2，但是会多加一次 <span
 class="math inline">\(\phi(1)\)</span>，减去就好了。</p>
-<p>设 $ m$ 为 $ n$ 的约数个数，$ p_i$ 为 <span
+<p>设 <span class="math inline">\(m\)</span> 为 <span
+class="math inline">\(n\)</span> 的约数个数，<span
+class="math inline">\(p_i\)</span> 为 <span
 class="math inline">\(n\)</span> 的第 <span
 class="math inline">\(i\)</span> 个约数。</p>
 <p>则答案为 <span class="math display">\[
