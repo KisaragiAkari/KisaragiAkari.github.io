@@ -79,7 +79,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">125</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">126</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">125</span>
+          <span class="site-state-item-count">126</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -264,7 +264,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-26 11:04:40" itemprop="dateModified" datetime="2022-03-26T11:04:40+08:00">2022-03-26</time>
+      <time title="修改时间：2022-06-28 20:38:18" itemprop="dateModified" datetime="2022-06-28T20:38:18+08:00">2022-06-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,39 +311,40 @@
 这个词，在这篇作文中竟然用上了（</p>
 <span id="more"></span>
 <h2 id="solution">solution</h2>
-<p>设 $ f_{i,j}$ 为第 <span class="math inline">\(\large i\)</span>
-个烟花 <span class="math inline">\(blooms\)</span> 时，在第 $ j$
-个位置所能得到的最大开心值。</p>
+<p>设 <span class="math inline">\(f_{i,j}\)</span> 为第 <span
+class="math inline">\(i\)</span> 个烟花 <span
+class="math inline">\(blooms\)</span> 时，在第 <span
+class="math inline">\(j\)</span> 个位置所能得到的最大开心值。</p>
 <p>边界 <span class="math inline">\(f_{0,i}=0 \quad i \in
-[1,n]\)</span></p>
+[1,n]\)</span>。</p>
 <p>转移是显然的（好像这类题的朴素转移都挺显然的） <span
 class="math display">\[
 f_{i,j} = \min_{1 \le k \le n} { \{ f_{i-1,k} + b_i - \left| a_i-j
 \right| \} }
-\]</span> 然后得到了一个喜人的复杂度 $ O(mn^2)$</p>
+\]</span> 然后得到了一个喜人的复杂度 <span
+class="math inline">\(O(mn^2)\)</span></p>
 <p>考虑优化，期望复杂度 <span class="math inline">\(O(mn)\)</span>。</p>
 <p>首先是 <span class="math inline">\(n \le 1.5 \times 10^5,m \le
 300\)</span>，空间不能承受，并且阶段 $ i$ 只与阶段 <span
 class="math inline">\(i-1\)</span> 有关，滚动数组优化即可。</p>
 <p>优化后只有两维，设当前维度为 $ w$，另一维为 <span
-class="math inline">\(w \text{ xor } 1\)</span></p>
+class="math inline">\(w \text{ xor } 1\)</span>。</p>
 <p>不难发现转移的瓶颈在于枚举 <span
 class="math inline">\(k\)</span>，且状态符合 1D/1D
 模型，考虑单调队列优化。</p>
-<p> </p>
 <p>设 $ i-1$ 阶段，位置在 <span class="math inline">\(k\)</span>。对于 $
 (i,j)$，能够向右移动到为区间为 <span class="math display">\[
 [k, \min \big( j+ d \cdot (t_i-t_{i-1}) \big) ]
-\]</span> 枚举每个合法的 $ k$，在单调队列中维护 <span
+\]</span> 枚举每个合法的 <span
+class="math inline">\(k\)</span>，在单调队列中维护 <span
 class="math inline">\(f_{w \text{ xor } 1,j}\)</span> 单调减。</p>
 <p>能够向左到达的区间为 <span class="math display">\[
 [ \max \big( 1,j- d \cdot (t_i-t_{i-1}) \big), k ]
 \]</span> 排除掉队首小于左边界的决策即可。</p>
-<p> </p>
-<p>设队首为 $ k$</p>
+<p>设队首为 $ k$。</p>
 <p>最終の轉移！ <span class="math display">\[
 f_{w,j} = f_{w \text{ xor } 1,k}+b_i- \left| a_i-j \right|
-\]</span> 虽然有枚举合法去年内的决策，但无伤大雅，可以看作常数。</p>
+\]</span> 虽然有枚举合法区间内的决策，但无伤大雅，可以看作常数。</p>
 <p>复杂度 <span class="math inline">\(O(mn)\)</span>。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>

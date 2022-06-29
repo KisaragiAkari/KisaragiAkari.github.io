@@ -2317,39 +2317,40 @@ pair<span class="token operator">&lt;</span><span class="token keyword">int</spa
 这个词，在这篇作文中竟然用上了（</p>
 <span id="more"></span>
 <h2 id="solution">solution</h2>
-<p>设 $ f_{i,j}$ 为第 <span class="math inline">\(\large i\)</span>
-个烟花 <span class="math inline">\(blooms\)</span> 时，在第 $ j$
-个位置所能得到的最大开心值。</p>
+<p>设 <span class="math inline">\(f_{i,j}\)</span> 为第 <span
+class="math inline">\(i\)</span> 个烟花 <span
+class="math inline">\(blooms\)</span> 时，在第 <span
+class="math inline">\(j\)</span> 个位置所能得到的最大开心值。</p>
 <p>边界 <span class="math inline">\(f_{0,i}=0 \quad i \in
-[1,n]\)</span></p>
+[1,n]\)</span>。</p>
 <p>转移是显然的（好像这类题的朴素转移都挺显然的） <span
 class="math display">\[
 f_{i,j} = \min_{1 \le k \le n} { \{ f_{i-1,k} + b_i - \left| a_i-j
 \right| \} }
-\]</span> 然后得到了一个喜人的复杂度 $ O(mn^2)$</p>
+\]</span> 然后得到了一个喜人的复杂度 <span
+class="math inline">\(O(mn^2)\)</span></p>
 <p>考虑优化，期望复杂度 <span class="math inline">\(O(mn)\)</span>。</p>
 <p>首先是 <span class="math inline">\(n \le 1.5 \times 10^5,m \le
 300\)</span>，空间不能承受，并且阶段 $ i$ 只与阶段 <span
 class="math inline">\(i-1\)</span> 有关，滚动数组优化即可。</p>
 <p>优化后只有两维，设当前维度为 $ w$，另一维为 <span
-class="math inline">\(w \text{ xor } 1\)</span></p>
+class="math inline">\(w \text{ xor } 1\)</span>。</p>
 <p>不难发现转移的瓶颈在于枚举 <span
 class="math inline">\(k\)</span>，且状态符合 1D/1D
 模型，考虑单调队列优化。</p>
-<p> </p>
 <p>设 $ i-1$ 阶段，位置在 <span class="math inline">\(k\)</span>。对于 $
 (i,j)$，能够向右移动到为区间为 <span class="math display">\[
 [k, \min \big( j+ d \cdot (t_i-t_{i-1}) \big) ]
-\]</span> 枚举每个合法的 $ k$，在单调队列中维护 <span
+\]</span> 枚举每个合法的 <span
+class="math inline">\(k\)</span>，在单调队列中维护 <span
 class="math inline">\(f_{w \text{ xor } 1,j}\)</span> 单调减。</p>
 <p>能够向左到达的区间为 <span class="math display">\[
 [ \max \big( 1,j- d \cdot (t_i-t_{i-1}) \big), k ]
 \]</span> 排除掉队首小于左边界的决策即可。</p>
-<p> </p>
-<p>设队首为 $ k$</p>
+<p>设队首为 $ k$。</p>
 <p>最終の轉移！ <span class="math display">\[
 f_{w,j} = f_{w \text{ xor } 1,k}+b_i- \left| a_i-j \right|
-\]</span> 虽然有枚举合法去年内的决策，但无伤大雅，可以看作常数。</p>
+\]</span> 虽然有枚举合法区间内的决策，但无伤大雅，可以看作常数。</p>
 <p>复杂度 <span class="math inline">\(O(mn)\)</span>。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
@@ -6263,10 +6264,15 @@ OI，不可能与那些有着几年经验的人相提并论，更是败给了时
 <p>别人的高中，应当是参加竞赛的黄金时期。</p>
 <p>而我呢？</p>
 <p>进入那个所谓「重点高中」。</p>
+<blockquote>
+<p>update 2022.6.29</p>
+<p>貌似这个学校的老师要求校长为 OI
+提供支持，无奈学的人少，水平较低。但是既然这样做了，那就不要带着有色眼镜去看待了。</p>
+</blockquote>
 <p>那个靠着压榨学生，疯狂应试换取升学率的学校。</p>
 <p>那个剥夺普通班所有资源，全力培养重点班，因而导致成绩虎头蛇尾的学校。</p>
 <blockquote>
-<p>有意思的是，所谓重点班有好多个名字。招生方式是在初三上学期期末考试后，联系每个学校前十左右的学生，让他们单独去考试。考上之后，所有周末都要去它那里上课，单独布置作业。考不上，即使中考成绩再好，也无法进入。中考后还有一次考试，但是和前面的又不是一个等级的班了。</p>
+<p>有意思的是，所谓重点班有好多个名字。招生方式是在初三上学期期末考试前，联系前几次考试每个学校前十左右的学生，让他们单独去考试。考上之后，所有周末都要去它那里上课，单独布置作业。考不上，即使中考成绩再好，也无法进入。中考后还有一次考试，但是和前面的又不是一个等级的班了。</p>
 <p>这些重点班单独分区，单独吃饭，校服也不一样。这些重点班只出不进，考差一次就被踢，并且任何普通班学生都无法进入。把学生划分成
 ABCD 四个等级，不同等级在管理方面都有相当大的不同。</p>
 <p>对于竞赛，就是自生自灭。有的资源，仅仅是挂名字的老师，并且什么学习时间都不给，更不要说停课集训。</p>
@@ -12410,6 +12416,40 @@ OI，大家聚集在一起，多么激动人心呢？</p>
 <p> </p>
 <p>其实后面已经写好啦，到了那时候再发出来。</p>
 <p>没办法啊╮（╯＿╰）╭，我就是这种人。</p>
+]]></content>
+      <categories>
+        <category>简记</category>
+      </categories>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Summertime Record</title>
+    <url>/2022/Summertime-Record/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js"></script><p>无论是测试也好，升学也罢，一切都没有意义了。</p>
+<p>不会再纠结于这些了。</p>
+<p>短短的几个小时，寥寥数语，柳暗花明，如梦初醒。</p>
+<span id="more"></span>
+
+    <div id="aplayer-kPWgoVre" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="26440343" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
+    ></div>
+<p>「没有向前的勇气，即便是有了那些也无谓。」</p>
+<p>「只要铭记着我们的羁绊，即便是没有这些又有何妨？」</p>
+<p>虽然不是那么名正言顺地有了想要指导我的人，但这是一大进步啊！不再是去年那个迷茫的家伙了，对吗？</p>
+<p>经历一番波折终于报名了夏令营，一年前的那个故事，马上就要再次转动起来……</p>
+<p>不管最终结局是什么，不管要面临怎样的困难，只要竭尽全力，只要珍藏着我们的友谊，就一定能够找到所谓“正解”啊！</p>
+<p>不要被那些东西束缚了，不要被那些东西蒙蔽了。有那么多人陪伴着我们，有那么多人支持着我们，有那么多人鼓励着我们，往后一步，收起目光，褪去一切不必要的烦恼，他们总是期待着这样的我。不论是拿到省一便回头，还是拼一把冲省队，结果都不是时时刻刻应该惦记的。</p>
+<p>本来打算发的“AFO前的一些话”也不会再发出来了。</p>
+<p>这个故事，还没有谢幕！我们的作战，还没有完结！</p>
+<p><strong>但行好事，莫问前程</strong>。</p>
+<p><strong>莫思身外无穷事，且尽生前有限杯</strong>。</p>
+<blockquote class="blockquote-center">
+<p>从今往后，无悔地去记录，记录我们的夏日时光。</p>
+
+</blockquote>
+<p> </p>
 ]]></content>
       <categories>
         <category>简记</category>
