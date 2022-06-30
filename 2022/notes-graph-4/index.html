@@ -79,7 +79,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">126</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">128</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -256,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-06-23 21:50:46 / 修改时间：21:54:30" itemprop="dateCreated datePublished" datetime="2022-06-23T21:50:46+08:00">2022-06-23</time>
+      <time title="创建时间：2022-06-23 21:50:46" itemprop="dateCreated datePublished" datetime="2022-06-23T21:50:46+08:00">2022-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-30 17:32:50" itemprop="dateModified" datetime="2022-06-30T17:32:50+08:00">2022-06-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,14 +283,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>2.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -374,7 +380,45 @@ class="math inline">\(n\)</span>
 <p>选出最多的点构成独立集。等于在图中去掉最少的点，使得剩下的点两两不相连。也就是用最少的点去覆盖所有的边（然后把它们删了）。</p>
 </blockquote>
 <h2 id="dag-的最小路径点覆盖">DAG 的最小路径点覆盖</h2>
-<p>TO BE CONTINUED.</p>
+<p>给定一个 DAG，要求用尽量少的不相交的简单路径，恰好覆盖 DAG
+的所有点，这个问题成为 DAG 的<strong>最小路径点覆盖</strong>问题。</p>
+<p>设原来的 DAG 为 <span class="math inline">\(G = (V,E)\)</span>，共有
+<span class="math inline">\(n\)</span> 个节点。对于 <span
+class="math inline">\(x \in V\)</span>，把它拆成 <span
+class="math inline">\(x\)</span> 与 <span
+class="math inline">\(x+n\)</span> 两个点。将 <span
+class="math inline">\([1,n]\)</span> 作为左部点，<span
+class="math inline">\([n+1,2n]\)</span>
+作为右部点建立二分图。对于原图中的边 <span class="math inline">\((x
+\rightarrow y)\)</span>，再二分图中连 <span class="math inline">\((x
+\rightarrow y+n)\)</span>。最终得到的二分图 <span
+class="math inline">\(G&#39;\)</span> 称为 <span
+class="math inline">\(G\)</span> 的拆点二分图。</p>
+<blockquote>
+<p>定理：</p>
+<p><span class="math inline">\(G\)</span>
+的最小路径点覆盖包含的路径条数等于 <span
+class="math inline">\(n\)</span> 减去 <span
+class="math inline">\(G&#39;\)</span> 的最大匹配数。</p>
+</blockquote>
+<p>证明暂略，有时间补上。</p>
+<p> </p>
+<p>如果简单路径可相交，那么就是 DAG
+的<strong>最小路径可重复点覆盖</strong>问题。</p>
+<p>最小路径可重复点覆盖中，如果有两条路径 <span class="math inline">\((x
+\rightarrow p \rightarrow y)\)</span>，<span class="math inline">\((u
+\rightarrow p \rightarrow
+v)\)</span>，那么这两条路径是相交的。但是如果添加一条边 <span
+class="math inline">\((x \rightarrow
+y)\)</span>，那么就能让他们不相交了。</p>
+<p>进一步地，对于任意能够间接连通两个点，都添加一条边让它们直接连通，然后c拆点跑最大匹配，用
+<span class="math inline">\(n\)</span>
+减去就行了。但是一旦加边后，这就不再是一个 DAG
+了，所以如果要用网络流算法求最大匹配的话，对于间接连通的点对 <span
+class="math inline">\((x,y)\)</span>，只需要添加 <span
+class="math inline">\((x \rightarrow
+y+n)\)</span>。但如果是匈牙利算法的话就不用考虑，因为邻接矩阵的特殊结构。</p>
+<p>上述判断间接连通可以用 Floyd 传递闭包实现。</p>
 
     </div>
 
