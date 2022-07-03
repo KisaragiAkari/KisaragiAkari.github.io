@@ -79,7 +79,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">132</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">63</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">135</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">135</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -162,7 +162,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -256,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-07-01 20:58:47 / 修改时间：21:38:04" itemprop="dateCreated datePublished" datetime="2022-07-01T20:58:47+08:00">2022-07-01</time>
+      <time title="创建时间：2022-07-01 20:58:47" itemprop="dateCreated datePublished" datetime="2022-07-01T20:58:47+08:00">2022-07-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-02 10:26:04" itemprop="dateModified" datetime="2022-07-02T10:26:04+08:00">2022-07-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,7 +283,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -305,9 +311,11 @@
 <span class="math inline">\(n \nmid \sum_{i=1}^n
 a_i\)</span>，所以一定能够用 <span class="math inline">\((n-1)\)</span>
 次操作平均分。</p>
-<p>如果这么做，那么必然除了那个元素，其他的元素都是 0。对于一个操作
-<span class="math inline">\((i,j,x)\)</span>，如果想让 <span
-class="math inline">\(a_i\)</span> 置为 0，那么必须满足 <span
+<p>如果这么做，那么必然除了那个元素，其他的元素都是 <span
+class="math inline">\(0\)</span>。对于一个操作 <span
+class="math inline">\((i,j,x)\)</span>，如果想让 <span
+class="math inline">\(a_i\)</span> 置为 <span
+class="math inline">\(0\)</span>，那么必须满足 <span
 class="math inline">\(i \mid a_i\)</span>。对于 <span
 class="math inline">\(i \nmid a_i\)</span> 的情况，则要事先将 <span
 class="math inline">\(a_i\)</span> 增大到满足 <span
@@ -335,15 +343,19 @@ a_i}{n}\)</span>。总操作数 <span class="math inline">\(3 \cdot
 class="math inline">\(a_2\)</span> 就需要进行增加操作，必然 <span
 class="math inline">\(a_i\)</span> 要减小一个值。但是这个值是 <span
 class="math inline">\(2 - a_2 \bmod 2\)</span>，由于 <span
-class="math inline">\(2 \nmid a_2\)</span>，所以这个值一定是 1.由于
-<span class="math inline">\(a_i \in
+class="math inline">\(2 \nmid a_2\)</span>，所以这个值一定是 <span
+class="math inline">\(1\)</span>。而 <span class="math inline">\(a_i \in
 [1,10^5]\)</span>，所以绝对不是负数。</p>
-<p>而后至少要增加 2（将 <span class="math inline">\(a_2\)</span> 置
-0），所以当修改 <span class="math inline">\(a_3\)</span> 时，<span
-class="math inline">\(a_1\)</span> 至少是 3，如果要让 <span
-class="math inline">\(3 \mid a_3\)</span>，那么 <span
-class="math inline">\(a_1\)</span> 减少的量又一定小于 3，接着加上至少
-3。如此类推，不会出现小于 0 的情况。</p>
+<p>而后至少要增加 <span class="math inline">\(2\)</span>（将 <span
+class="math inline">\(a_2\)</span> 置 <span
+class="math inline">\(0\)</span>），所以当修改 <span
+class="math inline">\(a_3\)</span> 时，<span
+class="math inline">\(a_1\)</span> 至少是 <span
+class="math inline">\(3\)</span>，如果要让 <span class="math inline">\(3
+\mid a_3\)</span>，那么 <span class="math inline">\(a_1\)</span>
+减少的量又一定小于 <span class="math inline">\(3\)</span>，接着加上至少
+<span class="math inline">\(3\)</span>。如此类推，不会出现小于 <span
+class="math inline">\(0\)</span> 的情况。</p>
 <h2 id="code">CODE</h2>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>

@@ -79,7 +79,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">132</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">63</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">135</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">135</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -162,7 +162,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -256,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-07-01 21:29:52 / 修改时间：21:41:45" itemprop="dateCreated datePublished" datetime="2022-07-01T21:29:52+08:00">2022-07-01</time>
+      <time title="创建时间：2022-07-01 21:29:52" itemprop="dateCreated datePublished" datetime="2022-07-01T21:29:52+08:00">2022-07-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-02 10:25:03" itemprop="dateModified" datetime="2022-07-02T10:25:03+08:00">2022-07-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,7 +283,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2k</span>
+      <span>2.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -298,24 +304,29 @@
         <h2 id="分析">分析</h2>
 <p>没错还是构造……</p>
 <p>明确某个数异或另一个数偶数次，结果仍然是它本身。</p>
-<p>再明确所有的数字都是正整数，不能用 0。</p>
+<p>再明确所有的数字都是正整数，不能用 <span
+class="math inline">\(0\)</span>。</p>
 <span id="more"></span>
-<p>任意两个叶子之间的路径权值的异或和为
-0，如果它们之间的距离是偶数的话，那么都填同一个数就好了。最小数量为
-1。</p>
-<p>如果存在某两个叶子之间的距离不为偶数，如下图 1 和 5。</p>
-<p><img data-src="https://s2.loli.net/2022/07/01/5eafuWt2dSwQ1Fn.png" /></p>
+<p>任意两个叶子之间的路径权值的异或和为 <span
+class="math inline">\(0\)</span>，如果它们之间的距离是偶数的话，那么都填同一个数就好了。最小数量为
+<span class="math inline">\(1\)</span>。</p>
+<p>如果存在某两个叶子之间的距离不为偶数，如下图 <span
+class="math inline">\(1\)</span> 和 <span
+class="math inline">\(5\)</span>。</p>
+<p><img data-src="https://s2.loli.net/2022/07/02/pLqGWyH7XKi9hul.png" /></p>
 <p>钦定 <span class="math inline">\((1 \rightarrow 3)\)</span> 的权值为
-39，那么如果 <span class="math inline">\((3 \rightarrow 4)\)</span> 或者
-<span class="math inline">\((4 \rightarrow 5)\)</span> 任何一个是 39，39
-<span class="math inline">\(\text{xor}\)</span> 39
-=0，结果都是另一条边的权值。所以假如 <span class="math inline">\((4
-\rightarrow 5)\)</span> 是 815，那么 <span class="math inline">\((3
-\rightarrow 4)\)</span> 只有是 39 <span
-class="math inline">\(\text{xor}\)</span> 815 = 776 才能满足异或和为
-0。</p>
+<span class="math inline">\(39\)</span>，那么如果 <span
+class="math inline">\((3 \rightarrow 4)\)</span> 或者 <span
+class="math inline">\((4 \rightarrow 5)\)</span> 任何一个是 <span
+class="math inline">\(39\)</span>，<span class="math inline">\(39
+\operatorname{xor} 39 =0\)</span>，结果都是另一条边的权值。所以假如
+<span class="math inline">\((4 \rightarrow 5)\)</span> 是 <span
+class="math inline">\(815\)</span>，那么 <span class="math inline">\((3
+\rightarrow 4)\)</span> 只有是 <span class="math inline">\(39
+\operatorname{xor} 815=776\)</span> 才能满足异或和为 <span
+class="math inline">\(0\)</span>。</p>
 <p>其实这就相当于把两条边「合并」为一条边，权值为它们的异或值，这样奇数距离就转化成了偶数。至于更长的奇数距离的情况，依旧这样去做，不难发现这种情况下最少使用
-3 种权值。</p>
+<span class="math inline">\(3\)</span> 种权值。</p>
 <p>那么最多呢？直接做不好想，考虑从它的补集入手。如果没有任何限制，那么一定是每一条边一个权值，共有
 <span class="math inline">\((n-1)\)</span>
 种。然后再减去会「因为某些边权的确定而被动确定的边」就行了。</p>
@@ -325,8 +336,8 @@ class="math inline">\(\text{xor}\)</span> 815 = 776 才能满足异或和为
 5)\)</span>，在 <span class="math inline">\((3 \rightarrow 5)\)</span>
 这一段是重叠的，只有 <span class="math inline">\((2 \rightarrow
 3)\)</span> 的权值与 <span class="math inline">\((1 \rightarrow
-3)\)</span> 相同，才能让异或和为
-0。不难发现，对于同一个父亲的叶子节点，它们与父亲之间的边只能是一种。假如一个点
+3)\)</span> 相同，才能让异或和为 <span
+class="math inline">\(0\)</span>。不难发现，对于同一个父亲的叶子节点，它们与父亲之间的边只能是一种。假如一个点
 <span class="math inline">\(x\)</span> 有 <span
 class="math inline">\(t_x\)</span> 个叶子节点，其中 <span
 class="math inline">\(t_x-1\)</span>
@@ -334,12 +345,13 @@ class="math inline">\(t_x-1\)</span>
 <p>综上所述，权值最多的情况，就是 <span class="math display">\[
 n-1 - \sum_{x \in V \text{ and } t_x \ge 1} t_x -1
 \]</span> 注意如果 <span class="math inline">\(t_x=1\)</span>，贡献是
-0，如果 <span class="math inline">\(t_x=0\)</span> 也没有贡献。</p>
+<span class="math inline">\(0\)</span>，如果 <span
+class="math inline">\(t_x=0\)</span> 也没有贡献。</p>
 <p> </p>
 <p>因为是无根树，所以要钦定根节点。</p>
 <p>对于寻找最小数量，可以找到一个叶子节点作为根，判断它到其他叶子节点的距离是否都是偶数，是的话答案为
-1，否则为
-3。因为树的奇妙性质所以不会存在某个叶子和另一个叶子到「根」的距离是偶数，但是它们之间的距离是奇数的问题。</p>
+<span class="math inline">\(1\)</span>，否则为 <span
+class="math inline">\(3\)</span>。因为树的奇妙性质所以不会存在某个叶子和另一个叶子到「根」的距离是偶数，但是它们之间的距离是奇数的问题。</p>
 <p>对于寻找最大值，还在叶子节点的话会产生遗漏，所以从以一个非叶子节点为根，统计
 <span class="math inline">\(t_x\)</span>。</p>
 <h2 id="code">CODE</h2>
@@ -414,6 +426,9 @@ n-1 - \sum_{x \in V \text{ and } t_x \ge 1} t_x -1
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/notes-graph-5/" rel="next" title="「图论学习笔记」#5 网络流定义与最大流">
+                  「图论学习笔记」#5 网络流定义与最大流 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
