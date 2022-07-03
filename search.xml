@@ -13608,8 +13608,9 @@ class="math inline">\(0\)</span>
 class="math inline">\(z\)</span>。初始还能容纳 <span
 class="math inline">\(z\)</span>，所以加边<code>add(x,y,z)</code>，而其反向边则是<code>add(y,x,0)</code>，只有正向边减少才能为反向边腾出空间。</p>
 <p>于是乎 EK 算法就没有悬念了，上代码。</p>
-<p>复杂度 <span class="math inline">\(O(nm^2)\)</span>，大概能处理 <span
-class="math inline">\(n=10^3 \sim 10^4\)</span> 规模的网络。</p>
+<p>复杂度 <span
+class="math inline">\(O(nm^2)\)</span>，实际远远达不到这个上界，<del>但依然很慢</del>，大概能处理
+<span class="math inline">\(n=10^3 \sim 10^4\)</span> 规模的网络。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">ll</span> <span class="token expression"><span class="token keyword">long</span> <span class="token keyword">long</span></span></span>
@@ -13696,6 +13697,11 @@ class="math inline">\(x\)</span>
 时从这条边开始，且不去遍历之前的边。具体实现看代码。</p>
 <p>此外，还有一个优化。递归完回溯时，如果返回的是
 0，说明已经增广完毕，直接将这个点移出分层图。</p>
+<p>效率高于 EK 算法，复杂度为 <span
+class="math inline">\(O(n^2m)\)</span>，但是很难达到这个上界，能够处理
+<span class="math inline">\(n = 10^4 \sim 10^5\)</span> 规模的网络。用
+Dinic 算法求解二分图最大匹配的复杂度为 <span class="math inline">\(O(m
+\sqrt n)\)</span>，实际表现更快。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">ll</span> <span class="token expression"><span class="token keyword">long</span> <span class="token keyword">long</span></span></span>
