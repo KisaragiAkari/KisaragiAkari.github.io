@@ -303,24 +303,31 @@
         <p>我最喜欢的紫色水题（</p>
 <span id="more"></span>
 <p>给出一个森林，有两种操作。</p>
-<ol>
+<ol type="1">
 <li>询问某个点所在的树的直径</li>
 <li>在两个点所在的两棵树间连一条边，最小化其直径</li>
 </ol>
-<p>显然的，对于第一种操作，DP / DFS / BFS 预处理直径，并查集维护每棵树的点就行了。</p>
+<p>显然的，对于第一种操作，DP / DFS / BFS
+预处理直径，并查集维护每棵树的点就行了。</p>
 <p>问题在于高效维护第二种操作。</p>
 <p>不难想到，两棵树之间连一条边，相当于合并两个集合。</p>
 <p>而最小化新树的直径，显然要在两树直径的中点处连边。</p>
 <p>证明：</p>
 <blockquote>
-<p>反证法。若最优点不是直径中点，由于 直径有两个端点 且 树上两点有且仅有一条简单路径，若在非直径中点的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 点连边，则当其接近直径一端时，直径另一端到达它的距离就大于到达直径中点的距离，反之则显然。这与假设不符，故原命题正确。</p>
+<p>反证法。若最优点不是直径中点，由于 直径有两个端点 且
+树上两点有且仅有一条简单路径，若在非直径中点的 <span
+class="math inline">\(x\)</span>
+点连边，则当其接近直径一端时，直径另一端到达它的距离就大于到达直径中点的距离，反之则显然。这与假设不符，故原命题正确。</p>
 </blockquote>
-<p>设从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 之间连边，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">l(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> 为点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> 所在的树的直径。</p>
+<p>设从 <span class="math inline">\(x\)</span> 与 <span
+class="math inline">\(y\)</span> 之间连边，<span
+class="math inline">\(l(t)\)</span> 为点 <span
+class="math inline">\(t\)</span> 所在的树的直径。</p>
 <p>则新树的直径只有三种可能。</p>
-<ol>
+<ol type="1">
 <li>$ l(x)$</li>
-<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">l(y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span></li>
-<li>$ \lceil \frac{l(x)}{2} \rceil + \lceil \frac{l(y)}{2} \rceil + 1$</li>
+<li><span class="math inline">\(l(y)\)</span></li>
+<li>$ + + 1$</li>
 </ol>
 <p>合并后求最大值就行了。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
@@ -361,6 +368,7 @@
         f<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">=</span>x<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
     </div>
 
     

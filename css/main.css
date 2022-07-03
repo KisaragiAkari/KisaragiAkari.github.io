@@ -18,10 +18,10 @@
   --btn-default-hover-bg: transparent;
   --btn-default-hover-color: var(--link-hover-color);
   --btn-default-hover-border-color: var(--link-hover-color);
-  --highlight-background: #fff;
-  --highlight-foreground: #4d4d4c;
-  --highlight-gutter-background: #ededed;
-  --highlight-gutter-foreground: #5e5e5d;
+  --highlight-background: #fafafa;
+  --highlight-foreground: #383a42;
+  --highlight-gutter-background: #e6e6e7;
+  --highlight-gutter-foreground: #4b4d54;
   color-scheme: light;
 }
 html {
@@ -2275,9 +2275,6 @@ header.header {
   flex-basis: 100%;
   height: 0;
 }
-#busuanzi_container_page_pv {
-  display: none;
-}
 .post-nav {
   border-top: 1px solid #eee;
   display: flex;
@@ -3016,7 +3013,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #9382bb;
+  background: #71ff2b;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);

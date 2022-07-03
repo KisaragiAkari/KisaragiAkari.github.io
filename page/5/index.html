@@ -597,14 +597,14 @@ class="math inline">\(x\)</span> 的值。</p>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.4k</span>
+      <span>2.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -615,9 +615,13 @@ class="math inline">\(x\)</span> 的值。</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析</h2>
+          <h2 id="分析">分析</h2>
 <p>明显是一个区间 DP，但是合法串情况比较多，所以要仔细分类。</p>
-<p>设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(l,r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span> 为区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 内的合法串的数量，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">q(l,r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 能否变成不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个<code>*</code>组成的串。</p>
+<p>设 <span class="math inline">\(f(l,r)\)</span> 为区间 <span
+class="math inline">\([l,r]\)</span> 内的合法串的数量，<span
+class="math inline">\(q(l,r)\)</span> 为 <span
+class="math inline">\([l,r]\)</span> 能否变成不超过 <span
+class="math inline">\(k\)</span> 个<code>*</code>组成的串。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/lg7914-solution/#more" rel="contents">
@@ -1024,7 +1028,7 @@ a_i\)</span>。</p>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.1k</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1042,8 +1046,9 @@ a_i\)</span>。</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析</h2>
-<p>这题很有启发意义：不要为了 DP 而去 DP。对于一个计数问题，应当灵活地去划分。</p>
+          <h2 id="分析">分析</h2>
+<p>这题很有启发意义：不要为了 DP 而去
+DP。对于一个计数问题，应当灵活地去划分。</p>
 <p>题目中的三个条件，如果直接去计数做的话，信息冗余太多，很难理清思路。但是注意到我们能极其容易地求出满足前两个条件的方案数，而且三个条件都满足的方案一定在满足前两个条件的方案数中。所以如果我们能够单独求出不满足第三个条件的数量，就能够求出满足三个条件的方案数。这是一种常见的套路。</p>
           <!--noindex-->
             <div class="post-button">

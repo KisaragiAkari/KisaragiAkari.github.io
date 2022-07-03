@@ -305,10 +305,15 @@
 <span id="more"></span>
 <p>则若舍去他们交点之外的边，剩下的边即为所求。</p>
 <p>设直径左右端点为 $ l, r$。</p>
-<p>在第二次 DFS 时能够求出 $ l$ 到直径每个节点的距离，所以从 $ r$ 向 $ l$ 遍历。</p>
-<p>对于直径上的每个点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>，分别求出在不经过直径上其他点的情况的，所能达到的最远距离，记作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>。设它到直径左端点距离为 $ ld$，到右端点距离为 $ rd$。</p>
+<p>在第二次 DFS 时能够求出 $ l$ 到直径每个节点的距离，所以从 $ r$ 向 $
+l$ 遍历。</p>
+<p>对于直径上的每个点 <span
+class="math inline">\(i\)</span>，分别求出在不经过直径上其他点的情况的，所能达到的最远距离，记作
+<span class="math inline">\(d\)</span>。设它到直径左端点距离为 $
+ld$，到右端点距离为 $ rd$。</p>
 <p>若 $ d=rd$，则令 $ r=i$。</p>
-<p>若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><mi>l</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">d=ld</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">d</span></span></span></span>，则令 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo>=</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">l=i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>，且只会进行一次，这是因为我们的遍历顺序是从右到左。</p>
+<p>若 <span class="math inline">\(d=ld\)</span>，则令 <span
+class="math inline">\(l=i\)</span>，且只会进行一次，这是因为我们的遍历顺序是从右到左。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
