@@ -256,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-07-03 21:13:32 / 修改时间：22:56:10" itemprop="dateCreated datePublished" datetime="2022-07-03T21:13:32+08:00">2022-07-03</time>
+      <time title="创建时间：2022-07-03 21:13:32" itemprop="dateCreated datePublished" datetime="2022-07-03T21:13:32+08:00">2022-07-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-04 08:34:07" itemprop="dateModified" datetime="2022-07-04T08:34:07+08:00">2022-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,7 +283,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.1k</span>
+      <span>5.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -377,20 +383,25 @@ class="math inline">\(1\)</span>，走反向边的都减去最小剩余容量 <s
 class="math inline">\(1\)</span>。可以验证这条增广路是合法的，且最大流又增加了
 <span class="math inline">\(1\)</span>。</p>
 <p><img data-src="https://s2.loli.net/2022/07/03/45KP8yjOaHYidJN.png" /></p>
-<p>由于 <span class="math inline">\((2 \rightarrow 5)\)</span> 减去了
-<span class="math inline">\(1\)</span>，但是在 <span
-class="math inline">\((2 \rightarrow 3)\)</span> 又加上了 1，所以 <span
+<p>注意画出的红蓝箭头指的是两条增广路，不是网络的真是流向，但是根据增广路可以构造出合法的流向。由于
+<span class="math inline">\((2 \rightarrow 5)\)</span> 减去了 <span
+class="math inline">\(1\)</span>，但是在 <span class="math inline">\((2
+\rightarrow 3)\)</span> 又加上了 <span
+class="math inline">\(1\)</span>，所以总流量不变， <span
 class="math inline">\((1 \rightarrow 2)\)</span>
-的流能通过分流的方式到达汇点。而 <span class="math inline">\((2
-\rightarrow 5)\)</span> 减去 <span
-class="math inline">\(1\)</span>，相当于给 <span
-class="math inline">\((4 \rightarrow 5)\)</span> 流过来的 <span
-class="math inline">\(1\)</span> 让出了位置。注意图中写出来的边权 <span
-class="math inline">\(f(x,y)/c(x,y)\)</span> 是正向边的流量，<span
-class="math inline">\((5 \rightarrow 2)\)</span> 流过去的 <span
-class="math inline">\(1\)</span>
-没有被写出来，但是是存在且能通过的。</p>
-<p>这样做才能求得最大流 <span class="math inline">\(3\)</span>。</p>
+的流能通过<strong>分流</strong>的方式到达汇点。<span
+class="math inline">\((1 \rightarrow 2)\)</span> 分流导致原来走的 <span
+class="math inline">\((5 \rightarrow 6)\)</span>
+也腾出了空间，正好能容纳 <span class="math inline">\((4 \rightarrow
+5)\)</span> 流过来的部分。图中写出来的边权 <span
+class="math inline">\(f(x,y)/c(x,y)\)</span> 是正向边的流量。</p>
+<p>图中流的路径为 <span class="math inline">\((1 \rightarrow 4
+\rightarrow 5 \rightarrow 6)\)</span>，<span class="math inline">\((1
+\rightarrow 2 \rightarrow 5 \rightarrow 6)\)</span> 和 <span
+class="math inline">\((1 \rightarrow 2 \rightarrow 3 \rightarrow
+6)\)</span>，每条流量都为 <span
+class="math inline">\(1\)</span>。这样做才能求得最大流 <span
+class="math inline">\(3\)</span>。</p>
 <p>还有一点，EK 算法遍历的是网络中所有节点和剩余容量大于 <span
 class="math inline">\(0\)</span>
 的边构成的子图，称为<strong>残量网络</strong>。代码中的边权都是<strong>残量网络的边权</strong>，也就是还能容纳多少。对于一条正向边
