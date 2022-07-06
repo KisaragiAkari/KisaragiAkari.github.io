@@ -14133,7 +14133,7 @@ ll <span class="token function">read</span><span class="token punctuation">(</sp
   <entry>
     <title>luogu4042 骑士游戏 题解</title>
     <url>/2022/lg4042-solution/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js"></script><h2 id="分析">分析</h2>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js"></script><h2 id="前言">前言</h2>
 <p>好久之前就见过的题，那时候不求甚解地把代码写上，认为自己已经明白了。</p>
 <p>之后经历的那些事情，让我越发怀疑自己对所有东西的认识。经常想起这道题，因为「偷来的
 AC」，我难以原谅自己。</p>
@@ -14143,7 +14143,7 @@ AC」，我难以原谅自己。</p>
 的年代，进队是不要想了。</p>
 <p>我只想，把 OI 当作爱好。正因如此，我永远不会自称为
 OIer；同时，我也永远不会再为它黯然神伤。</p>
-<h2 id="分析-1">分析</h2>
+<h2 id="分析">分析</h2>
 <p>DP。设 <span class="math inline">\(f(i)\)</span> 为杀死怪物 <span
 class="math inline">\(i\)</span>
 以及它直接或间接生成的怪物的最小代价。</p>
