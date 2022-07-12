@@ -264,7 +264,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-01 21:28:46" itemprop="dateModified" datetime="2022-05-01T21:28:46+08:00">2022-05-01</time>
+      <time title="修改时间：2022-07-12 21:53:11" itemprop="dateModified" datetime="2022-07-12T21:53:11+08:00">2022-07-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -283,14 +283,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.4k</span>
+      <span>3.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
+      <span>8 分钟</span>
     </span>
 </div>
 
@@ -390,16 +390,13 @@ c\end{bmatrix}\)</span></p>
 <p>矩阵加法依旧是对应位置相加。</p>
 <h3 id="矩阵乘法">矩阵乘法</h3>
 <p>即连续多次矩阵变化，注意矩阵乘法是从右往左读的。</p>
-对于两个 <span class="math inline">\(2 \times 2\)</span> 的矩阵 $ A
-<span class="math display">\[\begin{bmatrix} e &amp; f \\ g &amp; h
-\end{bmatrix}\]</span>
-<span class="math inline">\(，\)</span> B
-<span class="math display">\[\begin{bmatrix} a &amp; b \\ c &amp; d
-\end{bmatrix}\]</span>
-<p>$，要计算 $ C = B A$，先要用 $ A$ 将单位向量变换为 <span
-class="math inline">\(\begin{bmatrix} e \\ g \end{bmatrix}\)</span> 和
-<span class="math inline">\(\begin{bmatrix} f \\ h
-\end{bmatrix}\)</span>，再将它们分别与 <span
+<p>对于两个 <span class="math inline">\(2 \times 2\)</span> 的矩阵 <span
+class="math inline">\(A \begin{bmatrix} e &amp; f \\ g &amp; h
+\end{bmatrix}\)</span> 和 <span class="math inline">\(B \begin{bmatrix}
+a &amp; b \\ c &amp; d \end{bmatrix}\)</span>，要计算 $ C = B A$，先要用
+$ A$ 将单位向量变换为 <span class="math inline">\(\begin{bmatrix} e \\ g
+\end{bmatrix}\)</span> 和 <span class="math inline">\(\begin{bmatrix} f
+\\ h \end{bmatrix}\)</span>，再将它们分别与 <span
 class="math inline">\(B\)</span> 变换得到两个向量，<span
 class="math inline">\(\begin{bmatrix} ae + bg \\ cd +dg
 \end{bmatrix}\)</span> 和 <span class="math inline">\(\begin{bmatrix}
@@ -408,8 +405,9 @@ af+bh\\ cf +dh \end{bmatrix}\)</span></p>
 C = \begin{bmatrix} ae + bg &amp; af+bh\\ cd +dg &amp; cf +dh
 \end{bmatrix}
 \]</span></p>
-<p>矩阵乘法不满足交换律，即 $ B A$ 不一定等于 $A B $。但是满足结合律，即
-<span class="math display">\[
+<p>矩阵乘法不满足交换律，即 $ B A$ 不一定等于 <span
+class="math inline">\(AB\)</span>。但是满足结合律，即 <span
+class="math display">\[
 ( A B)  C  =  A (B  C )
 \]</span>
 对于更高维度，这么去算显然会去世，所以有了本文唯一有价值的公式：对于
@@ -436,13 +434,13 @@ Matrix <span class="token keyword">operator</span><span class="token operator">*
 class="math inline">\(n\)</span> 项。</p>
 <p>考虑当 <span class="math inline">\(n \ge 3\)</span>
 的时候，每一项都与前两项有关，且递推就相当于线性变换的过程。</p>
-使用待定系数法，设 <span class="math inline">\(\begin{bmatrix} F_n \\
+<p>使用待定系数法，设 <span class="math inline">\(\begin{bmatrix} F_n \\
 F_{n-1} \end{bmatrix} = \begin{bmatrix} a &amp; b \\ c &amp; d
 \end{bmatrix} \begin{bmatrix} F_{n-1} \\ F_{n-2}
-\end{bmatrix}\)</span>，考虑递推式，很容易求出这个矩阵为 $ A
-<span class="math display">\[\begin{bmatrix} 1 &amp; 1 \\ 1 &amp;
-0  \end{bmatrix}\]</span>
-<p>$。</p>
+\end{bmatrix}\)</span>，联系一下递推式 <span class="math inline">\(f_n =
+f_{n-1} + f_{n-2}\)</span>，很容易求出这个矩阵为 <span
+class="math inline">\(A \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; 0
+\end{bmatrix}\)</span>。</p>
 <p>那么 <span class="math inline">\(\begin{bmatrix} F_3 \\ F_2
 \end{bmatrix} = A \begin{bmatrix} 1 \\ 1
 \end{bmatrix}\)</span>。归纳一下得到 <span class="math display">\[
@@ -450,7 +448,14 @@ F_{n-1} \end{bmatrix} = \begin{bmatrix} a &amp; b \\ c &amp; d
 1 \\ 1 \end{bmatrix}
 \]</span> 用矩阵快速幂处理即可，复杂度 <span
 class="math inline">\(O(\log_2 n)\)</span>。</p>
-<p>代码略。</p>
+<p>代码（只有矩阵快速幂）。</p>
+<pre class="line-numbers language-none"><code class="language-none">Matrix fp(Matrix A,int p) &#123;
+    Matrix ans; ans.clear();
+    for(int i&#x3D;0;i&lt;L;+++i) ans[i][i]&#x3D;1;
+    for(;A&#x3D;A*A,p&gt;&gt;&#x3D;1) if(p&amp;1) ans&#x3D;ans*A;
+    return ans;
+&#125;
+&#x2F;&#x2F; 矩阵快速幂<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="写在后面">写在后面</h2>
 <p>个人感觉洛谷的深入浅出进阶篇这里讲的很不错，没有那么实用主义，直接去讲矩阵乘法和加速递推等等实用技巧。但是有很多我这种连向量都没有接触过的人，如此从向量开始，一直引出各种线代里的概念，最后落实到
 OI 里面，我觉得很有意义。</p>

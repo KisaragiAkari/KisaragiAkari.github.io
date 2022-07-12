@@ -256,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-05-15 19:07:03 / 修改时间：19:08:13" itemprop="dateCreated datePublished" datetime="2022-05-15T19:07:03+08:00">2022-05-15</time>
+      <time title="创建时间：2022-05-15 19:07:03" itemprop="dateCreated datePublished" datetime="2022-05-15T19:07:03+08:00">2022-05-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-12 11:28:27" itemprop="dateModified" datetime="2022-07-12T11:28:27+08:00">2022-07-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -343,7 +349,7 @@ Matrix <span class="token keyword">operator</span><span class="token operator">*
 	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span>
 		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span>
 			<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span><span class="token operator">++</span>k<span class="token punctuation">)</span>
-				<span class="token punctuation">(</span>c<span class="token punctuation">.</span>m<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+=</span>a<span class="token punctuation">.</span>m<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">*</span>b<span class="token punctuation">.</span>m<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">%</span>mod<span class="token punctuation">)</span><span class="token operator">%=</span>mod<span class="token punctuation">;</span>
+				c<span class="token punctuation">.</span>m<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>m<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span>a<span class="token punctuation">.</span>m<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">*</span>b<span class="token punctuation">.</span>m<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">%</span>mod<span class="token punctuation">)</span><span class="token operator">%</span>mod<span class="token punctuation">;</span>
 	<span class="token keyword">return</span> c<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 Matrix <span class="token keyword">operator</span><span class="token operator">^</span><span class="token punctuation">(</span>Matrix x<span class="token punctuation">,</span>ll y<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
