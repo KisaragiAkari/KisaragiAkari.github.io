@@ -3251,7 +3251,7 @@ ll a<span class="token punctuation">[</span>M<span class="token punctuation">]</
 <p>如何构造 <span class="math inline">\(k\)</span> 种差值呢？ <span
 class="math display">\[
 [1,k+1,2,k,3,k-1 \cdots]
-\]</span> 这样构造的插值是 <span class="math inline">\(k,k-1,k-2
+\]</span> 这样构造的差值是 <span class="math inline">\(k,k-1,k-2
 \cdots\)</span>，那么就可以用 <span class="math inline">\(k+1\)</span>
 个数字构造出 <span class="math inline">\([1,k]\)</span>
 中所有的差值。</p>
@@ -14174,8 +14174,12 @@ f(x) = \min{(f(x),z)}
 class="math inline">\(u\)</span> 加入队列。</p>
 <p>方法是建立一张反图，对于杀死 <span class="math inline">\(x\)</span>
 生成 <span class="math inline">\(y\)</span>，加边 <span
-class="math inline">\((y \rightarrow x)\)</span>。如果更新了 <span
-class="math inline">\(f(x)\)</span>，将其加入队列即可。一开始则要把所有节点加入队列，因为每个点都能够更新其它点。</p>
+class="math inline">\((y \rightarrow x)\)</span>，表示 <span
+class="math inline">\(f(x)\)</span> 依赖于 <span
+class="math inline">\(f(y)\)</span>。如果更新了 <span
+class="math inline">\(f(x)\)</span>，将反图中所有从 <span
+class="math inline">\(x\)</span>
+出发直接到达的点加入队列即可。一开始则要把所有节点加入队列，因为每个点都能够更新其它点。</p>
 <h2 id="code">CODE</h2>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
