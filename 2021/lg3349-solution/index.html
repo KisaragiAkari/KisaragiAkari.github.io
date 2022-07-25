@@ -79,7 +79,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">146</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">66</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">147</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">146</span>
+          <span class="site-state-item-count">147</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -263,7 +263,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-30 13:57:10" itemprop="dateModified" datetime="2022-04-30T13:57:10+08:00">2022-04-30</time>
+      <time title="修改时间：2022-07-20 20:52:46" itemprop="dateModified" datetime="2022-07-20T20:52:46+08:00">2022-07-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -300,26 +300,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>设 $ f_{i,j}$ 为以 <span class="math inline">\(i\)</span>
-为根的子树中，节点 <span class="math inline">\(i\)</span> 映射到图中节点
-<span class="math inline">\(j\)</span> 的方案数。</p>
+        <p>设 <span class="math inline">\(f_{x,i}\)</span> 为以 <span
+class="math inline">\(x\)</span> 为根的子树中，节点 <span
+class="math inline">\(x\)</span> 映射到图中节点 <span
+class="math inline">\(i\)</span> 的方案数。</p>
 <p>转移 <span class="math display">\[
 f_{x,i} = \prod_{y \in son(x)} \sum_{j \in G}{f_{y,j}}
 \]</span> <span id="more"></span></p>
 <p>答案为 <span class="math inline">\(\sum_{i \in [1,n]}
 f_{1,i}\)</span></p>
-<p>复杂度是 $ O(3^n n)$ 的，考虑优化。</p>
+<p>复杂度是 <span class="math inline">\(O(3^n n)\)</span>
+的，考虑优化。</p>
 <p>题目给出了两条限制</p>
 <ol type="1">
 <li>每条树边都要在图中出现</li>
 <li>每个编号仅出现 1 次</li>
 </ol>
-<p>不难发现，DP 枚举点的过程已经满足了条件 1。</p>
-<p>考虑第二个条件。如果有编号出现不止一次，那么一定有编号没有出现，等价于有点没有被选到。我们无法直接求出答案，但可以构造容斥。0
-个点没有被选的方案数-至少 1 个点没有被选的方案数+至少 2
-个节点没有被选的方案数……</p>
+<p>不难发现，DP 枚举点的过程已经满足了条件 <span
+class="math inline">\(1\)</span>。</p>
+<p>考虑第二个条件。如果有编号出现不止一次，那么一定有编号没有出现，等价于有点没有被选到。我们无法直接求出答案，但可以构造容斥。<span
+class="math inline">\(0\)</span> 个点没有被选的方案数-至少 <span
+class="math inline">\(1\)</span> 个点没有被选的方案数+至少 <span
+class="math inline">\(2\)</span> 个节点没有被选的方案数……</p>
 <p>枚举每个点被选的情况，容斥一下，最后就是正确答案了。</p>
-<p>复杂度 $ O(2^n n^3)$</p>
+<p>复杂度 <span class="math inline">\(O(2^n n^3)\)</span></p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstring></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
@@ -451,11 +455,10 @@ ll ans<span class="token punctuation">,</span> dlt<span class="token punctuation
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
