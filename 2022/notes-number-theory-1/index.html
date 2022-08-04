@@ -79,7 +79,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">67</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">157</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">69</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">161</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">157</span>
+          <span class="site-state-item-count">161</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -162,7 +162,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -267,7 +267,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-31 14:41:26" itemprop="dateModified" datetime="2022-07-31T14:41:26+08:00">2022-07-31</time>
+      <time title="修改时间：2022-08-01 09:53:39" itemprop="dateModified" datetime="2022-08-01T09:53:39+08:00">2022-08-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -363,25 +363,25 @@ k_1 m_1 - k_2 m_2 = a_1 - a_2
 \]</span></p>
 <p>注意到此方程有解，当且仅当 <span class="math inline">\(\gcd(m_1,m_2)
 \mid a_1-a_2\)</span>。</p>
-<p>设 <span class="math inline">\(d=\gcd(m_1,m_2)\)</span>，<span
-class="math inline">\(p_1 = \frac{m_1}{d}\)</span>，<span
-class="math inline">\(p_2 = \frac{m_2}{d}\)</span>，代入得 <span
+<p>设 <span class="math inline">\(g=\gcd(m_1,m_2)\)</span>，<span
+class="math inline">\(p_1 = \frac{m_1}{g}\)</span>，<span
+class="math inline">\(p_2 = \frac{m_2}{g}\)</span>，代入得 <span
 class="math display">\[
-k_1 p_1 - k_2 p_2 = \frac{a_1-a_2}{d}
+k_1 p_1 - k_2 p_2 = \frac{a_1-a_2}{g}
 \]</span> 由于 <span
 class="math inline">\(\gcd(p_1,p_2)=1\)</span>，此方程有解当且仅当 <span
-class="math inline">\(1 \mid \frac{a_1 - a_2}{d}\)</span>。那么一定有
-<span class="math inline">\(d \mid a_1 - a_2\)</span>，否则无解。</p>
+class="math inline">\(1 \mid \frac{a_1 - a_2}{g}\)</span>。那么一定有
+<span class="math inline">\(g \mid a_1 - a_2\)</span>，否则无解。</p>
 <p>那么先求出一组特解 <span class="math display">\[
 p_1 x_1  + p_2 x_2  = 1
 \]</span> 得到 <span class="math display">\[
 \begin{cases}
-k_1 = \frac{a_2-a_1}{d} x_1
+k_1 = \frac{a_2-a_1}{g} x_1
 \\
-k_2 = \frac{a_2-a_1}{d} x_2
+k_2 = \frac{a_2-a_1}{g} x_2
 \end{cases}
 \]</span> 代入原式 <span class="math display">\[
-x = k_1 m_1 + a_1 = \frac{a_2 - a_1}{d}x_1 m_1 + a_1
+x = k_1 m_1 + a_1 = \frac{a_2 - a_1}{g}x_1 m_1 + a_1
 \]</span> 至此，得到一个解。</p>
 <p>不妨称同余号右边的数为“同余数”。</p>
 <p>考虑数论里一个结论，若 <span class="math inline">\(a \equiv b \pmod
@@ -407,8 +407,10 @@ x \equiv a_i \pmod {m_i}
 	M<span class="token operator">=</span>m<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> R<span class="token operator">=</span>r<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token comment">// m[]是模数，r[]是同余数</span>
 	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-		Int d<span class="token operator">=</span>r<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>R<span class="token punctuation">,</span> g<span class="token punctuation">,</span> mod<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
+		<span class="token keyword">int</span> d<span class="token operator">=</span>r<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>R<span class="token punctuation">,</span> g<span class="token punctuation">,</span> mod<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
 		g<span class="token operator">=</span><span class="token function">exgcd</span><span class="token punctuation">(</span>M<span class="token punctuation">,</span>m<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 这里求解的是 Mx+m[i]y=gcd(M,m[i])</span>
+        <span class="token comment">// 根据等式的性质，易得等价于上文中的 p1x1+p2x2=1</span>
 		<span class="token keyword">if</span><span class="token punctuation">(</span>d<span class="token operator">%</span>g<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> ans<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token keyword">return</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
         <span class="token comment">// 无解</span>
 		mod<span class="token operator">=</span>m<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">/</span>g<span class="token punctuation">;</span>
@@ -422,7 +424,7 @@ x \equiv a_i \pmod {m_i}
 	<span class="token punctuation">&#125;</span>
 	ans<span class="token operator">=</span>R<span class="token punctuation">;</span>
     <span class="token comment">// 答案</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p> </p>
 <p>参考：</p>
 <ul>
