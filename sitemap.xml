@@ -1859,14 +1859,14 @@
   </url>
   
   <url>
-    <loc>https://yozora0908.github.io/tags/%E6%9E%84%E9%80%A0/</loc>
+    <loc>https://yozora0908.github.io/tags/VOCALOID/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yozora0908.github.io/tags/VOCALOID/</loc>
+    <loc>https://yozora0908.github.io/tags/%E6%9E%84%E9%80%A0/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1901,20 +1901,6 @@
   </url>
   
   <url>
-    <loc>https://yozora0908.github.io/tags/%E6%95%B0%E8%AE%BA/</loc>
-    <lastmod>2022-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yozora0908.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/</loc>
-    <lastmod>2022-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yozora0908.github.io/tags/%E8%B4%AA%E5%BF%83/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -1923,6 +1909,20 @@
   
   <url>
     <loc>https://yozora0908.github.io/tags/%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88/</loc>
+    <lastmod>2022-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yozora0908.github.io/tags/%E6%95%B0%E8%AE%BA/</loc>
+    <lastmod>2022-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yozora0908.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2013,14 +2013,14 @@
   </url>
   
   <url>
-    <loc>https://yozora0908.github.io/tags/Floyd/</loc>
+    <loc>https://yozora0908.github.io/tags/SPFA/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yozora0908.github.io/tags/SPFA/</loc>
+    <loc>https://yozora0908.github.io/tags/Floyd/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2055,6 +2055,13 @@
   </url>
   
   <url>
+    <loc>https://yozora0908.github.io/tags/%E7%9F%A9%E9%98%B5/</loc>
+    <lastmod>2022-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yozora0908.github.io/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -2063,13 +2070,6 @@
   
   <url>
     <loc>https://yozora0908.github.io/tags/%E6%9C%80%E5%B0%8F%E5%89%B2/</loc>
-    <lastmod>2022-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yozora0908.github.io/tags/%E7%9F%A9%E9%98%B5/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2181,13 +2181,6 @@
   </url>
   
   <url>
-    <loc>https://yozora0908.github.io/tags/%E6%A0%91%E4%B8%8A%E5%B7%AE%E5%88%86/</loc>
-    <lastmod>2022-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yozora0908.github.io/tags/%E5%80%8D%E5%A2%9E/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -2231,6 +2224,13 @@
   
   <url>
     <loc>https://yozora0908.github.io/tags/%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/</loc>
+    <lastmod>2022-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yozora0908.github.io/tags/%E6%A0%91%E4%B8%8A%E5%B7%AE%E5%88%86/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2407,14 +2407,14 @@
   </url>
   
   <url>
-    <loc>https://yozora0908.github.io/categories/%E9%A2%98%E8%A7%A3/</loc>
+    <loc>https://yozora0908.github.io/categories/Music/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yozora0908.github.io/categories/Music/</loc>
+    <loc>https://yozora0908.github.io/categories/%E9%A2%98%E8%A7%A3/</loc>
     <lastmod>2022-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
