@@ -258,7 +258,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-10-21 21:16:11 / 修改时间：21:18:32" itemprop="dateCreated datePublished" datetime="2022-10-21T21:16:11+08:00">2022-10-21</time>
+      <time title="创建时间：2022-10-21 21:16:11 / 修改时间：21:26:54" itemprop="dateCreated datePublished" datetime="2022-10-21T21:16:11+08:00">2022-10-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -298,148 +298,14 @@
           <h2 id="分析">分析</h2>
 <p>这题的 Subtask 1,2,4 都很显然，就不说了。</p>
 <p>先介绍一种很好想的 Subtask 3 做法。</p>
-<p>考虑完全平方数 <span class="math inline">\(ab\)</span> 和 <span
-class="math inline">\(bc\)</span>，易得 <span
-class="math inline">\(ac\)</span> 也是完全平方数。</p>
-<p>推广到一个满足条件的路径，任意两个权值之积为完全平方数。</p>
-<p>定义极长点对 <span class="math inline">\((x,y)\)</span> 表示 <span
-class="math inline">\(x\)</span> 入度为 <span
-class="math inline">\(0\)</span>，<span class="math inline">\(y\)</span>
-出度为 <span class="math inline">\(0\)</span> 的点对。</p>
-<p>枚举极长点对 <span
-class="math inline">\((x,y)\)</span>，记录所有路径。问题转化为对于一个序列，找到
-<span class="math inline">\(l\)</span>
-之和最长的连续的一段，满足任意两个数之积为完全平方数。</p>
-<p>考虑这样的序列是什么样的，不难发现，对于一个质因子 <span
-class="math inline">\(p_i\)</span>，每个数上都有奇数次幂或偶数次幂。</p>
-<p>用<code>std::unordered_map</code>维护这个序列质因子的信息，就可以双指针做了。</p>
-<p>不难证明这样一定能枚举到所有的情况。</p>
-<p>复杂度？</p>
-<p>先要预处理这个序列 <span class="math inline">\(l\)</span>
-的前缀和。</p>
-<p>对于每个点对 <span
-class="math inline">\((x,y)\)</span>，其间每条路径都是 <span
-class="math inline">\(O(n)\)</span>
-级别的。但是由于枚举的是极长点对，所以点的数量在平均情况下极少。最极端的情况是菊花，但是路径长度都是
-<span
-class="math inline">\(1\)</span>，因此让极长点对数量增加必然导致路径长度减少，所以复杂度是
-<span class="math inline">\(O(\text{可过})\)</span>。</p>
-<p>其实根据正解的那个结论，再加一定的推导和实现就能过 Subtask 6。</p>
-<p>上自习课想的，没写代码。</p>
-<p> </p>
-<p>接下来讲正解。</p>
-<p>对于 <span class="math inline">\(ab = c^k\)</span>，不难想到把 <span
-class="math inline">\(a\)</span> 和 <span
-class="math inline">\(b\)</span> 都分解。 <span class="math display">\[
-a= \prod_{i=1}^{c_a} p^{x_i}_i
-\]</span></p>
-<p><span class="math display">\[
-b=\prod_{i=1}^{c_b} p^{y_i}_i
-\]</span></p>
-<p>对于一个 <span class="math inline">\(p_i\)</span>，一定有 <span
-class="math inline">\(x_i + y_i \equiv 0 \pmod{k}\)</span>。</p>
-<p>不难想到，一旦 <span class="math inline">\(a\)</span>
-确定了，就可以限定 <span class="math inline">\(b\)</span>。</p>
-<p>对于一个 <span class="math inline">\(w\)</span>，
-可以预处理出其分解中所有指数在对 <span class="math inline">\(k\)</span>
-取模的意义下的值。 <span class="math display">\[
-w_1 = \prod_{i=1}^{c_w} p^{x_i \bmod k}_i
-\]</span> 和 <span class="math display">\[
-w_2 = \prod_{i=1}^{c_w} p^{k - x_i \bmod k}_i
-\]</span> 将所有 <span class="math inline">\(w_i\)</span>
-都这样处理，合法路径就都被确定了。两条边 <span
-class="math inline">\((i,j)\)</span> 形成的路径合法，当且仅当 <span
-class="math inline">\(w_2(i) =
-w_1(j)\)</span>。这相当于是一张分层图。</p>
-<p>为了处理点与边，所以状态设计得比较不可读。</p>
-<p>设 <span class="math inline">\(f_{x,d}\)</span> 为以节点 <span
-class="math inline">\(x\)</span> 结尾，出边 <span
-class="math inline">\(i\)</span> 满足 <span
-class="math inline">\(w_2(i)=d\)</span> 的最长路径。拓扑排序即可。 <span
-class="math display">\[
-f_{x,w2(i)} + z \rightarrow f_{y,w1(i)}
-\]</span> 其中 <span class="math inline">\(z=l(i)\)</span>。</p>
-<p><span class="math inline">\(f_y\)</span> 依赖于 <span
-class="math inline">\(f_x\)</span>，不需要建反图。</p>
-<p><span class="math inline">\(w_1\)</span> 和 <span
-class="math inline">\(w_2\)</span>
-的范围可能很大，使用<code>std::unordered_map</code>实现 <span
-class="math inline">\(f\)</span> 即可。</p>
-<h2 id="code">CODE</h2>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">int</span> <span class="token expression"><span class="token keyword">long</span> <span class="token keyword">long</span></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">SET</span><span class="token expression"><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token function">memset</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
-<span class="token keyword">int</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	<span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> f<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token keyword">char</span> c<span class="token operator">=</span><span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isdigit</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-		<span class="token keyword">if</span><span class="token punctuation">(</span>c<span class="token operator">==</span><span class="token string">'-'</span><span class="token punctuation">)</span> f<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-		c<span class="token operator">=</span><span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">isdigit</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span> a<span class="token operator">=</span>a<span class="token operator">*</span><span class="token number">10</span><span class="token operator">+</span>c<span class="token operator">-</span><span class="token string">'0'</span><span class="token punctuation">,</span> c<span class="token operator">=</span><span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token keyword">return</span> a<span class="token operator">*</span>f<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">1e5</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span> m<span class="token punctuation">,</span> k<span class="token punctuation">,</span> ans<span class="token punctuation">,</span> in<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> tot<span class="token punctuation">,</span> h<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span> to<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span> nxt<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span> w<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span> e<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span> l<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
-unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> f<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">devide1</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	<span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">*</span>i<span class="token operator">&lt;=</span>x<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">%</span>i<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-		<span class="token keyword">int</span> c<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-		<span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token operator">%</span>i<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> x<span class="token operator">/=</span>i<span class="token punctuation">,</span> <span class="token operator">++</span>c<span class="token punctuation">;</span>
-		c<span class="token operator">%=</span>k<span class="token punctuation">;</span>
-		<span class="token keyword">while</span><span class="token punctuation">(</span>c<span class="token operator">--</span><span class="token punctuation">)</span> ans<span class="token operator">*=</span>i<span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">></span><span class="token number">1</span><span class="token operator">&amp;&amp;</span>k<span class="token operator">!=</span><span class="token number">1</span><span class="token punctuation">)</span> ans<span class="token operator">*=</span>x<span class="token punctuation">;</span>
-	<span class="token keyword">return</span> ans<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">int</span> <span class="token function">devide2</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	<span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">*</span>i<span class="token operator">&lt;=</span>x<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">%</span>i<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-		<span class="token keyword">int</span> c<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-		<span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token operator">%</span>i<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> x<span class="token operator">/=</span>i<span class="token punctuation">,</span> <span class="token operator">++</span>c<span class="token punctuation">;</span>
-		c<span class="token operator">%=</span>k<span class="token punctuation">;</span>
-		<span class="token keyword">if</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-			<span class="token keyword">int</span> tc<span class="token operator">=</span>k<span class="token operator">-</span>c<span class="token punctuation">;</span>
-			<span class="token keyword">while</span><span class="token punctuation">(</span>tc<span class="token operator">--</span><span class="token punctuation">)</span> ans<span class="token operator">*=</span>i<span class="token punctuation">;</span>
-		<span class="token punctuation">&#125;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">></span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-		<span class="token keyword">int</span> tc<span class="token operator">=</span>k<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-		<span class="token keyword">while</span><span class="token punctuation">(</span>tc<span class="token operator">--</span><span class="token punctuation">)</span> ans<span class="token operator">*=</span>x<span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token keyword">return</span> ans<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">,</span><span class="token keyword">int</span> z<span class="token punctuation">,</span><span class="token keyword">int</span> li<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	to<span class="token punctuation">[</span><span class="token operator">++</span>tot<span class="token punctuation">]</span><span class="token operator">=</span>y<span class="token punctuation">,</span> w<span class="token punctuation">[</span>tot<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">devide1</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">[</span>tot<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">devide2</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">,</span> l<span class="token punctuation">[</span>tot<span class="token punctuation">]</span><span class="token operator">=</span>li<span class="token punctuation">;</span>
-	nxt<span class="token punctuation">[</span>tot<span class="token punctuation">]</span><span class="token operator">=</span>h<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">,</span> h<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span>tot<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">void</span> <span class="token function">toposort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> q<span class="token punctuation">;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>in<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">// do DP</span>
-	<span class="token keyword">while</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-		<span class="token keyword">int</span> x<span class="token operator">=</span>q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>h<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token punctuation">;</span>i<span class="token operator">=</span>nxt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-			<span class="token keyword">int</span> y<span class="token operator">=</span>to<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> w1<span class="token operator">=</span>w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> w2<span class="token operator">=</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> z<span class="token operator">=</span>l<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-			f<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">[</span>w1<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">[</span>w1<span class="token punctuation">]</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>w2<span class="token punctuation">]</span><span class="token operator">+</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span>
-			ans<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span>f<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">[</span>w1<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">--</span>in<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">&#125;</span>
-	<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">signed</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	n<span class="token operator">=</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> m<span class="token operator">=</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> k<span class="token operator">=</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-		<span class="token keyword">int</span> x<span class="token operator">=</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> z<span class="token operator">=</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> li<span class="token operator">=</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>z<span class="token punctuation">,</span>li<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">++</span>in<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-    <span class="token function">toposort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%lld\n"</span><span class="token punctuation">,</span>ans<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/lg6381-solution/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
