@@ -1874,13 +1874,6 @@
 
   
   <url>
-    <loc>https://yozora0908.github.io/tags/OI/</loc>
-    <lastmod>2022-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yozora0908.github.io/tags/%E5%9B%BE%E8%AE%BA/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1889,6 +1882,13 @@
   
   <url>
     <loc>https://yozora0908.github.io/tags/2-SAT/</loc>
+    <lastmod>2022-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yozora0908.github.io/tags/OI/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2000,6 +2000,13 @@
   </url>
   
   <url>
+    <loc>https://yozora0908.github.io/tags/SOS/</loc>
+    <lastmod>2022-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yozora0908.github.io/tags/%E5%9F%BA%E7%8E%AF%E6%A0%91/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -2008,13 +2015,6 @@
   
   <url>
     <loc>https://yozora0908.github.io/tags/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/</loc>
-    <lastmod>2022-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yozora0908.github.io/tags/SOS/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2429,14 +2429,14 @@
 
   
   <url>
-    <loc>https://yozora0908.github.io/categories/%E7%AE%80%E8%AE%B0/</loc>
+    <loc>https://yozora0908.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yozora0908.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://yozora0908.github.io/categories/%E7%AE%80%E8%AE%B0/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
