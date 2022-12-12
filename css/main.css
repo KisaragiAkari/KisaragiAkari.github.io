@@ -2636,9 +2636,6 @@ ul.breadcrumb li:last-child {
   border-bottom-color: #111;
   color: #111;
 }
-.utterances {
-  max-width: unset;
-}
 .search-active {
   overflow: hidden;
 }
@@ -3016,7 +3013,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ffffec;
+  background: #fb218b;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -3041,6 +3038,10 @@ hr {
 }
 .sub-menu .menu-item {
   display: inline-block;
+}
+.giscus {
+  max-width: unset;
+  box-sizing: border-box;
 }
 .post {
   margin-top: 60px;
