@@ -3013,7 +3013,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #2260df;
+  background: #8325e9;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -3038,10 +3038,6 @@ hr {
 }
 .sub-menu .menu-item {
   display: inline-block;
-}
-.giscus {
-  max-width: unset;
-  box-sizing: border-box;
 }
 .post {
   margin-top: 60px;
