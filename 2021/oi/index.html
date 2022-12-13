@@ -1,427 +1,285 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>关于OI，不知所言 | yozora0908's blog</title><meta name="author" content="yozora0908"><meta name="copyright" content="yozora0908"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="我认为我是一个真实的人。 我一直在追寻，我的「真物」。 我最讨厌口是心非的行为，总是不加掩饰地流露自己最真实的想法。 我总是毫不保留地对那些仅仅算是认识的「朋友」诉以奇怪的碎碎念。 我瞧不起恶性竞争的制造者与参与者。 我尽力选择自己所喜欢的，抵制不喜欢的。 我想保持自己的本色，自己的思想"><link rel="shortcut icon" href="/img/4.png"><link rel="canonical" href="https://yozora0908.github.io/2021/oi/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '关于OI，不知所言',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-12-13 10:33:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/4.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/4.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-  <meta name="msvalidate.01" content="08F45CDAEDE91111C31C5B3E187B3AFC">
-  <meta name="baidu-site-verification" content="7kBMv6UJrb5yCmuU">
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
-<link rel="stylesheet" href="/css/main.css">
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yozora0908.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":true,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js"></script>
-
-
-
-<link rel="canonical" href="https://yozora0908.github.io/2021/oi/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yozora0908.github.io/2021/oi/","path":"2021/oi/","title":"关于OI，不知所言"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>关于OI，不知所言 | Sz_zUwu's blog</title>
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-
-
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">Sz_zUwu's blog</p>
-      <i class="logo-line"></i>
-    </a>
-      <p class="site-subtitle" itemprop="description">φ(゜▽゜*)♪</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-user-friends fa-fw"></i>友链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">80</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">209</span></a></li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Sz_zUwu"
-      src="/images/2.png">
-  <p class="site-author-name" itemprop="name">Sz_zUwu</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">209</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">7</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">80</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/yozora0908" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yozora0908" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://space.bilibili.com/295357491" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;295357491" rel="noopener" target="_blank"><i class="fas fa-tv fa-fw"></i>BiliBili</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://music.163.com/#/user/home?id=564152236" title="网易云音乐 → https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;564152236" rel="noopener" target="_blank"><i class="fas fa-music fa-fw"></i>网易云音乐</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.zhihu.com/people/Sz_zUwu" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;Sz_zUwu" rel="noopener" target="_blank"><i class="fas fa-blog fa-fw"></i>知乎</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.luogu.com.cn/user/444418" title="洛谷 → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;444418" rel="noopener" target="_blank"><i class="fas fa-code fa-fw"></i>洛谷</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://loj.ac/u/Sz_zUwu" title="LibreOJ → https:&#x2F;&#x2F;loj.ac&#x2F;u&#x2F;Sz_zUwu" rel="noopener" target="_blank"><i class="fas fa-code fa-fw"></i>LibreOJ</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.pixiv.net/users/61482901" title="pixiv → https:&#x2F;&#x2F;www.pixiv.net&#x2F;users&#x2F;61482901" rel="noopener" target="_blank"><i class="fas fa-image fa-fw"></i>pixiv</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://codeforces.com/profile/Sz_zUwu" title="Codeforces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;Sz_zUwu" rel="noopener" target="_blank"><i class="fas fa-coffee fa-fw"></i>Codeforces</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://atcoder.jp/users/Sz_zUwu" title="Atcoder → https:&#x2F;&#x2F;atcoder.jp&#x2F;users&#x2F;Sz_zUwu" rel="noopener" target="_blank"><i class="fas fa-coffee fa-fw"></i>Atcoder</a>
-      </span>
-  </div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/2.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">209</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">80</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">yozora0908's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">关于OI，不知所言</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2021-11-06T06:05:06.000Z" title="发表于 2021-11-06 14:05:06">2021-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%80%E8%AE%B0/">简记</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>我认为我是一个真实的人。</p>
+<p>我一直在追寻，我的「真物」。</p>
+<p>我最讨厌口是心非的行为，总是不加掩饰地流露自己最真实的想法。</p>
+<p>我总是毫不保留地对那些仅仅算是认识的「朋友」诉以奇怪的碎碎念。</p>
+<p>我瞧不起恶性竞争的制造者与参与者。</p>
+<p>我尽力选择自己所喜欢的，抵制不喜欢的。</p>
+<p>我想保持自己的本色，自己的思想，自己的世界。成为那个遥远的自己。</p>
+<p> </p>
+<p>我是一个虚伪的人。</p>
+<p>所谓「真物」，不过是我逃避现实的借口罢了。</p>
+<p>表露自己，等于被大多数人孤立。</p>
+<p>极其依赖朋友，却总止步于普通朋友。</p>
+<p>总想着改变无法改变的事。</p>
+<p>选择权，也许仅仅是掌权者的恩赐。</p>
+<p>那些东西，无数次地让我与自己渐行渐远。</p>
+<span id="more"></span>
+<p> </p>
+<p>我曾因为玩过几部刺客信条，看过一些历史，便崇拜着「自由、平等、博爱」和人文主义的理念。</p>
+<p>我曾因为听过几首 AVICII 的音乐，看过它们的歌词，便坚信着「live your
+life」这种生活方式。</p>
+<p>进而有了我这种古怪的性格。</p>
+<p>所以才在条件如此困难的情况下，我选择了 OI。</p>
+<p> </p>
+<p>然而我总是在骗自己。</p>
+<p>每一篇作文，我都在套模板，一个我自己都不信的模板。自己的事，终究写不下去。</p>
+<p>我总是按照自以为正确的计划来学习
+OI，写自己认为好的题目，不断复习自己认为合适的书和课件。这一切，都只是自欺欺人罢了。</p>
+<p>完全没有比赛的经验，完全不熟悉比赛的题目风格，注定了我必将失败，败给自己。</p>
+<p>我仅仅只有周末和放假时才能学
+OI，不可能与那些有着几年经验的人相提并论，更是败给了时间。</p>
+<p>然而我却依然骗自己，骗自己能做到。</p>
+<p>或许是鼠目寸光吧。</p>
+<p> </p>
+<p>我的环境更是可笑。</p>
+<p>别人的高中，应当是参加竞赛的黄金时期。</p>
+<p>而我呢？</p>
+<p>进入那个所谓「重点高中」。</p>
+<blockquote>
+<p>update 2022.6.29</p>
+<p>貌似这个学校的老师要求校长为 OI
+提供支持，无奈学的人少，水平较低。但是既然这样做了，那就不要带着有色眼镜去看待了。</p>
+</blockquote>
+<p>那个靠着压榨学生，疯狂应试换取升学率的学校。</p>
+<p>那个剥夺普通班所有资源，全力培养重点班，因而导致成绩虎头蛇尾的学校。</p>
+<blockquote>
+<p>有意思的是，所谓重点班有好多个名字。招生方式是在初三上学期期末考试前，联系前几次考试每个学校前十左右的学生，让他们单独去考试。考上之后，所有周末都要去它那里上课，单独布置作业。考不上，即使中考成绩再好，也无法进入。中考后还有一次考试，但是和前面的又不是一个等级的班了。</p>
+<p>这些重点班单独分区，单独吃饭，校服也不一样。这些重点班只出不进，考差一次就被踢，并且任何普通班学生都无法进入。把学生划分成
+ABCD 四个等级，不同等级在管理方面都有相当大的不同。</p>
+<p>对于竞赛，就是自生自灭。有的资源，仅仅是挂名字的老师，并且什么学习时间都不给，更不要说停课集训。</p>
+<p>我认识一个高一学生，上高中前接触过
+OI。进入高中后，只能在每月一次的假期自学 OI。</p>
+</blockquote>
+<p>那个在 CSP 第一轮集体作弊的学校。</p>
+<p>那个完全不给竞赛活路的学校。</p>
+<p>一旦进入这个学校，我的竞赛生涯，就彻底到头了。而除了这个学校，其他的高中根本没有竞赛这一说。</p>
+<p>我的中考，通往的是噩梦。</p>
+<p>这种客观条件，更是无可奈何。</p>
+<p> </p>
+<p>我已经无法再这样学下去了，闭门造车终究是死路。</p>
+<p>我失去了方向，自学的局限性实在太过巨大，在如此有限的条件下无法解决。</p>
+<p>没有未来。</p>
+<p>高中就是终点。</p>
+<p> </p>
+<p>完全做不到啊。</p>
+<p> </p>
+<p>其实，我早就做好了接受一个并不乐观的结局的准备。</p>
+<p>只是</p>
+<p>我放不下 OI。</p>
+<p>根本放不下啊。</p>
+<p>如果不是真心喜欢的话……</p>
+<p>说不出再见啊</p>
+<p>昨夜</p>
+<p>不止的雨</p>
+<p>无尽的愁绪</p>
+<p>一夜未眠</p>
+<p>终究是无法告别</p>
+<p> </p>
+<p>OI 让我学会了很多，很多</p>
+<p>数不胜数</p>
+<p>还有</p>
+<p>这一度是我单调生活唯一的点缀</p>
+<p>是我虚假人生唯一的光。</p>
+<p>从始至终，我都是孑然一身，独自走着 OI 的路。</p>
+<p>OI 能给我带来，那么多的幻想与希望。</p>
+<p>让我找回了</p>
+<p>与我无数次失之交臂的「勇气」</p>
+<blockquote>
+<p>眩しくても　目を開けて</p>
+<p>即使暄目耀眼，也要张开双眼</p>
+<p>歌の在処を　辿っていけば</p>
+<p>若是能够抵达，歌所在的彼端</p>
+<p>柔らかな心に　触れられる</p>
+<p>便能够触碰到，那颗柔软的心</p>
+</blockquote>
+<p> </p>
+<p>谢谢你，OI</p>
+<blockquote>
+<p>ねぇ いつか届く</p>
+<p>呐，总有一天能传达到</p>
+<p>君と僕との この物語</p>
+<p>你和我的这个故事</p>
+</blockquote>
+<p>谢谢你不到一年的陪伴</p>
+<p> </p>
+<p>即使只能用强挤出的笑容掩饰自己的彷徨</p>
+<p>我会好好生活下去的</p>
+<p> </p>
+<p>有缘再见吧</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://yozora0908.github.io">yozora0908</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://yozora0908.github.io/2021/oi/">https://yozora0908.github.io/2021/oi/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://yozora0908.github.io" target="_blank">yozora0908's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OI/">OI</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/ame-koe/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">雨き声残響</div></div></a></div><div class="next-post pull-right"><a href="/2021/yozora-Round6/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">yozora Round 6</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/2.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">yozora0908</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">209</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">80</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By yozora0908</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadGiscus () {
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'yozora0908/My_giscus',
+    'data-repo-id': 'R_kgDOImcT6w',
+    'data-category-id': 'DIC_kwDOImcT684CTB4r',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
 
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
 
-    <div class="main-inner post posts-expand">
+function changeGiscusTheme () {
+  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
 
+  function sendMessage(message) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+  }
 
-  
+  sendMessage({
+    setConfig: {
+      theme: theme
+    }
+  });
+}
 
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yozora0908.github.io/2021/oi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/2.png">
-      <meta itemprop="name" content="Sz_zUwu">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sz_zUwu's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="关于OI，不知所言 | Sz_zUwu's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          关于OI，不知所言
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-11-06 14:05:06" itemprop="dateCreated datePublished" datetime="2021-11-06T14:05:06+08:00">2021-11-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-10-22 09:44:45" itemprop="dateModified" datetime="2022-10-22T09:44:45+08:00">2022-10-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%80%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">简记</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Password error." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="9e9e621dcff299a51f7622b33fac93ca7179bc646f39475536ef2fe645f04348">cd0b72e3a34d6d89f67f670cb3b1975749bac138ea16746f3180bb27880240103bc8172e6d1b89b2a4bb281a909c1ce65544057218161c79107e9f4dfb37f83571d0850dc4c3af14417b33a91d3fda5e6b1544a16ca5325cce935e4cbf64c82ccdfeb0c6278d21332ec35c2608476826ea3e0b75de7b19d3e6015afe5b517338f6d55e9dc9c7ecbe724e151ef213af76c642767f7eedce515e5a23342e60adb4ebab78c7d1ec43c1a968ca13e188fd0b9544b666803d90b2307ce25949d30048187a15c2287d8e6c737c7ce65b9b94597c9712e95954b026907ffe0ebd00653a722fb77fd438b9f362cc22600bd18738a4d0cec92d216144c50af890492944d16595fbe8f7d59aa5b0960cab362e7a5b4b6b4dbb7e8202cadb9bd9eb237dc3dc6bc0f40f4d1e22c36bb3aa43bd90afaf40de3a8094c9f44dee088a327a71167fad88cffab03a54572d740d9647b23cf62ff5e4cb548e6ddb85ae752a65dc9858e4037c79ac4b86885f2b9160c7d12dad33fc0f4db46af5a454d4f278c5108a25d6deab547738c05e20283c9f6a6b02408cad8898c0cffe67783c0cd67973e09b8d89e508e0ca74a8a023b06236aa4a51ef8d58fd63c9cd9619b0f975e073a48cb83060ae271ee0cf43923d4145712b47692fd0175676e17f97efad484b6b7534dfd774d7c92d83250a59cb794bfb7a6e26c12384f9fba91d4dc9435907676a010afada8c948bd2a24a12704e0f16d3a3720eea7cc30ef545854fabfa8f0029cbe3a943ceb53d0af72ccec85af007f5f79617930c72b2555c886d6888b13a1659a66f23b82088594a33c6e937a7bad8df4d8a79e402e1744a171647887ad568456791194216b29460c3cdbfdeb5aa8ed5ad67768609eb6aaf010364090461d7e59255ed7cef176e64eb410498037cc1115fa48a287dd6210572dc1a1905f9d9d220fd953a977844e73a115404127f33f427a8c9c0c0b599515ec6b20032eca048a43cf264d1267c99aac2125bd85a1e5d49e21f36283de7590f79bdfaa99d739fc58fa2a0d3831dcd1b4d4882b21dd43a235b9303cb23cf2937d0f6b1457614ed181094fc051cf23cb232a87c2d5ab182d7c5f4bf54de66ccfdb3e001e7f7416c71d682cf35834c11291057394ece5cd383e46977b61f55c819a46f8be665b333f5519a1abd6d784467bce3db37158977cbb062a0605f6ea0676d68aeedec664596f7a07483beb253335639c8cfa7d1b3160aebf40322f7f27b765a362029708eac1ec803aa50c252d385e4fd7c5d643bf27ca5975a4e6233167dc5bd0eb4fab01207e414cff7d65d23220e8e7b8303fe8396b85dc4ad76fb6bfcbeda5bf3a19d2b4f1bde9537610716cbb0af365ba28922785711d503b52c6e78be6d4bc502526287464fc3d3dd517fac27c2cb38b726c85eb782509bf2398cca620e55a36dc318a496b2d7e9f11f23fc8d1351d2b56a6f6396b086e8390e584d3d4edbe5219b5c5dc7a342ee3db171f48a7c17724f0d79fa3f26e55461236c31bf235304f739d388c246d767701f886f12f2c01d184c2e2a542fb80dc29de8dd189c1c247576cd3402417d2ad983e4f818fc04d3b1bf8fb5d2d8e1ffd7b5a67ad3a941d1337eaa3f44d25f1a3c9223a8835c9d10f85930ec4870ba78f6ea1958c5a8b47bc162744df5e0ebd85cddd9bc467a02f336ad3863473d5cf895c9e323924d6eb13015379b8a25ebade9f997ff26030b2f0208b03d301deb15b20873411cefdf4a9eb01158f77fd525d57a4129bfd07e2c97e0a73872d53cb6a2661d8b2f4745f093d4ecffe2aa564652ad3bc02c782752196609befefe8ae507d569ce75e8663e54fe6f2cb4be2c996c99e6377525392309928cb727dd8e063fd55955ba9b51baa4f4b355681e7360a3e6ab5aa4d3334af120712990d44d66faf71d209b4fe91dc5b1528c92b2d3842b18acddc307bd8b14558c2838f99475892e66a0e3c2b898204992fdb9fa69fb941af23ec215c825f1d5298a8a87a108ce0a16e11159acf2563967f7f90cac0baffc4e4e137036cf43e2be31179155496a5e821b8e69f8d7034df8118a05ac50f54732ffb5c38190ea905f8fd1ba65f61a4e54697c30ffeb2f05407ff0769c67f5316d107f993e59941b85935c710e1e8ce90a5fbac52e46344e69c05a220273f6069ec6e14cf4e8a41737912d025db8fb8ce09cd09d7bb46b628a1543e037191e144025365068105d6f9188311ec997bc01aca968fd7285f592c6cd06036753b8c0ba9160a6539049dac86e917e31585cbbf0866db32508dab60de3536d4c3032dcb03829eb4e3b0b4cf0f3ee299ae696dabaac5a7038bc2b1cb7e9d2203353721329824ddac6c2d1d91edb7412addcb8b7b2cf2e820f39d96b98a0a7b5f09452420db802d572d61c5849d62848aa7ecf4c6abb4fcb90b0619ac879aca41904d9aeacdeef93c1ecbc2b17caed48a8eb8cdc454dcc65a7fa0570acb15ab75d12d43892ab33e2fde4966e51981aa0e2e43413d8c3965d0f231d4fa3d19a5e0171d966005e7f235f6151ec0f84d9c9cef48804f03683257b89e2e9f7137384da6f532231bb1bc6fdeeaa8967bf22cee406d44ecc326018426d4ce2cc7c82a6287a91a162b06990300a78813638db0bd4270a81d85f42ff5a48ea90e9d91b7cd9feebf07647752b7eb1c815130c0fdcee2e26f9d86d13fbfde8cadb2d7f9b0b62aa853e13068041be581e36363c1101fadf8c8bc9b363f943ca18e0458cead018ac4818d274aa3593ca741767b320fed3282dabecd05ff54bf6115a56ec2de6c140cac4d83ccabe3414e9afc3cb352973b90d270cc22ea39ab644050caa1fdfa3caf64c21c68424095b395e27080252e71019ea0d51f74429a4145c5a1cd0deb9308783c37cca6d6ea031e971f691ae3ea2f9d92342e86d1a03fccf510c27ed404857f9e1000a5bd1e465cda82f1ee8effd76a624fc555e442e5968b57945f9a5d50a79215300035b7398b62f405b5718806283d6b17277f5323433eca82373837a975b3f943ca7831b3ce11f2d12040642c2ae341feb8c3e0f77af939b2a2552e53c8f5e9e0293a8efe143ddc9b57d87b13db965a7dc21cf33d53c56f1a0549db27f52b394c187d1f16eb556f411d6199b1ea9bfb6bf9a79e3d988ce0c250ebb704d6ba5f4285ed11cbf2c322275681d0ade775ca030f7dce9cfccc57d8107f01d4ca72d1c7d953313a0259e39c6ba551ced198afab561b68d0a095ea8608a91f676d58b98efec36646e6b59ffd9564e6c5a6219c590fa85c3ffb96dbd0c3bf6bcf34e3284373845de5a456a077a2304e6f2898917df9be5ff095cb81c7411395d7b309cd1720adf178f1d535d2fbb6ac1a44140dee15f6a8734a6782d15531592543d8f2e48ec93d8497a3c8282e57414552c944b1abc1f78418c49ffd4435d89dd0c780346952331d1d18cc122f20909bd098faa1f9f2b183de6e5c1b4b7ed93cc87d9b797ed972975f5bb518278744925f03bf5ab70cd837b2204b55598e448f4d0ba75d1f5a56ff23cc343917843f25654bdede9a138528f86af494253f1d0327043ef816a8d9c8f2694f6703311f9e6e4e30268a44e46407d656d4a6f158b3342a4097ef88736fa35384fef39276d73d909b38b7ec84bb53997b8d8945875e9d92b01d89578bbc05ae0fb59cc992bfc5671ae49c561f1f09d2b18504132b76155c359b61d799d21082f0902070f540c0f7d72de7211ae170333bee44bb7208e48a44091b20446b97b0d5c37445c2b94019e52e675fb5b2f3fac985f3f272912603d3262ebd15a5dcddf0c2c19392cfdb1006ad7908bdd107c0e075256b50f434aa17f4fd85e8c9d590c65cff526baf375c7766e8d922a5d862d628ccd87c1652ea7b235b20280158bf542f18bb69d0201c7a4e234dab74ef0f48a98be3cd374c61f9dc652180d11d6b057f9ed656614ad0316f6dee3abf20c873927916af7cd6d65e840689d9553e38bd3647c99cb76fea86e9712e9b16c59100970d59442114864ebcc98f6bcd5682a81818e65cbfdf0f85c641c8d883104d759cec9c47afe7f4635833cc2ce8b88d8d6a4443098ce0548295dd6b57ff962b4331b51c859f753def5b5ff2b4ea3c943a061d11eb6525408e030c31775aeab52656eee37d4fb64bff2b9e9e260e6f1803410745873c7635a718c1741e82fdace51591bdd3be71bf27e9b096ecfcf565e0beb97ed368d14fea5021a181304a40bb24ec72eb905fd34a131e9564594d3f3a5fb5ea5853f1dc9802fe635989fd467cd6e05528137d7e32a4aec8caccb486344ce99d63f3fd378caf812e51a10a6ef0d956889152cd1c8897af087fbe70a6babea3313ff1ef6df425965c3573bef0571c9e7df5e7842fe3500598bd1358946f6d46b995c41f44da01ee0327e32c4e689124a939d944b0cd6c625c2afcaba5bacc4f6d198d8fb67e7b62868ef54f4ce200ba294f723be23d4931ceaada632472d5edbb01d457157f433db633ea9e8ae3b2c06f18876f96d40abbc1e95afc13b46db157a8551d131f634aee28dbc4d6941415ab34e8f3678a3ed27490ea0171d2a659eac7e41f342c92e236ae20f35d972ebdb8218e4747abe4e5d7b742e5ddcdf1882e86485308d6415c5c1d35a92588a7a61c186511a4a92e2a356a05798350eb4cee2ccadd8705fdf475fc1703c7731cbc4f7606a729a81d999e1268490d7fa86f71f97f1f85df148e480e7905b8c1dfc80b4e32caf6894e9f758d1def9b9c8b4f8752ab4e126c109e93fe06749d8312cfe853beee29b3cecadc2dc360c83ee741763bf7fd74b7b42a7a4da86c2b2ddb533643438944b1144e108b1574e4749d0b34303aefb6cdd30c8ce08af0cfe166d5a7ea1f324421bc51e40b530dc6a2023f31d113b19b36562a7ffd79874a0e7dcdf9bd4882bcb721930f237ed577d79e4ba26d58d0b5552659eecdebb3c79c1cf9da5f4223b872975417f7ae292cd9d3bfea7a804fca42f81f0dcaba73d800cc8e9fe6886edebed7720f2cc0bf4ee345b84071341e17a3b1125358877cf6744406e1032f80ac29bc0c3537866786196404e2c48d37a0ab2ce72a3c7af5ba6775d4f525742dcd1006f7a9c611e32f6449e98cebcb3c454ba9c96333f7b5de60c1299baf34ce54c10f41a5d2e1d59d02d730efcb7a864e9091ecd68c71e17a292a17a837551c76d4df3d62d7212b677498e08f9fbf781756e5a308fdb0fb67a6f90f824df15f713ce877f7b117e60d45e309e587b13dbde6dc53ac4380590a94db809e4ec42f38417f7b3cb5180466b7f2c647bc2aab19c9616244c178fbfe461ed76868eb5c659f8ce3d1d91e61a9bcec5523df449babf80f1c3f7014d5b1efb376cc592c1b934d14f4e209db9abfc5f525a600a8e828f772a24caefe08cc66a254259abb735a62f341865e4940ce380d19c8295033a7a80aec75a13e61a1ce21f266f972504582d0123bb52e53e6927a87a7804545f72b2172f75c3b48a38f691fc32c45d7e89685ba5657e4acad816ae66c060a196045507b49a8472b3c58fad1bcf386a3ec974ffdc012d98e2e9e612e0b130bae0bf91afc12b98f982dd2cb76ceb4e9dd87afb7960f17d4edfe3a2bdb0303cd3e844835c3368397fa8219d42c50516e9a5b29dfef941d42bddc77d0922fdcd564b4c25ae0b4f9051c6bda65fbd0e9cfd8c9b16290f354d66d94112747e5d14af2f88b30ea576459e1ef7bcaf5b09581fff1a37ee528479f1204e35a828d749d0929d7757cff14239d918775f2bc9ad1d815c378994bc39478b12736ab57d8888a39ef16346f791b006940c7fd09df26c74ae695fc6dea9cd98be5b511ac3b139a3bcc886f9ee361c32f8034fdc4e95fb820c9a202036a61d49e55e2d49f1d57f9e33d687ddfea1ab97b948da5487ca728074c3319b9ebd2517a245ab32dab7eaef90e1bf397f0200fdc751cd7dc2a2a434212915a92a1b01d7e1fe12345e157ca5e04d7aeca492a6d4fade182e6212c6120107bb38d6469eeaeabed9ddeae96fa4bc5a14025fd2afcf624105816624162594d4c36eb3938607dc4553293b4e93cd361ce9f2b8c1e506f8356031e9e2c040f27c867e8791d7e3ea904eefc5de5b21488c129f8015d2881025247b6a976c3e8431503f08f03c7ef1758f80c99701bedc0525592bbbaea377342a14e67ed6eb58a2d8028e5804879d5539219dd2300cd267255d02c7ac76c1e90c6a69ba3de779ebc5933a02fb94653d47112d89654caebdd730b86c3d769333004e4b026c0996901f9a3be3baff1c69e8ec30c53aac2b7ca102f50b3ea82de2665e895ef84920d84c7dd0fa03ed919adaecbc9cf44f8d2272635d4d98f4ee2006dc1796e7bd7ba4390287187e344c1c7e9e0612dc9768225102860603f57ee1cc69e29765fd4d67c1e445ab720da39c30933f71d7178c928f429269584f7b259a38395ec6070b598b0d34959a7329c3d588f93d89b9af6e8fa6bce6345a906ce6704ce04de41c79f34854befd7113fe08d31f19b96db2d9b6c8a5a87d7770ebbe36fd6cb5aba336cab259050bbc450b1fa43462b5ac7550223a6d5ee9028eeff372d7fe3a2f99bec22d412390ed4aa2d08d5312d836c00e3336ec9b04e6e229c38169031c61a97d66fd83993e7000b428577d2c447ad59191ab81d26bc18496330d0e23cfe2e675a1d248b5d5e7dfa9d0495958a99841b7b485fc1d3181ac821b1247a968170a88e5d33e1ee369b2a09be8452b20554d28230dee75be084ef0cdd8e3c280c498e424576cc27f73d78be95fddfef3d65d9f467c46558c41ea06816b50f180333b92ee71031ce13a2189a509faba416fd8aea3c9836f50fd9035ccbd3b52015504615da80c1e85d0ad2f7f72a3b56d3ec9511a890b227dea4bf1b6780db77d7f0529c896d980685b170bf66f2cf5fbd15e3ccd3c3adf4f72f42ba7957e8bce542976ca5c0b2fabf70b492e70bd203e20b1b93eda61a53ea8cd03b6767d4719fcecca4e536cb342375954a0d758b8ebea7c2b41ec8b495705571455e54d5c293c8797ce9385bcf7a02f0328c7e908ff4b624db35129f741c82187dc8e0218009f5bc3293776414ea2437af5adce4074c2f362dfa3105937fc1677f991196bdc6b988c1dae64c09113fe62f086f342854d2583e3634d7bf0acc5fde6dd790ea7d900c4e755b9570650a2b7a8bab6e8cad355afaaca59899637b993911dd177db39468953eeda1c5bfecdc2a1bf27839b27f011ba3f1d5d141715c6601c3ddeff6aad1e96d4c559d35e7c1cb72150d8383af803cdab75db4d51b8bef1c0fded63e939db7fd283d598817fe5bf54bbbf0b8634cb511b6c11cc27e9ec0c637aa62d8dc5fe93084d9b6cea4a5ac9f37b3d13ba99b373d6bcc19b20291e8e4522d85cead09125d0b0df89f722edb0b9881852104e2e04944a880999d90c33fc2b32f79bfc5ed751b3ea897454cdec994e8a307801b3fd95f1713f7ff9b543ec06eea54c5581203eb0e4cd56216bf3f63c9a7353a1188b3f3a5fadbdc20d4208d753ca864b03e3f35f42fe0397c099afe36cb3255536cc5dae6f9e5340560195919ebc8f3ff8f559fe2b5ebadbbc8c044c86d29ac9f3c3139d00197d62cb64cd7eb8185f65d8c38121becdd946264e9ec504be41cf0dd472c03e04590e9b63bb9f31390581f846cbb8a005e74547ae9242e033080abf52fac63fab673ce7dcf10af3203cc3208f6542646ccecd7298f2a3ffbfcae5577608fd9dd05bd02d835701ff89692702190d5eed4d3aa6dd29307a20cc091c91f6ce5f76b11c6d5b32f1c34c7eac87a00291126e4aafe4078a4de285e401f9fbc582dd52742e075317e861e654e0066340d479b13f8f88fec3a17cead60a4f803abc1850629ab92e0d78114c306322d9750a618641ce98737bacfb1755fea30fa69ed965795346e0ed9d3b6658c2ce7cc30c97369c0b93b7dfca7c67330b47272607b24b268b6590160d05304e93be3c730556e988eebbd08b2ab4c4865587a3430c7e1f426b632e8dc4482df597a4a855334b50aaf357f7834287851c201b245bdfde510baedaa18bf5524055f0b0d3915761b26480a03f2e2adac716b8b4e6a1850745a9ffce7d83c669e2c9c415b0ffb6da9883e7b9857979efddb31aebda92e114deb74bf4fdfd7ad6440f6439355f381c1e96d8fc185b2b9e2f924840a443ae587365ad205e28ac0ee607d928ced535be546a181d5a60b0bbdea34ba0d662d45c3bb99c710d478fa0ac27e0ad7e7f39f1438ad271da1896c57e918e57d5247694f279bd28717509c1b7c3a70fd54364bd92e8a2e09484b97731ecca131e8fa5b3d14f3a2494707724252532574d051bae1fafc6312f0d873aa2ccdbd6014444d28ef50db60216c33bfdb670079792ac048bc7c52026aceab8072034f15806a2e673bf0e623dd81336a9127b7da8f5b47427b5e535134f6e3d859eab2e7e41e8647f2545b9ce07359f1a962e6b2f33de0499beb5731bf169f457aac481352e3627c3a2a198f110aa0d51d5de356ed20b045ab1bb445dcd1621d0448e95787815896acd025f428b075429501b9146a177ea338d783a542760163f53bfa504dbb78ab4d6a37f4822a7b24947d73622e1148a0d6249c576d9774643762a466349f465dadc031ce435502151498755f038e71a10ed78c05136f6c409085f7d8cf866476c0d36c373a262d2401ff07f71aa7d8c674076b4222528f0ef8617e2c04aea397e2c530c68693fb3fc44d6c0df01de7ed9a574196970747ca73c888069734bc3e604a796fe25c01f265afc72d3438c41bf8be27dd98ba8b48590efeae3134c5661c05b3c19e746ba8cd4f2e977b11dc5456cd305edd1769fc226ac82e782f71ba4da6ceeb3a21aec231cac0969a7a71e89a427ae60d5183fcaee10b9b4e4c46d025966b22559d031562a0579300e6a1209c7358560d4737ad54177e810a183783373098df32ce41f283d3794b43ca3cce50e0b0b1da2678629b5d136bcb7124ea208d138aab20d1723e820691032ee5c96495423195a792b5cbcb0c46b0af8570f24f1186806b9c3ebfdb7d4c5bac2c419c74ad4fd6eb7ad2e33903ce87f2f030df0d29c49a069ababb5fb967b2c7fdd0082df2c591299c3eafeaf8d24468c9132723e9c3da3bed494b8b1d5872c82bb3d6efe</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-up">
-      <input class="hbe hbe-input-field hbe-input-field-up" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-up" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-up">This article is locked.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/OI/" rel="tag"># OI</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/yozora-Round6/" rel="prev" title="yozora Round 6">
-                  <i class="fa fa-chevron-left"></i> yozora Round 6
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/ame-koe/" rel="next" title="雨き声残響">
-                  雨き声残響 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-
-    <div class="comments utterances-container"></div>
-</div>
-  </main>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
-  <div>
-	<meting-js
-		server="netease" 
-		type="playlist" 
-		id="6917863608"
-		fixed="true" 
-		autoplay="false"
-		loop="all"
-		order="random"
-		preload="auto"
-		list-folded="ture"
-		list-max-height="500px"
-		lrc-type="1">
-	</meting-js>	
-  </div>
-
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 2021 – 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Sz_zUwu</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
-
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
-<script src="/js/third-party/search/local-search.js"></script>
-
-
-
-  <script src="/js/third-party/fancybox.js"></script>
-
-
-  
-
-
-
-
-  
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://yozora0908.github.io/2021/oi/"}</script>
-  <script src="/js/third-party/quicklink.js"></script>
-<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"yozora0908/My_utterances","issue_term":"pathname","theme":"github-light"}</script>
-<script src="/js/third-party/comments/utterances.js"></script>
-
-</body>
-</html>
+if ('Giscus' === 'Giscus' || !false) {
+  if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script></div></body></html>
