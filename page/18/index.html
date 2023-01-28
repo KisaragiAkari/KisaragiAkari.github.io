@@ -12,7 +12,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6A5ACD">
   <meta name="author" content="yozora">
   <meta name="keywords" content="">
   
@@ -223,6 +225,71 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/lg1967-solution/" target="_self">
+          luogu1967 货车运输 题解
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/lg1967-solution/" target="_self">
+        <div>
+          题目要求不超过限重，不难想到因该最大化每条路的限重。所以在原图上求出最大生成树。 对于点 \((x,y)\)，如果在并查集中 \(x\) 与 \(y\) 不在同一个集合，则 \(x\) 不能到达 \(y\)
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-10 21:46" pubdate>
+              2021-10-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">#最近公共祖先</a>
+            
+              <a href="/tags/%E7%94%9F%E6%88%90%E6%A0%91/">#生成树</a>
+            
+              <a href="/tags/%E5%80%8D%E5%A2%9E/">#倍增</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
   <div class="row mx-auto index-card">
     
@@ -778,69 +845,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/">#树的直径</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/cf1083e-solution/" target="_self">
-          CF1083E The Fair Nut and Rectangles 题解
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/cf1083e-solution/" target="_self">
-        <div>
-          考虑 DP。 DP 需要一定的顺序。因为给出的矩形没有包含的关系，所以我们按照每个矩形右上角点的横坐标 \(x\) 递增排序，那么纵坐标 $ y$ 一定是递减排序的。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-21 22:24" pubdate>
-              2021-09-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/DP/">#DP</a>
-            
-              <a href="/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/">#斜率优化</a>
             
           </div>
         
