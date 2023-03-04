@@ -433,7 +433,7 @@ sup > a::before,
   .navbar .dropdown-collapse,
   .top-nav-collapse,
   .navbar-col-show {
-    background: rgba(0,0,204,0.7);
+    background: rgba(65,105,225,0.7);
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
   }
@@ -442,7 +442,7 @@ sup > a::before,
   .navbar .dropdown-collapse,
   .top-nav-collapse,
   .navbar-col-show {
-    background: #00c;
+    background: #4169e1;
   }
 }
 @media (max-width: 767px) {
@@ -851,11 +851,11 @@ i.iconfont {
   --sec-text-color: #2D2D2D;
   --post-text-color: #000000;
   --post-heading-color: #000000;
-  --post-link-color: #4169E1;
-  --link-hover-color: #4169E1;
+  --post-link-color: #000000;
+  --link-hover-color: #000000;
   --link-hover-bg-color: #f8f9fa;
   --line-color: #eaecef;
-  --navbar-bg-color: #0000CC;
+  --navbar-bg-color: #4169E1;
   --navbar-text-color: #fff;
   --subtitle-color: #fff;
   --scrollbar-color: #000000;
