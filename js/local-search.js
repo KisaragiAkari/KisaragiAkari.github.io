@@ -1,5 +1,10 @@
 /* global CONFIG */
 
+// const path = CONFIG.root + searchPath;
+const jsdelivr = 'https://cdn.jsdelivr.net/gh/'
+const userRepo = 'voidking/voidking.github.io/'
+const path = jsdelivr + userRepo + searchPath;
+
 (function() {
   // Modified from [hexo-generator-search](https://github.com/wzpan/hexo-generator-search)
   function localSearchFunc(path, searchSelector, resultSelector) {
