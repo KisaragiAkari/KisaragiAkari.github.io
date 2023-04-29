@@ -279,7 +279,33 @@
 <p>在不断递归的过程中，要膜的欧拉函数是越来越小的，并且最多递归 <span
 class="math inline">\(\log_2p\)</span> 次。</p>
 <p>不要傻乎乎地去预处理欧拉函数（确信</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span><br>ll t, p;<br><span class="hljs-function">ll <span class="hljs-title">fp</span><span class="hljs-params">(ll x,ll y,ll p)</span> </span>&#123;<br>    ll z=<span class="hljs-number">1ll</span>;<br>    <span class="hljs-keyword">for</span>(;y;x=x*x%p,y&gt;&gt;=<span class="hljs-number">1ll</span>) <span class="hljs-keyword">if</span>(y&amp;<span class="hljs-number">1ll</span>) z=z*x%p;<br>    <span class="hljs-keyword">return</span> z;<br>&#125;<br><span class="hljs-function">ll <span class="hljs-title">phi</span><span class="hljs-params">(ll x)</span> </span>&#123;<br>    ll y=x;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i*i&lt;=x;++i) <span class="hljs-keyword">if</span>(x%i==<span class="hljs-number">0</span>) &#123;<br>        y/=i, y*=i<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">while</span>(x%i==<span class="hljs-number">0</span>) x/=i;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(x^<span class="hljs-number">1</span>) y/=x, y*=x<span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">return</span> y;<br>&#125;<br><span class="hljs-function">ll <span class="hljs-title">f</span><span class="hljs-params">(ll x)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0ll</span>;<br>    ll y=<span class="hljs-built_in">phi</span>(x);<br>    <span class="hljs-keyword">return</span> x!=<span class="hljs-number">1ll</span>? <span class="hljs-built_in">fp</span>(<span class="hljs-number">2ll</span>,<span class="hljs-built_in">f</span>(y)+y,x):<span class="hljs-number">0ll</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;t);<br>    <span class="hljs-keyword">while</span>(t --&gt; <span class="hljs-number">0</span>) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;p), <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,<span class="hljs-built_in">f</span>(p));<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+ll t, p;
+<span class="hljs-function">ll <span class="hljs-title">fp</span><span class="hljs-params">(ll x,ll y,ll p)</span> </span>&#123;
+    ll z=<span class="hljs-number">1ll</span>;
+    <span class="hljs-keyword">for</span>(;y;x=x*x%p,y&gt;&gt;=<span class="hljs-number">1ll</span>) <span class="hljs-keyword">if</span>(y&amp;<span class="hljs-number">1ll</span>) z=z*x%p;
+    <span class="hljs-keyword">return</span> z;
+&#125;
+<span class="hljs-function">ll <span class="hljs-title">phi</span><span class="hljs-params">(ll x)</span> </span>&#123;
+    ll y=x;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i*i&lt;=x;++i) <span class="hljs-keyword">if</span>(x%i==<span class="hljs-number">0</span>) &#123;
+        y/=i, y*=i<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">while</span>(x%i==<span class="hljs-number">0</span>) x/=i;
+    &#125;
+    <span class="hljs-keyword">if</span>(x^<span class="hljs-number">1</span>) y/=x, y*=x<span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">return</span> y;
+&#125;
+<span class="hljs-function">ll <span class="hljs-title">f</span><span class="hljs-params">(ll x)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0ll</span>;
+    ll y=<span class="hljs-built_in">phi</span>(x);
+    <span class="hljs-keyword">return</span> x!=<span class="hljs-number">1ll</span>? <span class="hljs-built_in">fp</span>(<span class="hljs-number">2ll</span>,<span class="hljs-built_in">f</span>(y)+y,x):<span class="hljs-number">0ll</span>;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;t);
+    <span class="hljs-keyword">while</span>(t --&gt; <span class="hljs-number">0</span>) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;p), <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,<span class="hljs-built_in">f</span>(p));
+&#125;</code></pre></div>
 
                 
               </div>

@@ -362,7 +362,12 @@ class="math inline">\(j=next_j\)</span>。如果 <span
 class="math inline">\(S_i = S_{j+1}\)</span> 了，那就让 <span
 class="math inline">\(j+1\)</span>。此时 <span
 class="math inline">\(next_i = j\)</span>。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp">nxt[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>,j=<span class="hljs-number">0</span>;i&lt;=n;++i) &#123;<br>    <span class="hljs-keyword">while</span>(j&amp;&amp;s[i]!=s[j+<span class="hljs-number">1</span>]) j=nxt[j];<br>    <span class="hljs-keyword">if</span>(s[i]==s[j+<span class="hljs-number">1</span>]) ++j;<br>    nxt[i]=j;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp">nxt[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>,j=<span class="hljs-number">0</span>;i&lt;=n;++i) &#123;
+    <span class="hljs-keyword">while</span>(j&amp;&amp;s[i]!=s[j+<span class="hljs-number">1</span>]) j=nxt[j];
+    <span class="hljs-keyword">if</span>(s[i]==s[j+<span class="hljs-number">1</span>]) ++j;
+    nxt[i]=j;
+&#125;</code></pre></div>
 <p>此外，如果要得到字符串 <span class="math inline">\(A\)</span> 与
 <span class="math inline">\(B\)</span> ($|B| |A| $) 匹配的结果，还要求出
 <span class="math inline">\(f\)</span>，表示一个 <span
@@ -381,7 +386,21 @@ class="math inline">\(i\)</span>，但是 <span
 class="math inline">\(f_i\)</span> 能为 <span
 class="math inline">\(i\)</span>。</p>
 <p>方法也是类似的。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp">nxt[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>,j=<span class="hljs-number">0</span>;i&lt;=m;++i) &#123;<br>    <span class="hljs-keyword">while</span>(j&amp;&amp;b[i]!=b[j+<span class="hljs-number">1</span>]) j=nxt[j];<br>    <span class="hljs-keyword">if</span>(b[i]==b[j+<span class="hljs-number">1</span>]) ++j;<br>    nxt[i]=j;<br>&#125;<br><span class="hljs-comment">// 先求出较小串的next</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>,j=<span class="hljs-number">0</span>;i&lt;=n;++i) &#123;<br>    <span class="hljs-comment">// 这里i从1开始</span><br>    <span class="hljs-keyword">while</span>(j&amp;&amp;b[j+<span class="hljs-number">1</span>]!=a[i]) j=nxt[j];<br>    <span class="hljs-keyword">if</span>(b[j+<span class="hljs-number">1</span>]==a[i]) ++j;<br>    f[i]=j;<br>    <span class="hljs-comment">// f[i]==m 表示b在a中出现了</span><br>    <span class="hljs-keyword">if</span>(j==m) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,i-m+<span class="hljs-number">1</span>), j=nxt[j];<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp">nxt[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>,j=<span class="hljs-number">0</span>;i&lt;=m;++i) &#123;
+    <span class="hljs-keyword">while</span>(j&amp;&amp;b[i]!=b[j+<span class="hljs-number">1</span>]) j=nxt[j];
+    <span class="hljs-keyword">if</span>(b[i]==b[j+<span class="hljs-number">1</span>]) ++j;
+    nxt[i]=j;
+&#125;
+<span class="hljs-comment">// 先求出较小串的next</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>,j=<span class="hljs-number">0</span>;i&lt;=n;++i) &#123;
+    <span class="hljs-comment">// 这里i从1开始</span>
+    <span class="hljs-keyword">while</span>(j&amp;&amp;b[j+<span class="hljs-number">1</span>]!=a[i]) j=nxt[j];
+    <span class="hljs-keyword">if</span>(b[j+<span class="hljs-number">1</span>]==a[i]) ++j;
+    f[i]=j;
+    <span class="hljs-comment">// f[i]==m 表示b在a中出现了</span>
+    <span class="hljs-keyword">if</span>(j==m) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,i-m+<span class="hljs-number">1</span>), j=nxt[j];
+&#125;</code></pre></div>
 <p>KMP 算法的复杂度是 <span class="math inline">\(O(N+M)\)</span>
 的，如果只用来求 <span class="math inline">\(next\)</span> 则是 <span
 class="math inline">\(O(N)\)</span> 的。证明略。</p>
@@ -393,13 +412,54 @@ class="math inline">\(O(N)\)</span> 的。证明略。</p>
 <p>像字典那样把字符串串在一棵树上哦~</p>
 <p>没啥可写的，直接上板子好了。</p>
 <p>这东西念作<code>Tree</code>……</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> tot, trie[N][<span class="hljs-number">26</span>];<br><span class="hljs-comment">// N要大于字符串个数*字符串长度</span><br><span class="hljs-comment">// 26是字符集</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">char</span>* s)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>, len=<span class="hljs-built_in">strlen</span>(s);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;++i) &#123;<br>		<span class="hljs-keyword">int</span> a=s[i]-<span class="hljs-string">&#x27;a&#x27;</span>;<br>		<span class="hljs-keyword">if</span>(!trie[x][a]) trie[x][a]=++tot;<br>        <span class="hljs-comment">// 建立新结点</span><br>		x=trie[x][a];<br>	&#125;<br>    <span class="hljs-comment">// 插入一个字符串</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">char</span>* s)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>, len=<span class="hljs-built_in">strlen</span>(s);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;++i) &#123;<br>		<span class="hljs-keyword">int</span> a=s[i]-<span class="hljs-string">&#x27;a&#x27;</span>;<br>		<span class="hljs-keyword">if</span>(!trie[x][a]) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>        <span class="hljs-comment">// 找不到节点</span><br>		x=trie[x][a];<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">114514</span>; <span class="hljs-comment">// 返回你想要的信息</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> tot, trie[N][<span class="hljs-number">26</span>];
+<span class="hljs-comment">// N要大于字符串个数*字符串长度</span>
+<span class="hljs-comment">// 26是字符集</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">char</span>* s)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>, len=<span class="hljs-built_in">strlen</span>(s);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;++i) &#123;
+		<span class="hljs-keyword">int</span> a=s[i]-<span class="hljs-string">&#x27;a&#x27;</span>;
+		<span class="hljs-keyword">if</span>(!trie[x][a]) trie[x][a]=++tot;
+        <span class="hljs-comment">// 建立新结点</span>
+		x=trie[x][a];
+	&#125;
+    <span class="hljs-comment">// 插入一个字符串</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">char</span>* s)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>, len=<span class="hljs-built_in">strlen</span>(s);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;++i) &#123;
+		<span class="hljs-keyword">int</span> a=s[i]-<span class="hljs-string">&#x27;a&#x27;</span>;
+		<span class="hljs-keyword">if</span>(!trie[x][a]) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        <span class="hljs-comment">// 找不到节点</span>
+		x=trie[x][a];
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">114514</span>; <span class="hljs-comment">// 返回你想要的信息</span>
+&#125;</code></pre></div>
 <p>这玩意是典型的空间换时间……</p>
 <h3 id="一个简单应用-0-1-trie">一个简单应用 0-1 Trie</h3>
 <p>把<code>int</code>当作长度为 <span class="math inline">\(31\)</span>
 的字符串插入 Trie 中。</p>
 <p>下面放板子，可以快速处理最大异或和的。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> tot, trie[N*<span class="hljs-number">31</span>][<span class="hljs-number">2</span>];<br><span class="hljs-comment">// [数字个数*数位][每一位不是0就是1]</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> S)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">31</span>;i&gt;=<span class="hljs-number">0</span>;--i) &#123;<br>		<span class="hljs-keyword">int</span> a=(S&gt;&gt;i)&amp;<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">if</span>(!trie[x][a]) trie[x][a]=++tot;<br>		x=trie[x][a];<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> S)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>, ans=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">31</span>;i&gt;=<span class="hljs-number">0</span>;--i) &#123;<br>		<span class="hljs-keyword">int</span> a=(S&gt;&gt;i)&amp;<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">if</span>(trie[x][a^<span class="hljs-number">1</span>]) ans+=(<span class="hljs-number">1</span>&lt;&lt;i), x=trie[x][a^<span class="hljs-number">1</span>];<br>        <span class="hljs-comment">// 尽量往数字相反的地方走，这样异或值为1</span><br>		<span class="hljs-keyword">else</span> x=trie[x][a];<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> tot, trie[N*<span class="hljs-number">31</span>][<span class="hljs-number">2</span>];
+<span class="hljs-comment">// [数字个数*数位][每一位不是0就是1]</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> S)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">31</span>;i&gt;=<span class="hljs-number">0</span>;--i) &#123;
+		<span class="hljs-keyword">int</span> a=(S&gt;&gt;i)&amp;<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">if</span>(!trie[x][a]) trie[x][a]=++tot;
+		x=trie[x][a];
+	&#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> S)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>, ans=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">31</span>;i&gt;=<span class="hljs-number">0</span>;--i) &#123;
+		<span class="hljs-keyword">int</span> a=(S&gt;&gt;i)&amp;<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">if</span>(trie[x][a^<span class="hljs-number">1</span>]) ans+=(<span class="hljs-number">1</span>&lt;&lt;i), x=trie[x][a^<span class="hljs-number">1</span>];
+        <span class="hljs-comment">// 尽量往数字相反的地方走，这样异或值为1</span>
+		<span class="hljs-keyword">else</span> x=trie[x][a];
+	&#125;
+	<span class="hljs-keyword">return</span> ans;
+&#125;</code></pre></div>
 <h2 id="dfa-是个啥">DFA 是个啥？</h2>
 <p>有限自动机 (FA)，确定有限状态自动机 (DFA)。</p>
 <p>下面都是一些概念，<del>我甚至还没有完全理解</del>，还是太菜了。</p>

@@ -283,7 +283,15 @@ class="math inline">\(col_x = col_y\)</span>，那么说明图中存在奇环。
 <p>复杂度 <span class="math inline">\(O(n+m)\)</span>，其中 <span
 class="math inline">\(n\)</span> 为点数，<span
 class="math inline">\(m\)</span> 为边数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> color)</span> </span>&#123;<br>	v[x]=color;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=e[i].nxt) &#123;<br>		<span class="hljs-keyword">int</span> y=e[i].to;<br>		<span class="hljs-keyword">if</span>(v[y]==color) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">if</span>(!v[y]&amp;&amp;!<span class="hljs-built_in">dfs</span>(y,<span class="hljs-number">3</span>-color)) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> color)</span> </span>&#123;
+	v[x]=color;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=e[i].nxt) &#123;
+		<span class="hljs-keyword">int</span> y=e[i].to;
+		<span class="hljs-keyword">if</span>(v[y]==color) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">if</span>(!v[y]&amp;&amp;!<span class="hljs-built_in">dfs</span>(y,<span class="hljs-number">3</span>-color)) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+&#125;</code></pre></div>
 <h2 id="二分图最大匹配">二分图最大匹配</h2>
 <p>如果一个边集满足「任意两条边都没有公共端点」，那么这个<strong>边集</strong>称为该图的一组<strong>匹配</strong>。在二分图中，包含边数最多的一组匹配称为<strong>二分图的最大匹配</strong>。</p>
 <p>对于一组匹配 <span class="math inline">\(S\)</span>，属于 <span
@@ -347,7 +355,23 @@ y&#39;\)</span> 是一条增广路。</p></li>
 class="math inline">\(S\)</span> 中边的个数就 +1。</p>
 <p>这个算法的正确性基于：当一个节点成为匹配点后，至多因为找到新的增广路而更换匹配对象，但不会变为非匹配边。</p>
 <p>复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=e[i].nxt) &#123;<br>		<span class="hljs-keyword">int</span> y=e[i].to;<br>		<span class="hljs-keyword">if</span>(!v[y]) &#123;<br>			v[y]=<span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">if</span>(!match[y]||<span class="hljs-built_in">dfs</span>(match[y])) &#123; match[y]=x; <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; &#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;<br>		<span class="hljs-built_in">memset</span>(v,<span class="hljs-number">0</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(v));<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">dfs</span>(i)) ++ans;<br>	&#125;<br>&#125;<br><span class="hljs-comment">// ans即为最大匹配</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=e[i].nxt) &#123;
+		<span class="hljs-keyword">int</span> y=e[i].to;
+		<span class="hljs-keyword">if</span>(!v[y]) &#123;
+			v[y]=<span class="hljs-number">1</span>;
+			<span class="hljs-keyword">if</span>(!match[y]||<span class="hljs-built_in">dfs</span>(match[y])) &#123; match[y]=x; <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; &#125;
+		&#125;
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		<span class="hljs-built_in">memset</span>(v,<span class="hljs-number">0</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(v));
+		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">dfs</span>(i)) ++ans;
+	&#125;
+&#125;
+<span class="hljs-comment">// ans即为最大匹配</span></code></pre></div>
 <h2 id="二分图多重匹配">二分图多重匹配</h2>
 <p>二分图，<span class="math inline">\(N\)</span> 个左部点，<span
 class="math inline">\(M\)</span> 个右部点，从中选出尽可能多的边，使得第
@@ -464,7 +488,44 @@ class="math inline">\(O(n^4)\)</span>。使用 BFS 优化匈牙利算法可以�
 <span class="math inline">\(O(n^3)\)</span>，有时间再写。</p>
 <p>KM
 算法代码较简单，且在稠密图上表现较好，但是只适用于“原图一定存在完备匹配”的情况。至于费用流的算法，以后再说咯~</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>	va[x]=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> y=<span class="hljs-number">1</span>;y&lt;=n;++y) <span class="hljs-keyword">if</span>(!vb[y]) &#123;<br>		<span class="hljs-keyword">if</span>(la[x]+lb[y]==w[x][y]) &#123;<br>            <span class="hljs-comment">// la[x]+lb[y]=w[x][y]，(x,y)在相等子图中</span><br>            <span class="hljs-comment">// vb[y]=1表示如果村子交错树，那么y必定在其中</span><br>			vb[y]=<span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">if</span>(!match[y]||<span class="hljs-built_in">dfs</span>(match[y])) &#123;<br>				match[y]=x; <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>			&#125;<br>		&#125; <span class="hljs-keyword">else</span> slack[y]=<span class="hljs-built_in">min</span>(slack[y],la[x]+lb[y]-w[x][y]);<br>        <span class="hljs-comment">// 不在相等子图中就更新slack</span><br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">KM</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;<br>		la[i]=-inf, lb[i]=<span class="hljs-number">0</span>;<br>		match[i]=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) la[i]=<span class="hljs-built_in">max</span>(la[i],w[i][j]);<br>	&#125;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) &#123;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) v[a]=v[b]=<span class="hljs-number">0</span>, slack[j]=inf;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">dfs</span>(i)) <span class="hljs-keyword">break</span>;<br>        <span class="hljs-comment">// 这样就没有交错树了</span><br>		dlt=inf;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) <span class="hljs-keyword">if</span>(!vb[j]) dlt=<span class="hljs-built_in">min</span>(dlt,slack[j]);<br>        <span class="hljs-comment">// 取最小值修改标顶</span><br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) &#123;<br>			<span class="hljs-keyword">if</span>(va[j]) la[j]-=dlt;<br>			<span class="hljs-keyword">if</span>(vb[j]) lb[j]+=dlt;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) ans+=w[match[i]][i];<br>    <span class="hljs-comment">// ans+=la[i]+lb[i]</span><br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;
+	va[x]=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> y=<span class="hljs-number">1</span>;y&lt;=n;++y) <span class="hljs-keyword">if</span>(!vb[y]) &#123;
+		<span class="hljs-keyword">if</span>(la[x]+lb[y]==w[x][y]) &#123;
+            <span class="hljs-comment">// la[x]+lb[y]=w[x][y]，(x,y)在相等子图中</span>
+            <span class="hljs-comment">// vb[y]=1表示如果村子交错树，那么y必定在其中</span>
+			vb[y]=<span class="hljs-number">1</span>;
+			<span class="hljs-keyword">if</span>(!match[y]||<span class="hljs-built_in">dfs</span>(match[y])) &#123;
+				match[y]=x; <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+			&#125;
+		&#125; <span class="hljs-keyword">else</span> slack[y]=<span class="hljs-built_in">min</span>(slack[y],la[x]+lb[y]-w[x][y]);
+        <span class="hljs-comment">// 不在相等子图中就更新slack</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">KM</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		la[i]=-inf, lb[i]=<span class="hljs-number">0</span>;
+		match[i]=<span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) la[i]=<span class="hljs-built_in">max</span>(la[i],w[i][j]);
+	&#125;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) &#123;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) v[a]=v[b]=<span class="hljs-number">0</span>, slack[j]=inf;
+		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">dfs</span>(i)) <span class="hljs-keyword">break</span>;
+        <span class="hljs-comment">// 这样就没有交错树了</span>
+		dlt=inf;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) <span class="hljs-keyword">if</span>(!vb[j]) dlt=<span class="hljs-built_in">min</span>(dlt,slack[j]);
+        <span class="hljs-comment">// 取最小值修改标顶</span>
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) &#123;
+			<span class="hljs-keyword">if</span>(va[j]) la[j]-=dlt;
+			<span class="hljs-keyword">if</span>(vb[j]) lb[j]+=dlt;
+		&#125;
+	&#125;
+	<span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) ans+=w[match[i]][i];
+    <span class="hljs-comment">// ans+=la[i]+lb[i]</span>
+    <span class="hljs-keyword">return</span> ans;
+&#125;</code></pre></div>
 
                 
               </div>

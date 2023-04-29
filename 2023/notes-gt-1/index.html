@@ -466,7 +466,20 @@ class="math inline">\(SG(G)=0\)</span>。</p>
 <h3 id="code">code</h3>
 <p>随便写一下 Nim 游戏的 <span class="math inline">\(SG\)</span>
 函数做法。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pre</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// sg[i]表示大小为i的石子堆的SG函数值</span><br>    <span class="hljs-built_in">rep</span>(i,<span class="hljs-number">1</span>,N) &#123;<br>        <span class="hljs-built_in">SET</span>(s,<span class="hljs-number">0</span>);<br>        <span class="hljs-built_in">rep</span>(j,<span class="hljs-number">1</span>,i) s[sg[i-j]]=<span class="hljs-number">1</span>;<br>        <span class="hljs-built_in">rep</span>(j,<span class="hljs-number">0</span>,i) <span class="hljs-keyword">if</span>(!s[j]) &#123; sg[i]=j; <span class="hljs-keyword">break</span>; &#125;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">pre</span>();<br>    <span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">rep</span>(i,<span class="hljs-number">1</span>,n) a[i]=<span class="hljs-built_in">read</span>(), ans^=sg[a[i]];<br>    <span class="hljs-keyword">if</span>(ans&gt;<span class="hljs-number">0</span>) <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;win&quot;</span>); <span class="hljs-keyword">else</span> <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;lose&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pre</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-comment">// sg[i]表示大小为i的石子堆的SG函数值</span>
+    <span class="hljs-built_in">rep</span>(i,<span class="hljs-number">1</span>,N) &#123;
+        <span class="hljs-built_in">SET</span>(s,<span class="hljs-number">0</span>);
+        <span class="hljs-built_in">rep</span>(j,<span class="hljs-number">1</span>,i) s[sg[i-j]]=<span class="hljs-number">1</span>;
+        <span class="hljs-built_in">rep</span>(j,<span class="hljs-number">0</span>,i) <span class="hljs-keyword">if</span>(!s[j]) &#123; sg[i]=j; <span class="hljs-keyword">break</span>; &#125;
+    &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-built_in">pre</span>();
+    <span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;
+    <span class="hljs-built_in">rep</span>(i,<span class="hljs-number">1</span>,n) a[i]=<span class="hljs-built_in">read</span>(), ans^=sg[a[i]];
+    <span class="hljs-keyword">if</span>(ans&gt;<span class="hljs-number">0</span>) <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;win&quot;</span>); <span class="hljs-keyword">else</span> <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;lose&quot;</span>);
+&#125;</code></pre></div>
 <h2 id="例题">例题</h2>
 <h3 id="hdu2999">hdu2999</h3>
 <p>考虑操作一次之后，这段序列就分成了互相独立的两段，可知这一段的一个后继状态的

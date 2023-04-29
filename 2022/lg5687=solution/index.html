@@ -305,7 +305,26 @@ class="math inline">\(p2+1\)</span>。</p>
 class="math inline">\(p2&gt; m\)</span>
 的时候，图已经连通，也就求出了最小生成树。</p>
 <h2 id="code">CODE</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">3e5</span>+<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> n, m;<br>ll a[N], b[N], ans;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;a[i]);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;b[i]);<br>	<span class="hljs-built_in">sort</span>(a+<span class="hljs-number">1</span>,a+n+<span class="hljs-number">1</span>), <span class="hljs-built_in">sort</span>(b+<span class="hljs-number">1</span>,b+m+<span class="hljs-number">1</span>);<br>	<br>	ans+=a[<span class="hljs-number">1</span>]*(m<span class="hljs-number">-1</span>)+b[<span class="hljs-number">1</span>]*(n<span class="hljs-number">-1</span>);<br>	<span class="hljs-keyword">int</span> row=<span class="hljs-number">1</span>, col=<span class="hljs-number">1</span>, c1=<span class="hljs-number">2</span>, c2=<span class="hljs-number">2</span>;<br>	<span class="hljs-keyword">while</span>(c1&lt;=n&amp;&amp;c2&lt;=m) &#123;<br>		<span class="hljs-keyword">if</span>(a[c1]&lt;=b[c2]) ans+=a[c1++]*(m-col), ++row;<br>		<span class="hljs-keyword">else</span> ans+=b[c2++]*(n-row), ++col; <br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">3e5</span>+<span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> n, m;
+ll a[N], b[N], ans;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;a[i]);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;b[i]);
+	<span class="hljs-built_in">sort</span>(a+<span class="hljs-number">1</span>,a+n+<span class="hljs-number">1</span>), <span class="hljs-built_in">sort</span>(b+<span class="hljs-number">1</span>,b+m+<span class="hljs-number">1</span>);
+	
+	ans+=a[<span class="hljs-number">1</span>]*(m<span class="hljs-number">-1</span>)+b[<span class="hljs-number">1</span>]*(n<span class="hljs-number">-1</span>);
+	<span class="hljs-keyword">int</span> row=<span class="hljs-number">1</span>, col=<span class="hljs-number">1</span>, c1=<span class="hljs-number">2</span>, c2=<span class="hljs-number">2</span>;
+	<span class="hljs-keyword">while</span>(c1&lt;=n&amp;&amp;c2&lt;=m) &#123;
+		<span class="hljs-keyword">if</span>(a[c1]&lt;=b[c2]) ans+=a[c1++]*(m-col), ++row;
+		<span class="hljs-keyword">else</span> ans+=b[c2++]*(n-row), ++col; 
+	&#125;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);
+&#125;</code></pre></div>
 
                 
               </div>

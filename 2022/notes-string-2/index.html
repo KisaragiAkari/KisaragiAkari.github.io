@@ -285,7 +285,18 @@ Algorithm</strong>，而国内则称其为<strong>扩展 KMP</strong>。</p>
 <p>为啥是扩展 KMP？可能是因为这两段的 LCP，某种意义上也是一个
 Border。</p>
 <p>根据定义易得 <span class="math inline">\(O(n^2)\)</span> 的实现</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// C++ Version</span><br><span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">z_function_trivial</span><span class="hljs-params">(string s)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> n = (<span class="hljs-keyword">int</span>)s.<span class="hljs-built_in">length</span>();<br>    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">z</span><span class="hljs-params">(n)</span></span>;<br>    z[<span class="hljs-number">0</span>] = n;<br>    <span class="hljs-comment">// 这句是我加的</span><br>    <span class="hljs-comment">// OI-wiki上说z[0]=0，但是z[0]=0不仅说不过去而且板子题也过不了啊</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; ++i)<br>    <span class="hljs-keyword">while</span> (i + z[i] &lt; n &amp;&amp; s[z[i]] == s[i + z[i]]) ++z[i];<br>    <span class="hljs-keyword">return</span> z;<br>&#125;<br><span class="hljs-comment">// Code from oi-wiki.org</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// C++ Version</span>
+<span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">z_function_trivial</span><span class="hljs-params">(string s)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> n = (<span class="hljs-keyword">int</span>)s.<span class="hljs-built_in">length</span>();
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">z</span><span class="hljs-params">(n)</span></span>;
+    z[<span class="hljs-number">0</span>] = n;
+    <span class="hljs-comment">// 这句是我加的</span>
+    <span class="hljs-comment">// OI-wiki上说z[0]=0，但是z[0]=0不仅说不过去而且板子题也过不了啊</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; ++i)
+    <span class="hljs-keyword">while</span> (i + z[i] &lt; n &amp;&amp; s[z[i]] == s[i + z[i]]) ++z[i];
+    <span class="hljs-keyword">return</span> z;
+&#125;
+<span class="hljs-comment">// Code from oi-wiki.org</span></code></pre></div>
 <p>一般情况下，当一个能求出很 NB
 的东西的算法复杂度过高时，就会有神犇来优化它。</p>
 <blockquote>
@@ -318,7 +329,18 @@ class="math inline">\(z(i)\)</span> 后，如果 <span
 class="math inline">\(r &lt; i+z(i)-1\)</span>，那么就令 <span
 class="math inline">\(l=i,r=i+z(i)-1\)</span>。</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Z</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> l=<span class="hljs-number">0</span>, r=<span class="hljs-number">0</span>, ans=<span class="hljs-number">0</span>;<br>	z[<span class="hljs-number">0</span>]=n;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;++i) &#123;<br>		<span class="hljs-keyword">if</span>(i&lt;=r&amp;&amp;z[i-l]&lt;r-i+<span class="hljs-number">1</span>) z[i]=z[i-l];<br>		<span class="hljs-keyword">else</span> &#123;<br>			z[i]=<span class="hljs-built_in">max</span>(r-i+<span class="hljs-number">1</span>,<span class="hljs-number">0ll</span>);<br>			<span class="hljs-keyword">while</span>(i+z[i]&lt;n&amp;&amp;s[z[i]]==s[i+z[i]]) ++z[i];<br>			<span class="hljs-keyword">if</span>(r&lt;i+z[i]<span class="hljs-number">-1</span>) l=i, r=i+z[i]<span class="hljs-number">-1</span>;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Z</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">int</span> l=<span class="hljs-number">0</span>, r=<span class="hljs-number">0</span>, ans=<span class="hljs-number">0</span>;
+	z[<span class="hljs-number">0</span>]=n;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;++i) &#123;
+		<span class="hljs-keyword">if</span>(i&lt;=r&amp;&amp;z[i-l]&lt;r-i+<span class="hljs-number">1</span>) z[i]=z[i-l];
+		<span class="hljs-keyword">else</span> &#123;
+			z[i]=<span class="hljs-built_in">max</span>(r-i+<span class="hljs-number">1</span>,<span class="hljs-number">0ll</span>);
+			<span class="hljs-keyword">while</span>(i+z[i]&lt;n&amp;&amp;s[z[i]]==s[i+z[i]]) ++z[i];
+			<span class="hljs-keyword">if</span>(r&lt;i+z[i]<span class="hljs-number">-1</span>) l=i, r=i+z[i]<span class="hljs-number">-1</span>;
+		&#125;
+	&#125;
+&#125;</code></pre></div>
 <h3 id="复杂度分析">复杂度分析</h3>
 <p>对于内层<code>while</code>循环，每次都使得 <span
 class="math inline">\(r\)</span> 向后移动一位，而 <span
@@ -337,7 +359,20 @@ id="求出模式串与文本串每一个后缀的lcp">求出模式串与文本�
 class="math inline">\(f(i)\)</span> 为模式串与文本串的后缀 <span
 class="math inline">\(T[i,m-1]\)</span> 的 LCP 长度，在 <span
 class="math inline">\(z\)</span> 函数的基础上处理即可。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">exkmp</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">Z</span>();<br>	<span class="hljs-keyword">int</span> l=<span class="hljs-number">-1</span>, r=<span class="hljs-number">-1</span>, ans=<span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 注意从l=r=-1</span><br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;m;++i) &#123;<br>		<span class="hljs-keyword">if</span>(i&lt;=r&amp;&amp;z[i-l]&lt;r-i+<span class="hljs-number">1</span>) f[i]=z[i-l];<br>        <span class="hljs-comment">// 这里是z[i-l]</span><br>		<span class="hljs-keyword">else</span> &#123;<br>			f[i]=<span class="hljs-built_in">max</span>(r-i+<span class="hljs-number">1</span>,<span class="hljs-number">0ll</span>);<br>			<span class="hljs-keyword">while</span>(i+f[i]&lt;m&amp;&amp;s[f[i]]==t[i+f[i]]) ++f[i];	<br>			<span class="hljs-keyword">if</span>(r&lt;i+f[i]<span class="hljs-number">-1</span>) l=i, r=i+f[i]<span class="hljs-number">-1</span>;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">exkmp</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">Z</span>();
+	<span class="hljs-keyword">int</span> l=<span class="hljs-number">-1</span>, r=<span class="hljs-number">-1</span>, ans=<span class="hljs-number">0</span>;
+    <span class="hljs-comment">// 注意从l=r=-1</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;m;++i) &#123;
+		<span class="hljs-keyword">if</span>(i&lt;=r&amp;&amp;z[i-l]&lt;r-i+<span class="hljs-number">1</span>) f[i]=z[i-l];
+        <span class="hljs-comment">// 这里是z[i-l]</span>
+		<span class="hljs-keyword">else</span> &#123;
+			f[i]=<span class="hljs-built_in">max</span>(r-i+<span class="hljs-number">1</span>,<span class="hljs-number">0ll</span>);
+			<span class="hljs-keyword">while</span>(i+f[i]&lt;m&amp;&amp;s[f[i]]==t[i+f[i]]) ++f[i];	
+			<span class="hljs-keyword">if</span>(r&lt;i+f[i]<span class="hljs-number">-1</span>) l=i, r=i+f[i]<span class="hljs-number">-1</span>;
+		&#125;
+	&#125;
+&#125;</code></pre></div>
 <h3 id="匹配所有子串">匹配所有子串</h3>
 <p>寻找模式串 <span class="math inline">\(P\)</span> 在文本串 <span
 class="math inline">\(T\)</span> 中的所有出现 (occurrence)。</p>

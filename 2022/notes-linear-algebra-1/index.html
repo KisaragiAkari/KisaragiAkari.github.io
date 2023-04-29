@@ -374,7 +374,19 @@ class="math display">\[
 class="math inline">\(C = A B\)</span>，有 <span class="math display">\[
 C_{i,j} =  \sum_{k=1}^L A_{i,k} B_{k,j}
 \]</span> 代码</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Matrix</span> &#123;</span><br>	<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> M[N][N];<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-built_in">memset</span>(M,<span class="hljs-number">0</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(M)); &#125;<br>&#125; C, A, B;<br>Matrix <span class="hljs-keyword">operator</span>*(Matrix A,Matrix B) &#123;<br>	Matrix ans; ans.<span class="hljs-built_in">clear</span>();<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;L;++i)<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;L;++j)<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;L;++k)<br>				ans.M[i][j]=(ans.M[i][j]+A.M[i][k]*B.M[k][j])%mod;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123; C=A*B; &#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Matrix</span> &#123;</span>
+	<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> M[N][N];
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-built_in">memset</span>(M,<span class="hljs-number">0</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(M)); &#125;
+&#125; C, A, B;
+Matrix <span class="hljs-keyword">operator</span>*(Matrix A,Matrix B) &#123;
+	Matrix ans; ans.<span class="hljs-built_in">clear</span>();
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;L;++i)
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;L;++j)
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;L;++k)
+				ans.M[i][j]=(ans.M[i][j]+A.M[i][k]*B.M[k][j])%mod;
+	<span class="hljs-keyword">return</span> ans;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123; C=A*B; &#125;</code></pre></div>
 <p>顺便提一句，重载运算符写到结构体里面要多写个<code>friend</code>，我一般不写到里面去。</p>
 <h3 id="矩阵加速递推-fib">矩阵加速递推 Fib</h3>
 <p>经典问题，矩阵加速递推斐波那契数列第 <span
@@ -396,7 +408,13 @@ class="math inline">\(A \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; 0
 \]</span> 用矩阵快速幂处理即可，复杂度 <span
 class="math inline">\(O(\log_2 n)\)</span>。</p>
 <p>代码（只有矩阵快速幂）。</p>
-<figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs hsp">Matrix fp(Matrix A,<span class="hljs-keyword">int</span> p) &#123;<br>    Matrix ans<span class="hljs-comment">; ans.clear();</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span><span class="hljs-comment">;i&lt;L;+++i) ans[i][i]=1;</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-comment">;A=A*A,p&gt;&gt;=1) if(p&amp;1) ans=ans*A;</span><br>    <span class="hljs-keyword">return</span> ans<span class="hljs-comment">;</span><br>&#125;<br><span class="hljs-comment">// 矩阵快速幂</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs hsp">Matrix fp(Matrix A,<span class="hljs-keyword">int</span> p) &#123;
+    Matrix ans<span class="hljs-comment">; ans.clear();</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span><span class="hljs-comment">;i&lt;L;+++i) ans[i][i]=1;</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-comment">;A=A*A,p&gt;&gt;=1) if(p&amp;1) ans=ans*A;</span>
+    <span class="hljs-keyword">return</span> ans<span class="hljs-comment">;</span>
+&#125;
+<span class="hljs-comment">// 矩阵快速幂</span></code></pre></div>
 <h2 id="写在后面">写在后面</h2>
 <p>个人感觉洛谷的深入浅出进阶篇这里讲的很不错，没有那么实用主义，直接去讲矩阵乘法和加速递推等等实用技巧。但是有很多我这种连向量都没有接触过的人，如此从向量开始，一直引出各种线代里的概念，最后落实到
 OI 里面，我觉得很有意义。</p>

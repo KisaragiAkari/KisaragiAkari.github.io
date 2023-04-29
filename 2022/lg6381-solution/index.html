@@ -333,7 +333,79 @@ class="math inline">\(w_2\)</span>
 的范围可能很大，使用<code>std::unordered_map</code>实现 <span
 class="math inline">\(f\)</span> 即可。</p>
 <h2 id="code">CODE</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SET(a,b) memset(a,b,sizeof(a))</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> a=<span class="hljs-number">0</span>, f=<span class="hljs-number">1</span>; <span class="hljs-keyword">char</span> c=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(c)) &#123;<br>		<span class="hljs-keyword">if</span>(c==<span class="hljs-string">&#x27;-&#x27;</span>) f=<span class="hljs-number">-1</span>;<br>		c=<span class="hljs-built_in">getchar</span>();<br>	&#125;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(c)) a=a*<span class="hljs-number">10</span>+c-<span class="hljs-string">&#x27;0&#x27;</span>, c=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> a*f;<br>&#125;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e5</span>+<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> n, m, k, ans, in[N];<br><span class="hljs-keyword">int</span> tot, h[N], to[<span class="hljs-number">2</span>*N], nxt[<span class="hljs-number">2</span>*N], w[<span class="hljs-number">2</span>*N], e[<span class="hljs-number">2</span>*N], l[<span class="hljs-number">2</span>*N];<br>unordered_map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; f[N];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">devide1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> ans=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i*i&lt;=x;++i) <span class="hljs-keyword">if</span>(x%i==<span class="hljs-number">0</span>) &#123;<br>		<span class="hljs-keyword">int</span> c=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">while</span>(x%i==<span class="hljs-number">0</span>) x/=i, ++c;<br>		c%=k;<br>		<span class="hljs-keyword">while</span>(c--) ans*=i;<br>	&#125;<br>	<span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">1</span>&amp;&amp;k!=<span class="hljs-number">1</span>) ans*=x;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">devide2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> ans=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i*i&lt;=x;++i) <span class="hljs-keyword">if</span>(x%i==<span class="hljs-number">0</span>) &#123;<br>		<span class="hljs-keyword">int</span> c=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">while</span>(x%i==<span class="hljs-number">0</span>) x/=i, ++c;<br>		c%=k;<br>		<span class="hljs-keyword">if</span>(c) &#123;<br>			<span class="hljs-keyword">int</span> tc=k-c;<br>			<span class="hljs-keyword">while</span>(tc--) ans*=i;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">1</span>) &#123;<br>		<span class="hljs-keyword">int</span> tc=k<span class="hljs-number">-1</span>;<br>		<span class="hljs-keyword">while</span>(tc--) ans*=x;<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z,<span class="hljs-keyword">int</span> li)</span> </span>&#123;<br>	to[++tot]=y, w[tot]=<span class="hljs-built_in">devide1</span>(z), e[tot]=<span class="hljs-built_in">devide2</span>(z), l[tot]=li;<br>	nxt[tot]=h[x], h[x]=tot;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">toposort</span><span class="hljs-params">()</span> </span>&#123;<br>	queue&lt;<span class="hljs-keyword">int</span>&gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">if</span>(!in[i]) q.<span class="hljs-built_in">push</span>(i);<br>	<span class="hljs-comment">// do DP</span><br>	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) &#123;<br>		<span class="hljs-keyword">int</span> x=q.<span class="hljs-built_in">front</span>(); q.<span class="hljs-built_in">pop</span>();<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) &#123;<br>			<span class="hljs-keyword">int</span> y=to[i], w1=w[i], w2=e[i], z=l[i];<br>			f[y][w1]=<span class="hljs-built_in">max</span>(f[y][w1],f[x][w2]+z);<br>			ans=<span class="hljs-built_in">max</span>(ans,f[y][w1]);<br>			<span class="hljs-keyword">if</span>(--in[y]==<span class="hljs-number">0</span>) q.<span class="hljs-built_in">push</span>(y);<br>		&#125;<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	n=<span class="hljs-built_in">read</span>(), m=<span class="hljs-built_in">read</span>(), k=<span class="hljs-built_in">read</span>();<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) &#123;<br>		<span class="hljs-keyword">int</span> x=<span class="hljs-built_in">read</span>(), y=<span class="hljs-built_in">read</span>(), z=<span class="hljs-built_in">read</span>(), li=<span class="hljs-built_in">read</span>();<br>		<span class="hljs-built_in">add</span>(x,y,z,li), ++in[y];<br>	&#125;<br>    <span class="hljs-built_in">toposort</span>();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SET(a,b) memset(a,b,sizeof(a))</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">int</span> a=<span class="hljs-number">0</span>, f=<span class="hljs-number">1</span>; <span class="hljs-keyword">char</span> c=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(c)) &#123;
+		<span class="hljs-keyword">if</span>(c==<span class="hljs-string">&#x27;-&#x27;</span>) f=<span class="hljs-number">-1</span>;
+		c=<span class="hljs-built_in">getchar</span>();
+	&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(c)) a=a*<span class="hljs-number">10</span>+c-<span class="hljs-string">&#x27;0&#x27;</span>, c=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">return</span> a*f;
+&#125;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e5</span>+<span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> n, m, k, ans, in[N];
+<span class="hljs-keyword">int</span> tot, h[N], to[<span class="hljs-number">2</span>*N], nxt[<span class="hljs-number">2</span>*N], w[<span class="hljs-number">2</span>*N], e[<span class="hljs-number">2</span>*N], l[<span class="hljs-number">2</span>*N];
+unordered_map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; f[N];
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">devide1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> ans=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i*i&lt;=x;++i) <span class="hljs-keyword">if</span>(x%i==<span class="hljs-number">0</span>) &#123;
+		<span class="hljs-keyword">int</span> c=<span class="hljs-number">0</span>;
+		<span class="hljs-keyword">while</span>(x%i==<span class="hljs-number">0</span>) x/=i, ++c;
+		c%=k;
+		<span class="hljs-keyword">while</span>(c--) ans*=i;
+	&#125;
+	<span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">1</span>&amp;&amp;k!=<span class="hljs-number">1</span>) ans*=x;
+	<span class="hljs-keyword">return</span> ans;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">devide2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> ans=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i*i&lt;=x;++i) <span class="hljs-keyword">if</span>(x%i==<span class="hljs-number">0</span>) &#123;
+		<span class="hljs-keyword">int</span> c=<span class="hljs-number">0</span>;
+		<span class="hljs-keyword">while</span>(x%i==<span class="hljs-number">0</span>) x/=i, ++c;
+		c%=k;
+		<span class="hljs-keyword">if</span>(c) &#123;
+			<span class="hljs-keyword">int</span> tc=k-c;
+			<span class="hljs-keyword">while</span>(tc--) ans*=i;
+		&#125;
+	&#125;
+	<span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">1</span>) &#123;
+		<span class="hljs-keyword">int</span> tc=k<span class="hljs-number">-1</span>;
+		<span class="hljs-keyword">while</span>(tc--) ans*=x;
+	&#125;
+	<span class="hljs-keyword">return</span> ans;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z,<span class="hljs-keyword">int</span> li)</span> </span>&#123;
+	to[++tot]=y, w[tot]=<span class="hljs-built_in">devide1</span>(z), e[tot]=<span class="hljs-built_in">devide2</span>(z), l[tot]=li;
+	nxt[tot]=h[x], h[x]=tot;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">toposort</span><span class="hljs-params">()</span> </span>&#123;
+	queue&lt;<span class="hljs-keyword">int</span>&gt; q;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">if</span>(!in[i]) q.<span class="hljs-built_in">push</span>(i);
+	<span class="hljs-comment">// do DP</span>
+	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) &#123;
+		<span class="hljs-keyword">int</span> x=q.<span class="hljs-built_in">front</span>(); q.<span class="hljs-built_in">pop</span>();
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) &#123;
+			<span class="hljs-keyword">int</span> y=to[i], w1=w[i], w2=e[i], z=l[i];
+			f[y][w1]=<span class="hljs-built_in">max</span>(f[y][w1],f[x][w2]+z);
+			ans=<span class="hljs-built_in">max</span>(ans,f[y][w1]);
+			<span class="hljs-keyword">if</span>(--in[y]==<span class="hljs-number">0</span>) q.<span class="hljs-built_in">push</span>(y);
+		&#125;
+	&#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	n=<span class="hljs-built_in">read</span>(), m=<span class="hljs-built_in">read</span>(), k=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) &#123;
+		<span class="hljs-keyword">int</span> x=<span class="hljs-built_in">read</span>(), y=<span class="hljs-built_in">read</span>(), z=<span class="hljs-built_in">read</span>(), li=<span class="hljs-built_in">read</span>();
+		<span class="hljs-built_in">add</span>(x,y,z,li), ++in[y];
+	&#125;
+    <span class="hljs-built_in">toposort</span>();
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);
+&#125;
+</code></pre></div>
 
                 
               </div>

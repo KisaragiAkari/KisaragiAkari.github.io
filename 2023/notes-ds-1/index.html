@@ -273,7 +273,7 @@ f\Big( op\big(R\big) \Big)=0
 <p>其中 <span class="math inline">\(f\)</span> 为某种合法性函数，<span
 class="math inline">\(op\)</span> 是将区间信息合并为 <span
 class="math inline">\(f\)</span> 能处理的信息的过程。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> L,<span class="hljs-keyword">int</span>&amp; S,<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> L,<span class="hljs-keyword">int</span>&amp; S,<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span>;</code></pre></div>
 <p>其中 <span class="math inline">\(S\)</span>
 为当前已经合并的区间信息，<span class="math inline">\(x: [l,r]\)</span>
 为当前节点。</p>
@@ -315,7 +315,21 @@ class="math inline">\(0\)</span>
 </ol>
 <p>因此总复杂度 <span class="math inline">\(O(\log_2n)\)</span>。</p>
 <p>下面给出模板。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> L,node&amp; S,<span class="hljs-keyword">int</span> x=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> r=n)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(r&lt;L) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>	<span class="hljs-keyword">if</span>(L&lt;=l) &#123;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">f</span>(<span class="hljs-built_in">op</span>(S,x))) &#123;<br>			S=<span class="hljs-built_in">op</span>(S,x);<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>		&#125;<br>		<span class="hljs-keyword">if</span>(l==r) <span class="hljs-keyword">return</span> l;<br>	&#125;<br>	<span class="hljs-built_in">pushdown</span>(x,l,r);<br>	<span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">int</span> res=<span class="hljs-built_in">query</span>(L,S,x&lt;&lt;<span class="hljs-number">1</span>,l,mid);<br>	<span class="hljs-keyword">if</span>(res==<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(L,S,x&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>,r);<br>	<span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> L,node&amp; S,<span class="hljs-keyword">int</span> x=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> r=n)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(r&lt;L) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+	<span class="hljs-keyword">if</span>(L&lt;=l) &#123;
+		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">f</span>(<span class="hljs-built_in">op</span>(S,x))) &#123;
+			S=<span class="hljs-built_in">op</span>(S,x);
+			<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+		&#125;
+		<span class="hljs-keyword">if</span>(l==r) <span class="hljs-keyword">return</span> l;
+	&#125;
+	<span class="hljs-built_in">pushdown</span>(x,l,r);
+	<span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">int</span> res=<span class="hljs-built_in">query</span>(L,S,x&lt;&lt;<span class="hljs-number">1</span>,l,mid);
+	<span class="hljs-keyword">if</span>(res==<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(L,S,x&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>,r);
+	<span class="hljs-keyword">return</span> res;
+&#125;</code></pre></div>
 <p>这种带着引用的写法存在一定局限性，但是某种程度上更加便于理解。</p>
 <p> </p>
 <p>考虑这样一个模板题</p>
@@ -413,11 +427,47 @@ class="math inline">\(O(\log_2n)\)</span> 的，<span
 class="math inline">\(m\)</span> 次操作时候节点数量为 <span
 class="math inline">\(O(m \log_2 n)\)</span>。</p>
 <p>写法倒是很简单，而且能直接套上普通线段树的<code>pushup</code>和<code>pushdown</code>。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-keyword">int</span>&amp; x,<span class="hljs-keyword">int</span> p,<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> r=n)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>) x=++cnt;<br>	<span class="hljs-keyword">if</span>(l==r) &#123;<br>		ls[x]=rs[x]=<span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// init a node.</span><br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span>(p&lt;=mid) <span class="hljs-built_in">modify</span>(ls[x],p,l,mid);<br>	<span class="hljs-keyword">else</span> <span class="hljs-built_in">modify</span>(rs[x],p,mid+<span class="hljs-number">1</span>,r);<br>	<span class="hljs-built_in">pushup</span>(x);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-keyword">int</span>&amp; x,<span class="hljs-keyword">int</span> p,<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> r=n)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>) x=++cnt;
+	<span class="hljs-keyword">if</span>(l==r) &#123;
+		ls[x]=rs[x]=<span class="hljs-number">0</span>;
+        <span class="hljs-comment">// init a node.</span>
+		<span class="hljs-keyword">return</span>;
+	&#125;
+	<span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">if</span>(p&lt;=mid) <span class="hljs-built_in">modify</span>(ls[x],p,l,mid);
+	<span class="hljs-keyword">else</span> <span class="hljs-built_in">modify</span>(rs[x],p,mid+<span class="hljs-number">1</span>,r);
+	<span class="hljs-built_in">pushup</span>(x);
+&#125;</code></pre></div>
 <p>下面是摘自<a
 target="_blank" rel="noopener" href="https://oi-wiki.org/ds/seg/">OI-wiki</a>的两段代码。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// root 表示整棵线段树的根结点；cnt 表示当前结点个数</span><br><span class="hljs-keyword">int</span> n, cnt, root;<br><span class="hljs-keyword">int</span> sum[n * <span class="hljs-number">2</span>], ls[n * <span class="hljs-number">2</span>], rs[n * <span class="hljs-number">2</span>];<br><br><span class="hljs-comment">// 用法：update(root, 1, n, x, f); 其中 x 为待修改节点的编号</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-keyword">int</span>&amp; p, <span class="hljs-keyword">int</span> s, <span class="hljs-keyword">int</span> t, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> f)</span> </span>&#123;  <span class="hljs-comment">// 引用传参</span><br>  <span class="hljs-keyword">if</span> (!p) p = ++cnt;  <span class="hljs-comment">// 当结点为空时，创建一个新的结点</span><br>  <span class="hljs-keyword">if</span> (s == t) &#123;<br>    sum[p] += f;<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>  <span class="hljs-keyword">int</span> m = s + ((t - s) &gt;&gt; <span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">if</span> (x &lt;= m)<br>    <span class="hljs-built_in">update</span>(ls[p], s, m, x, f);<br>  <span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">update</span>(rs[p], m + <span class="hljs-number">1</span>, t, x, f);<br>  sum[p] = sum[ls[p]] + sum[rs[p]];  <span class="hljs-comment">// pushup</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 用法：query(root, 1, n, l, r);</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p, <span class="hljs-keyword">int</span> s, <span class="hljs-keyword">int</span> t, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (!p) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;  <span class="hljs-comment">// 如果结点为空，返回 0</span><br>  <span class="hljs-keyword">if</span> (s &gt;= l &amp;&amp; t &lt;= r) <span class="hljs-keyword">return</span> sum[p];<br>  <span class="hljs-keyword">int</span> m = s + ((t - s) &gt;&gt; <span class="hljs-number">1</span>), ans = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">if</span> (l &lt;= m) ans += <span class="hljs-built_in">query</span>(ls[p], s, m, l, r);<br>  <span class="hljs-keyword">if</span> (r &gt; m) ans += <span class="hljs-built_in">query</span>(rs[p], m + <span class="hljs-number">1</span>, t, l, r);<br>  <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// root 表示整棵线段树的根结点；cnt 表示当前结点个数</span>
+<span class="hljs-keyword">int</span> n, cnt, root;
+<span class="hljs-keyword">int</span> sum[n * <span class="hljs-number">2</span>], ls[n * <span class="hljs-number">2</span>], rs[n * <span class="hljs-number">2</span>];
+
+<span class="hljs-comment">// 用法：update(root, 1, n, x, f); 其中 x 为待修改节点的编号</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-keyword">int</span>&amp; p, <span class="hljs-keyword">int</span> s, <span class="hljs-keyword">int</span> t, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> f)</span> </span>&#123;  <span class="hljs-comment">// 引用传参</span>
+  <span class="hljs-keyword">if</span> (!p) p = ++cnt;  <span class="hljs-comment">// 当结点为空时，创建一个新的结点</span>
+  <span class="hljs-keyword">if</span> (s == t) &#123;
+    sum[p] += f;
+    <span class="hljs-keyword">return</span>;
+  &#125;
+  <span class="hljs-keyword">int</span> m = s + ((t - s) &gt;&gt; <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">if</span> (x &lt;= m)
+    <span class="hljs-built_in">update</span>(ls[p], s, m, x, f);
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">update</span>(rs[p], m + <span class="hljs-number">1</span>, t, x, f);
+  sum[p] = sum[ls[p]] + sum[rs[p]];  <span class="hljs-comment">// pushup</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// 用法：query(root, 1, n, l, r);</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p, <span class="hljs-keyword">int</span> s, <span class="hljs-keyword">int</span> t, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span> </span>&#123;
+  <span class="hljs-keyword">if</span> (!p) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;  <span class="hljs-comment">// 如果结点为空，返回 0</span>
+  <span class="hljs-keyword">if</span> (s &gt;= l &amp;&amp; t &lt;= r) <span class="hljs-keyword">return</span> sum[p];
+  <span class="hljs-keyword">int</span> m = s + ((t - s) &gt;&gt; <span class="hljs-number">1</span>), ans = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">if</span> (l &lt;= m) ans += <span class="hljs-built_in">query</span>(ls[p], s, m, l, r);
+  <span class="hljs-keyword">if</span> (r &gt; m) ans += <span class="hljs-built_in">query</span>(rs[p], m + <span class="hljs-number">1</span>, t, l, r);
+  <span class="hljs-keyword">return</span> ans;
+&#125;</code></pre></div>
 <p>没啥可说了。</p>
 <h2 id="线段树合并">线段树合并</h2>
 <p>两棵结构相同的线段树可以直接进行合并。</p>
@@ -430,7 +480,17 @@ class="math inline">\(q\)</span>
 <li>否则将 <span class="math inline">\(q\)</span> 的信息合并到 <span
 class="math inline">\(p\)</span>，遍历左右儿子然后<code>pushup</code>。</li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span>&amp; p,<span class="hljs-keyword">int</span> q,<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> r=n)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(!p||!q) &#123; p|=q; <span class="hljs-keyword">return</span>; &#125;<br>	<span class="hljs-keyword">if</span>(l==r) &#123;<br>		<span class="hljs-comment">// 合并叶子节点</span><br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>	<span class="hljs-built_in">merge</span>(ls[p],ls[q],l,mid);<br>	<span class="hljs-built_in">merge</span>(rs[p],rs[q],mid+<span class="hljs-number">1</span>,r);<br>	<span class="hljs-built_in">pushup</span>(p);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span>&amp; p,<span class="hljs-keyword">int</span> q,<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> r=n)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(!p||!q) &#123; p|=q; <span class="hljs-keyword">return</span>; &#125;
+	<span class="hljs-keyword">if</span>(l==r) &#123;
+		<span class="hljs-comment">// 合并叶子节点</span>
+		<span class="hljs-keyword">return</span>;
+	&#125;
+	<span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;
+	<span class="hljs-built_in">merge</span>(ls[p],ls[q],l,mid);
+	<span class="hljs-built_in">merge</span>(rs[p],rs[q],mid+<span class="hljs-number">1</span>,r);
+	<span class="hljs-built_in">pushup</span>(p);
+&#125;</code></pre></div>
 <p>复杂度？</p>
 <p><del>我不会证</del>。</p>
 <figure>
@@ -459,7 +519,20 @@ class="math inline">\(1\)</span>
 <li>查询的时候加上标记</li>
 </ul>
 <p>下面给出区间加法的代码。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-keyword">int</span> L,<span class="hljs-keyword">int</span> R,<span class="hljs-keyword">int</span> d,<span class="hljs-keyword">int</span> x=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> r=n)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(L&lt;=l&amp;&amp;r&lt;=R) &#123; tag[x]+=d; <span class="hljs-keyword">return</span>; &#125;<br>    <span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span>(L&lt;=mid) <span class="hljs-built_in">modify</span>(L,R,d,x&lt;&lt;<span class="hljs-number">1</span>,l,mid);<br>    <span class="hljs-keyword">if</span>(R&gt;mid)  <span class="hljs-built_in">modify</span>(L,R,d,x&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>,r);<br>    <span class="hljs-built_in">pushup</span>(x);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> L,<span class="hljs-keyword">int</span> R,<span class="hljs-keyword">int</span> x=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> r=n)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(L&lt;=l&amp;&amp;r&lt;=R) <span class="hljs-keyword">return</span> t[x]+tag[x]*(r-l+<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>, ans=tag[x]*(<span class="hljs-built_in">min</span>(R,r)-<span class="hljs-built_in">max</span>(L,l)+<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">if</span>(L&lt;=mid) ans+=<span class="hljs-built_in">query</span>(L,R,x&lt;&lt;<span class="hljs-number">1</span>,l,mid);<br>    <span class="hljs-keyword">if</span>(R&gt;mid)  ans+=<span class="hljs-built_in">query</span>(L,R,x&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>,r);<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-keyword">int</span> L,<span class="hljs-keyword">int</span> R,<span class="hljs-keyword">int</span> d,<span class="hljs-keyword">int</span> x=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> r=n)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(L&lt;=l&amp;&amp;r&lt;=R) &#123; tag[x]+=d; <span class="hljs-keyword">return</span>; &#125;
+    <span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span>(L&lt;=mid) <span class="hljs-built_in">modify</span>(L,R,d,x&lt;&lt;<span class="hljs-number">1</span>,l,mid);
+    <span class="hljs-keyword">if</span>(R&gt;mid)  <span class="hljs-built_in">modify</span>(L,R,d,x&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>,r);
+    <span class="hljs-built_in">pushup</span>(x);
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> L,<span class="hljs-keyword">int</span> R,<span class="hljs-keyword">int</span> x=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>,<span class="hljs-keyword">int</span> r=n)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(L&lt;=l&amp;&amp;r&lt;=R) <span class="hljs-keyword">return</span> t[x]+tag[x]*(r-l+<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>, ans=tag[x]*(<span class="hljs-built_in">min</span>(R,r)-<span class="hljs-built_in">max</span>(L,l)+<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">if</span>(L&lt;=mid) ans+=<span class="hljs-built_in">query</span>(L,R,x&lt;&lt;<span class="hljs-number">1</span>,l,mid);
+    <span class="hljs-keyword">if</span>(R&gt;mid)  ans+=<span class="hljs-built_in">query</span>(L,R,x&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>,r);
+    <span class="hljs-keyword">return</span> ans;
+&#125;</code></pre></div>
 <p>这不就是分块时维护的标记吗？</p>
 <h2 id="参考">参考</h2>
 <p><a

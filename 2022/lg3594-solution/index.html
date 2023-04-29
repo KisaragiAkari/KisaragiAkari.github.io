@@ -283,7 +283,46 @@ class="math inline">\(j\)</span>
 <p>用单调队列维护当前 <span class="math inline">\([i,j]\)</span>
 区间最大块即可，复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="code">CODE</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> a=<span class="hljs-number">0</span>, f=<span class="hljs-number">1</span>; <span class="hljs-keyword">char</span> c=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(c)) &#123;<br>		<span class="hljs-keyword">if</span>(c==<span class="hljs-string">&#x27;-&#x27;</span>) f=<span class="hljs-number">-1</span>;<br>		c=<span class="hljs-built_in">getchar</span>();<br>	&#125;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(c)) a=a*<span class="hljs-number">10</span>+c-<span class="hljs-string">&#x27;0&#x27;</span>, c=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> a*f;<br>&#125;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">2e6</span>+<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> n, p, d, ans, a[N], s[N], q[N], c[N];<br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	n=<span class="hljs-built_in">read</span>(), p=<span class="hljs-built_in">read</span>(), d=<span class="hljs-built_in">read</span>();<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) a[i]=<span class="hljs-built_in">read</span>(), s[i]=s[i<span class="hljs-number">-1</span>]+a[i];<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=d;i&lt;=n;++i) c[i]=s[i]-s[i-d]; <br>    <span class="hljs-comment">// c[i]表示以i结尾的，长度为d的块的和</span><br>	<span class="hljs-keyword">int</span> w=s[d];<br>	<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>, r=<span class="hljs-number">1</span>;<br>	q[l]=d;<br>	ans=d;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=d+<span class="hljs-number">1</span>,j=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;<br>        <span class="hljs-comment">// 这里写的是[j,i]</span><br>		w+=a[i];<br>		<span class="hljs-keyword">while</span>(l&lt;=r&amp;&amp;c[q[r]]&lt;=c[i]) --r;<br>		q[++r]=i;<br>		<span class="hljs-keyword">while</span>(l&lt;=r&amp;&amp;(w-c[q[l]])&gt;p) &#123;<br>            <span class="hljs-comment">// 当前区间和减去最大块也不能满足</span><br>			<span class="hljs-keyword">if</span>(q[l]&lt;j+d) ++l;<br>            <span class="hljs-comment">// q[l]&lt;j+d时，q[l]才非法</span><br>			w-=a[j++];<br>            <span class="hljs-comment">// 这个j就不可能作为左端点了</span><br>        &#125;<br>		ans=<span class="hljs-built_in">max</span>(ans,i-j+<span class="hljs-number">1</span>);<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">int</span> a=<span class="hljs-number">0</span>, f=<span class="hljs-number">1</span>; <span class="hljs-keyword">char</span> c=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(c)) &#123;
+		<span class="hljs-keyword">if</span>(c==<span class="hljs-string">&#x27;-&#x27;</span>) f=<span class="hljs-number">-1</span>;
+		c=<span class="hljs-built_in">getchar</span>();
+	&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(c)) a=a*<span class="hljs-number">10</span>+c-<span class="hljs-string">&#x27;0&#x27;</span>, c=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">return</span> a*f;
+&#125;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">2e6</span>+<span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> n, p, d, ans, a[N], s[N], q[N], c[N];
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	n=<span class="hljs-built_in">read</span>(), p=<span class="hljs-built_in">read</span>(), d=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) a[i]=<span class="hljs-built_in">read</span>(), s[i]=s[i<span class="hljs-number">-1</span>]+a[i];
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=d;i&lt;=n;++i) c[i]=s[i]-s[i-d]; 
+    <span class="hljs-comment">// c[i]表示以i结尾的，长度为d的块的和</span>
+	<span class="hljs-keyword">int</span> w=s[d];
+	<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>, r=<span class="hljs-number">1</span>;
+	q[l]=d;
+	ans=d;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=d+<span class="hljs-number">1</span>,j=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+        <span class="hljs-comment">// 这里写的是[j,i]</span>
+		w+=a[i];
+		<span class="hljs-keyword">while</span>(l&lt;=r&amp;&amp;c[q[r]]&lt;=c[i]) --r;
+		q[++r]=i;
+		<span class="hljs-keyword">while</span>(l&lt;=r&amp;&amp;(w-c[q[l]])&gt;p) &#123;
+            <span class="hljs-comment">// 当前区间和减去最大块也不能满足</span>
+			<span class="hljs-keyword">if</span>(q[l]&lt;j+d) ++l;
+            <span class="hljs-comment">// q[l]&lt;j+d时，q[l]才非法</span>
+			w-=a[j++];
+            <span class="hljs-comment">// 这个j就不可能作为左端点了</span>
+        &#125;
+		ans=<span class="hljs-built_in">max</span>(ans,i-j+<span class="hljs-number">1</span>);
+	&#125;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);
+&#125;
+</code></pre></div>
 
                 
               </div>

@@ -303,7 +303,72 @@ class="math inline">\(K\)</span>。</p>
 class="math inline">\(S(j)-S(i) \le s\)</span> 的最大的 <span
 class="math inline">\(j\)</span> 即可。</p>
 <p>写的很麻烦……</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">3e5</span>+<span class="hljs-number">10</span>;<br><span class="hljs-keyword">int</span> n, s, t, mx, o, d[N], f[N], sum[N], a[N], b[N];<br><span class="hljs-keyword">int</span> c, h[N], ver[N&lt;&lt;<span class="hljs-number">1</span>], w[N&lt;&lt;<span class="hljs-number">1</span>], nxt[N&lt;&lt;<span class="hljs-number">1</span>];<br><span class="hljs-keyword">bool</span> v[N];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span> </span>&#123; ver[++c]=y, w[c]=z, nxt[c]=h[x], h[x]=c; &#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span> </span>&#123;<br>    <span class="hljs-comment">// 这个是用来找直径的</span><br>	f[x]=fa;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) <span class="hljs-keyword">if</span>(ver[i]!=fa) &#123;<br>        <span class="hljs-keyword">int</span> y=ver[i], z=w[i];<br>		d[y]=d[x]+z;<br>        <span class="hljs-keyword">if</span>(d[y]&gt;mx) mx=d[y], o=y;<br>        <span class="hljs-built_in">DFS</span>(y,x);<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>    v[x]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) <span class="hljs-keyword">if</span>(!v[ver[i]]) &#123;<br>        <span class="hljs-comment">// 不经过直径上的点</span><br>        <span class="hljs-keyword">int</span> y=ver[i], z=w[i];<br>        <span class="hljs-built_in">dfs</span>(y);<br>        f[x]=<span class="hljs-built_in">max</span>(f[x],f[y]+z);<br>    &#125;<br>    <span class="hljs-comment">// 找距离</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ddfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span> </span>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) &#123;<br>		<span class="hljs-keyword">int</span> y=ver[i], z=w[i];<br>		<span class="hljs-keyword">if</span>(v[y]&amp;&amp;y!=fa) a[++t]=x, b[t]=z, <span class="hljs-built_in">ddfs</span>(y,x);<br>	&#125;<br>    <span class="hljs-comment">// a[]存直径节点编号，b[]存边权</span><br>    <span class="hljs-comment">// 这种做法会漏掉直径最后一个点，不过不影响</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>, ans=<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">30</span>;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;s);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;++i) &#123;<br>        <span class="hljs-keyword">int</span> x, y, z; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);<br>        <span class="hljs-built_in">add</span>(x,y,z), <span class="hljs-built_in">add</span>(y,x,z);<br>    &#125;<br>    <span class="hljs-keyword">int</span> p, q;<br>    <span class="hljs-built_in">DFS</span>(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>), p=o, mx=d[o]=<span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">DFS</span>(p,<span class="hljs-number">0</span>), q=o;<br>    <span class="hljs-comment">// 这时候f[x]表示x的父亲</span><br>    <span class="hljs-keyword">while</span>(p!=q) v[q]=<span class="hljs-number">1</span>, q=f[q];<br>    <span class="hljs-comment">// 标记直径上的点</span><br>    <span class="hljs-built_in">ddfs</span>(q,<span class="hljs-number">0</span>);<br>    <span class="hljs-comment">// 累加直径上的边</span><br>    <span class="hljs-built_in">memset</span>(f,<span class="hljs-number">0</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(f));<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=t;++i) &#123;<br>        <span class="hljs-built_in">dfs</span>(a[i]);<br>        <span class="hljs-comment">// 这时候f[]表示能到达的最远距离</span><br>        k=<span class="hljs-built_in">max</span>(k,f[a[i]]);<br>        sum[i]=sum[i<span class="hljs-number">-1</span>]+b[i];<br>    &#125;<br>    <span class="hljs-keyword">int</span> l, r, qq;<br>    <span class="hljs-comment">// qq记录到直径最远的距离</span><br>    <span class="hljs-keyword">for</span>(l=<span class="hljs-number">1</span>,r=<span class="hljs-number">1</span>;l&lt;=t;++l) &#123;<br>        <span class="hljs-keyword">while</span>(r&lt;t&amp;&amp;sum[r+<span class="hljs-number">1</span>]-sum[l]&lt;=s) ++r;<br>        qq=<span class="hljs-built_in">max</span>(k,<span class="hljs-built_in">max</span>(sum[l],sum[t]-sum[r]));<br>        ans=<span class="hljs-built_in">min</span>(ans,qq);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,ans);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">3e5</span>+<span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> n, s, t, mx, o, d[N], f[N], sum[N], a[N], b[N];
+<span class="hljs-keyword">int</span> c, h[N], ver[N&lt;&lt;<span class="hljs-number">1</span>], w[N&lt;&lt;<span class="hljs-number">1</span>], nxt[N&lt;&lt;<span class="hljs-number">1</span>];
+<span class="hljs-keyword">bool</span> v[N];
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span> </span>&#123; ver[++c]=y, w[c]=z, nxt[c]=h[x], h[x]=c; &#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span> </span>&#123;
+    <span class="hljs-comment">// 这个是用来找直径的</span>
+	f[x]=fa;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) <span class="hljs-keyword">if</span>(ver[i]!=fa) &#123;
+        <span class="hljs-keyword">int</span> y=ver[i], z=w[i];
+		d[y]=d[x]+z;
+        <span class="hljs-keyword">if</span>(d[y]&gt;mx) mx=d[y], o=y;
+        <span class="hljs-built_in">DFS</span>(y,x);
+    &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;
+    v[x]=<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) <span class="hljs-keyword">if</span>(!v[ver[i]]) &#123;
+        <span class="hljs-comment">// 不经过直径上的点</span>
+        <span class="hljs-keyword">int</span> y=ver[i], z=w[i];
+        <span class="hljs-built_in">dfs</span>(y);
+        f[x]=<span class="hljs-built_in">max</span>(f[x],f[y]+z);
+    &#125;
+    <span class="hljs-comment">// 找距离</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ddfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span> </span>&#123;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) &#123;
+		<span class="hljs-keyword">int</span> y=ver[i], z=w[i];
+		<span class="hljs-keyword">if</span>(v[y]&amp;&amp;y!=fa) a[++t]=x, b[t]=z, <span class="hljs-built_in">ddfs</span>(y,x);
+	&#125;
+    <span class="hljs-comment">// a[]存直径节点编号，b[]存边权</span>
+    <span class="hljs-comment">// 这种做法会漏掉直径最后一个点，不过不影响</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>, ans=<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">30</span>;
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;s);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;++i) &#123;
+        <span class="hljs-keyword">int</span> x, y, z; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);
+        <span class="hljs-built_in">add</span>(x,y,z), <span class="hljs-built_in">add</span>(y,x,z);
+    &#125;
+    <span class="hljs-keyword">int</span> p, q;
+    <span class="hljs-built_in">DFS</span>(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>), p=o, mx=d[o]=<span class="hljs-number">0</span>;
+    <span class="hljs-built_in">DFS</span>(p,<span class="hljs-number">0</span>), q=o;
+    <span class="hljs-comment">// 这时候f[x]表示x的父亲</span>
+    <span class="hljs-keyword">while</span>(p!=q) v[q]=<span class="hljs-number">1</span>, q=f[q];
+    <span class="hljs-comment">// 标记直径上的点</span>
+    <span class="hljs-built_in">ddfs</span>(q,<span class="hljs-number">0</span>);
+    <span class="hljs-comment">// 累加直径上的边</span>
+    <span class="hljs-built_in">memset</span>(f,<span class="hljs-number">0</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(f));
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=t;++i) &#123;
+        <span class="hljs-built_in">dfs</span>(a[i]);
+        <span class="hljs-comment">// 这时候f[]表示能到达的最远距离</span>
+        k=<span class="hljs-built_in">max</span>(k,f[a[i]]);
+        sum[i]=sum[i<span class="hljs-number">-1</span>]+b[i];
+    &#125;
+    <span class="hljs-keyword">int</span> l, r, qq;
+    <span class="hljs-comment">// qq记录到直径最远的距离</span>
+    <span class="hljs-keyword">for</span>(l=<span class="hljs-number">1</span>,r=<span class="hljs-number">1</span>;l&lt;=t;++l) &#123;
+        <span class="hljs-keyword">while</span>(r&lt;t&amp;&amp;sum[r+<span class="hljs-number">1</span>]-sum[l]&lt;=s) ++r;
+        qq=<span class="hljs-built_in">max</span>(k,<span class="hljs-built_in">max</span>(sum[l],sum[t]-sum[r]));
+        ans=<span class="hljs-built_in">min</span>(ans,qq);
+    &#125;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,ans);
+&#125;</code></pre></div>
 
                 
               </div>

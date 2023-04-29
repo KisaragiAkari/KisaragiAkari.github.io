@@ -329,7 +329,66 @@ class="math inline">\(sz_y \cdot (n-sz_z)\)</span></p>
 <p><img src="https://s2.loli.net/2022/04/30/zniNcKvrRAsLkjW.png" srcset="/img/loading.gif" lazyload /></p>
 <p>实现的时候要用好多映射，就不一一写了。</p>
 <h2 id="code">CODE</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e6</span>+<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> n, col[N], cnt[N], pre[N], sz[N];<br><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans1[N], ans2[N];<br><span class="hljs-keyword">int</span> cc, h[N], p[N], v[N];<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span> &#123;</span> <span class="hljs-keyword">int</span> nxt, to; &#125; e[N&lt;&lt;<span class="hljs-number">1</span>]; <br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span> </span>&#123;<br>	e[++cc]=&#123;h[x],y&#125;, h[x]=cc;<br>&#125;<br><span class="hljs-comment">// cnt[i]，颜色i的总数</span><br><span class="hljs-comment">// col[i]，i的颜色</span><br><span class="hljs-comment">// pre[i]，颜色为i的链上已经经过的点数</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> c=col[x], t=pre[c], fg=<span class="hljs-number">0</span>, z=<span class="hljs-number">0</span>;<br>	sz[x]=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=e[i].nxt) &#123;<br>		<span class="hljs-keyword">int</span> y=e[i].to;<br>		<span class="hljs-keyword">if</span>(y==fa) <span class="hljs-keyword">continue</span>;<br>		<span class="hljs-keyword">int</span> lst=pre[c];<br>        <span class="hljs-comment">// 这里没有算上x</span><br>		<span class="hljs-built_in">dfs</span>(y,x);<br>		ans1[x]+=<span class="hljs-number">1ll</span>*sz[x]*sz[y];<br>		sz[x]+=sz[y];<br>		<span class="hljs-keyword">if</span>(lst!=pre[c]) ++fg, z=y;<br>        <span class="hljs-comment">// 搜到了相同的颜色，记录z</span><br>	&#125;<br>	ans1[x]+=<span class="hljs-number">1ll</span>*sz[x]*(n-sz[x]);<br>	<span class="hljs-keyword">if</span>(t||pre[c]+<span class="hljs-number">1</span>!=cnt[c]) ++fg;<br>	++pre[c]; <span class="hljs-comment">// x也在pre[c]的链上</span><br>	<span class="hljs-keyword">if</span>(fg==<span class="hljs-number">1</span>) &#123;<br>		<span class="hljs-keyword">if</span>(!v[c]) p[c]=x;<br>		<span class="hljs-keyword">else</span> &#123;<br>			<span class="hljs-keyword">int</span> s=z? n-sz[z]:sz[x];<br>            <span class="hljs-comment">// n-sz[z]的情况实际是搜索到的第一个这个颜色的节点就是端点</span><br>			ans2[c]=<span class="hljs-number">1ll</span>*sz[p[c]]*s;<br>		&#125;<br>		++v[c]; <span class="hljs-comment">// 端点数量</span><br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;col[i]);<br>		++cnt[col[i]], p[col[i]]=i;<br>	&#125;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;++i) &#123;<br>		<span class="hljs-keyword">int</span> x, y; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);<br>		<span class="hljs-built_in">add</span>(x,y), <span class="hljs-built_in">add</span>(y,x);<br>	&#125;<br>	<span class="hljs-built_in">dfs</span>(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;<br>		<span class="hljs-keyword">if</span>(!cnt[i]) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,<span class="hljs-number">1ll</span>*n*(n<span class="hljs-number">-1</span>)/<span class="hljs-number">2</span>);<br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(cnt[i]==<span class="hljs-number">1</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans1[p[i]]);<br>        <span class="hljs-comment">// 注意i是颜色，要用p[i]映射过去</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(v[i]==<span class="hljs-number">2</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans2[i]);<br>        <span class="hljs-comment">// 有两个端点</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;0&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e6</span>+<span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> n, col[N], cnt[N], pre[N], sz[N];
+<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans1[N], ans2[N];
+<span class="hljs-keyword">int</span> cc, h[N], p[N], v[N];
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span> &#123;</span> <span class="hljs-keyword">int</span> nxt, to; &#125; e[N&lt;&lt;<span class="hljs-number">1</span>]; 
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span> </span>&#123;
+	e[++cc]=&#123;h[x],y&#125;, h[x]=cc;
+&#125;
+<span class="hljs-comment">// cnt[i]，颜色i的总数</span>
+<span class="hljs-comment">// col[i]，i的颜色</span>
+<span class="hljs-comment">// pre[i]，颜色为i的链上已经经过的点数</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> c=col[x], t=pre[c], fg=<span class="hljs-number">0</span>, z=<span class="hljs-number">0</span>;
+	sz[x]=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=e[i].nxt) &#123;
+		<span class="hljs-keyword">int</span> y=e[i].to;
+		<span class="hljs-keyword">if</span>(y==fa) <span class="hljs-keyword">continue</span>;
+		<span class="hljs-keyword">int</span> lst=pre[c];
+        <span class="hljs-comment">// 这里没有算上x</span>
+		<span class="hljs-built_in">dfs</span>(y,x);
+		ans1[x]+=<span class="hljs-number">1ll</span>*sz[x]*sz[y];
+		sz[x]+=sz[y];
+		<span class="hljs-keyword">if</span>(lst!=pre[c]) ++fg, z=y;
+        <span class="hljs-comment">// 搜到了相同的颜色，记录z</span>
+	&#125;
+	ans1[x]+=<span class="hljs-number">1ll</span>*sz[x]*(n-sz[x]);
+	<span class="hljs-keyword">if</span>(t||pre[c]+<span class="hljs-number">1</span>!=cnt[c]) ++fg;
+	++pre[c]; <span class="hljs-comment">// x也在pre[c]的链上</span>
+	<span class="hljs-keyword">if</span>(fg==<span class="hljs-number">1</span>) &#123;
+		<span class="hljs-keyword">if</span>(!v[c]) p[c]=x;
+		<span class="hljs-keyword">else</span> &#123;
+			<span class="hljs-keyword">int</span> s=z? n-sz[z]:sz[x];
+            <span class="hljs-comment">// n-sz[z]的情况实际是搜索到的第一个这个颜色的节点就是端点</span>
+			ans2[c]=<span class="hljs-number">1ll</span>*sz[p[c]]*s;
+		&#125;
+		++v[c]; <span class="hljs-comment">// 端点数量</span>
+	&#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;col[i]);
+		++cnt[col[i]], p[col[i]]=i;
+	&#125;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;++i) &#123;
+		<span class="hljs-keyword">int</span> x, y; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);
+		<span class="hljs-built_in">add</span>(x,y), <span class="hljs-built_in">add</span>(y,x);
+	&#125;
+	<span class="hljs-built_in">dfs</span>(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		<span class="hljs-keyword">if</span>(!cnt[i]) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,<span class="hljs-number">1ll</span>*n*(n<span class="hljs-number">-1</span>)/<span class="hljs-number">2</span>);
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(cnt[i]==<span class="hljs-number">1</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans1[p[i]]);
+        <span class="hljs-comment">// 注意i是颜色，要用p[i]映射过去</span>
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(v[i]==<span class="hljs-number">2</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans2[i]);
+        <span class="hljs-comment">// 有两个端点</span>
+		<span class="hljs-keyword">else</span> <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;0&quot;</span>);
+	&#125;
+&#125;</code></pre></div>
 
                 
               </div>

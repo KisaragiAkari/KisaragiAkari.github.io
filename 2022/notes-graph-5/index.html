@@ -372,7 +372,66 @@ class="math inline">\(z\)</span>，所以加边<code>add(x,y,z)</code>，而其�
 <p>复杂度 <span
 class="math inline">\(O(nm^2)\)</span>，实际远远达不到这个上界，<del>但依然很慢</del>，大概能处理
 <span class="math inline">\(n=10^3 \sim 10^4\)</span> 规模的网络。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>, N=<span class="hljs-number">205</span>, M=<span class="hljs-number">5005</span>;<br><span class="hljs-keyword">int</span> n, m, s, t, pre[N], F[N];<br><span class="hljs-keyword">int</span> tot=<span class="hljs-number">1</span>, h[N], to[M&lt;&lt;<span class="hljs-number">1</span>], nxt[M&lt;&lt;<span class="hljs-number">1</span>], w[M&lt;&lt;<span class="hljs-number">1</span>];<br><span class="hljs-comment">// 注意tot=1</span><br><span class="hljs-keyword">bool</span> v[N];<br>ll maxflow;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>;<br><span class="hljs-comment">// 快读</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span> </span>&#123;<br>	to[++tot]=y, w[tot]=z, nxt[tot]=h[x], h[x]=tot;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">bfs</span><span class="hljs-params">()</span> </span>&#123;<br>	queue&lt;<span class="hljs-keyword">int</span>&gt; q;<br>	<span class="hljs-built_in">memset</span>(v,<span class="hljs-number">0</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(v));<br>    <span class="hljs-comment">// v[i]表示i是否被访问过</span><br>	v[s]=<span class="hljs-number">1</span>, q.<span class="hljs-built_in">push</span>(s);<br>	F[s]=inf;<br>    <span class="hljs-comment">// 源点为正无穷</span><br>	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) &#123;<br>		<span class="hljs-keyword">int</span> x=q.<span class="hljs-built_in">front</span>(); q.<span class="hljs-built_in">pop</span>();<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) &#123;<br>			<span class="hljs-keyword">int</span> y=to[i], z=w[i];<br>			<span class="hljs-keyword">if</span>(v[y]||!z) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-comment">// 被访问过或者剩余容量为0</span><br>			F[y]=<span class="hljs-built_in">min</span>(F[x],z);<br>			pre[y]=i;<br>            <span class="hljs-comment">// 记录增广路上的边</span><br>			v[y]=<span class="hljs-number">1</span>, q.<span class="hljs-built_in">push</span>(y);<br>			<span class="hljs-keyword">if</span>(y==t) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>            <span class="hljs-comment">// 到达汇点，找到增广路</span><br>		&#125; <br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 不存在</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> x=t;<br>	<span class="hljs-keyword">while</span>(x!=s) &#123;<br>		<span class="hljs-keyword">int</span> i=pre[x];<br>		w[i]-=F[t], w[i^<span class="hljs-number">1</span>]+=F[t];<br>        <span class="hljs-comment">// 正向边剩余容量减少，反向边剩余容量增加</span><br>		x=to[i^<span class="hljs-number">1</span>];<br>        <span class="hljs-comment">// 因为从tot=1开始储存，所以i^1定位到i的反向边</span><br>	&#125;<br>	maxflow+=F[t];<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	n=<span class="hljs-built_in">read</span>(), m=<span class="hljs-built_in">read</span>(), s=<span class="hljs-built_in">read</span>(), t=<span class="hljs-built_in">read</span>();<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) &#123;<br>		<span class="hljs-keyword">int</span> x=<span class="hljs-built_in">read</span>(), y=<span class="hljs-built_in">read</span>(), z=<span class="hljs-built_in">read</span>();<br>		<span class="hljs-built_in">add</span>(x,y,z), <span class="hljs-built_in">add</span>(y,x,<span class="hljs-number">0</span>);<br>        <span class="hljs-comment">// 反向边权值（剩余容量）最初为0</span><br>	&#125;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">bfs</span>()) <span class="hljs-built_in">update</span>();<br>    <span class="hljs-comment">// 存在增广路就更新</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,maxflow);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>, N=<span class="hljs-number">205</span>, M=<span class="hljs-number">5005</span>;
+<span class="hljs-keyword">int</span> n, m, s, t, pre[N], F[N];
+<span class="hljs-keyword">int</span> tot=<span class="hljs-number">1</span>, h[N], to[M&lt;&lt;<span class="hljs-number">1</span>], nxt[M&lt;&lt;<span class="hljs-number">1</span>], w[M&lt;&lt;<span class="hljs-number">1</span>];
+<span class="hljs-comment">// 注意tot=1</span>
+<span class="hljs-keyword">bool</span> v[N];
+ll maxflow;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>;
+<span class="hljs-comment">// 快读</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span> </span>&#123;
+	to[++tot]=y, w[tot]=z, nxt[tot]=h[x], h[x]=tot;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">bfs</span><span class="hljs-params">()</span> </span>&#123;
+	queue&lt;<span class="hljs-keyword">int</span>&gt; q;
+	<span class="hljs-built_in">memset</span>(v,<span class="hljs-number">0</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(v));
+    <span class="hljs-comment">// v[i]表示i是否被访问过</span>
+	v[s]=<span class="hljs-number">1</span>, q.<span class="hljs-built_in">push</span>(s);
+	F[s]=inf;
+    <span class="hljs-comment">// 源点为正无穷</span>
+	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) &#123;
+		<span class="hljs-keyword">int</span> x=q.<span class="hljs-built_in">front</span>(); q.<span class="hljs-built_in">pop</span>();
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) &#123;
+			<span class="hljs-keyword">int</span> y=to[i], z=w[i];
+			<span class="hljs-keyword">if</span>(v[y]||!z) <span class="hljs-keyword">continue</span>;
+            <span class="hljs-comment">// 被访问过或者剩余容量为0</span>
+			F[y]=<span class="hljs-built_in">min</span>(F[x],z);
+			pre[y]=i;
+            <span class="hljs-comment">// 记录增广路上的边</span>
+			v[y]=<span class="hljs-number">1</span>, q.<span class="hljs-built_in">push</span>(y);
+			<span class="hljs-keyword">if</span>(y==t) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+            <span class="hljs-comment">// 到达汇点，找到增广路</span>
+		&#125; 
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// 不存在</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">int</span> x=t;
+	<span class="hljs-keyword">while</span>(x!=s) &#123;
+		<span class="hljs-keyword">int</span> i=pre[x];
+		w[i]-=F[t], w[i^<span class="hljs-number">1</span>]+=F[t];
+        <span class="hljs-comment">// 正向边剩余容量减少，反向边剩余容量增加</span>
+		x=to[i^<span class="hljs-number">1</span>];
+        <span class="hljs-comment">// 因为从tot=1开始储存，所以i^1定位到i的反向边</span>
+	&#125;
+	maxflow+=F[t];
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	n=<span class="hljs-built_in">read</span>(), m=<span class="hljs-built_in">read</span>(), s=<span class="hljs-built_in">read</span>(), t=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) &#123;
+		<span class="hljs-keyword">int</span> x=<span class="hljs-built_in">read</span>(), y=<span class="hljs-built_in">read</span>(), z=<span class="hljs-built_in">read</span>();
+		<span class="hljs-built_in">add</span>(x,y,z), <span class="hljs-built_in">add</span>(y,x,<span class="hljs-number">0</span>);
+        <span class="hljs-comment">// 反向边权值（剩余容量）最初为0</span>
+	&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">bfs</span>()) <span class="hljs-built_in">update</span>();
+    <span class="hljs-comment">// 存在增广路就更新</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,maxflow);
+&#125;</code></pre></div>
 <h3 id="dinic-算法">Dinic 算法</h3>
 <p>EK 算法每轮可能会遍历整个残量网络，但是最多找出 1
 条增广路，效率较低。</p>
@@ -404,7 +463,66 @@ class="math inline">\(O(n^2m)\)</span>，但是很难达到这个上界，能够
 <span class="math inline">\(n = 10^4 \sim 10^5\)</span> 规模的网络。用
 Dinic 算法求解二分图最大匹配的复杂度为 <span class="math inline">\(O(m
 \sqrt n)\)</span>，实际表现更快。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>, N=<span class="hljs-number">205</span>, M=<span class="hljs-number">5005</span>;<br><span class="hljs-keyword">int</span> n, m, s, t, hh[N], d[N];<br><span class="hljs-keyword">int</span> tot=<span class="hljs-number">1</span>, h[N], to[M&lt;&lt;<span class="hljs-number">1</span>], nxt[M&lt;&lt;<span class="hljs-number">1</span>], w[M&lt;&lt;<span class="hljs-number">1</span>];<br>ll maxflow;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>;<br><span class="hljs-comment">// 省略快读</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span> </span>&#123;<br>	to[++tot]=y, w[tot]=z, nxt[tot]=h[x], h[x]=tot;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">bfs</span><span class="hljs-params">()</span> </span>&#123;<br>	queue&lt;<span class="hljs-keyword">int</span>&gt; q;<br>	<span class="hljs-built_in">memset</span>(d,<span class="hljs-number">0</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(d));<br>	d[s]=<span class="hljs-number">1</span>, q.<span class="hljs-built_in">push</span>(s);<br>	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) &#123;<br>		<span class="hljs-keyword">int</span> x=q.<span class="hljs-built_in">front</span>(); q.<span class="hljs-built_in">pop</span>();<br>		hh[x]=h[x];<br>        <span class="hljs-comment">// hh[]要把h[]复制一份</span><br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) &#123;<br>			<span class="hljs-keyword">int</span> y=to[i], z=w[i];<br>			<span class="hljs-keyword">if</span>(d[y]||!z) <span class="hljs-keyword">continue</span>;<br>			q.<span class="hljs-built_in">push</span>(y);<br>			d[y]=d[x]+<span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">if</span>(y==t) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>		&#125; <br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dinic</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> flow)</span> </span>&#123;<br>     <span class="hljs-comment">// flow表示当前增广路的最小剩余容量</span><br>	<span class="hljs-keyword">if</span>(x==t||!flow) <span class="hljs-keyword">return</span> flow;<br>    <span class="hljs-comment">// 到达汇点或者增广完毕</span><br>	<span class="hljs-keyword">int</span> res=flow;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span>&amp; i=hh[x];i;i=nxt[i]) &#123;<br>        <span class="hljs-comment">// i是个引用，当前弧优化</span><br>       	<span class="hljs-comment">// i变为nxt[i]时也直接让h[x]变为nxt[i]，最终导致从x出发直接到达它的当前弧</span><br>		<span class="hljs-keyword">int</span> y=to[i], z=w[i];<br>		<span class="hljs-keyword">if</span>(d[y]!=d[x]+<span class="hljs-number">1</span>||!z) <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-comment">// 不是分层图中节点或者不再残量网络中就不搜索</span><br>		<span class="hljs-keyword">int</span> k=<span class="hljs-built_in">dinic</span>(y,<span class="hljs-built_in">min</span>(res,z)); <span class="hljs-comment">// 取最小值</span><br>		<span class="hljs-keyword">if</span>(!k) d[y]=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">else</span> w[i]-=k, w[i^<span class="hljs-number">1</span>]+=k, res-=k;<br>        <span class="hljs-comment">// 优化。移出分层图</span><br>		<span class="hljs-keyword">if</span>(!res) <span class="hljs-keyword">return</span> flow;<br>        <span class="hljs-comment">// 加这句话快在洛谷的板子 700ms -&gt; 50ms</span><br>	&#125;<br>	<span class="hljs-keyword">return</span> flow-res;<br>    <span class="hljs-comment">// 返回的其实就是所有k的和，表示从这个点出发能够增广的值之和</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	n=<span class="hljs-built_in">read</span>(), m=<span class="hljs-built_in">read</span>(), s=<span class="hljs-built_in">read</span>(), t=<span class="hljs-built_in">read</span>();<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) &#123;<br>		<span class="hljs-keyword">int</span> x=<span class="hljs-built_in">read</span>(), y=<span class="hljs-built_in">read</span>(), z=<span class="hljs-built_in">read</span>();<br>		<span class="hljs-built_in">add</span>(x,y,z), <span class="hljs-built_in">add</span>(y,x,<span class="hljs-number">0</span>);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">bfs</span>()) maxflow+=<span class="hljs-built_in">dinic</span>(s,inf);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,maxflow);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>, N=<span class="hljs-number">205</span>, M=<span class="hljs-number">5005</span>;
+<span class="hljs-keyword">int</span> n, m, s, t, hh[N], d[N];
+<span class="hljs-keyword">int</span> tot=<span class="hljs-number">1</span>, h[N], to[M&lt;&lt;<span class="hljs-number">1</span>], nxt[M&lt;&lt;<span class="hljs-number">1</span>], w[M&lt;&lt;<span class="hljs-number">1</span>];
+ll maxflow;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>;
+<span class="hljs-comment">// 省略快读</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span> </span>&#123;
+	to[++tot]=y, w[tot]=z, nxt[tot]=h[x], h[x]=tot;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">bfs</span><span class="hljs-params">()</span> </span>&#123;
+	queue&lt;<span class="hljs-keyword">int</span>&gt; q;
+	<span class="hljs-built_in">memset</span>(d,<span class="hljs-number">0</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(d));
+	d[s]=<span class="hljs-number">1</span>, q.<span class="hljs-built_in">push</span>(s);
+	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) &#123;
+		<span class="hljs-keyword">int</span> x=q.<span class="hljs-built_in">front</span>(); q.<span class="hljs-built_in">pop</span>();
+		hh[x]=h[x];
+        <span class="hljs-comment">// hh[]要把h[]复制一份</span>
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) &#123;
+			<span class="hljs-keyword">int</span> y=to[i], z=w[i];
+			<span class="hljs-keyword">if</span>(d[y]||!z) <span class="hljs-keyword">continue</span>;
+			q.<span class="hljs-built_in">push</span>(y);
+			d[y]=d[x]+<span class="hljs-number">1</span>;
+			<span class="hljs-keyword">if</span>(y==t) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+		&#125; 
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dinic</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> flow)</span> </span>&#123;
+     <span class="hljs-comment">// flow表示当前增广路的最小剩余容量</span>
+	<span class="hljs-keyword">if</span>(x==t||!flow) <span class="hljs-keyword">return</span> flow;
+    <span class="hljs-comment">// 到达汇点或者增广完毕</span>
+	<span class="hljs-keyword">int</span> res=flow;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span>&amp; i=hh[x];i;i=nxt[i]) &#123;
+        <span class="hljs-comment">// i是个引用，当前弧优化</span>
+       	<span class="hljs-comment">// i变为nxt[i]时也直接让h[x]变为nxt[i]，最终导致从x出发直接到达它的当前弧</span>
+		<span class="hljs-keyword">int</span> y=to[i], z=w[i];
+		<span class="hljs-keyword">if</span>(d[y]!=d[x]+<span class="hljs-number">1</span>||!z) <span class="hljs-keyword">continue</span>;
+        <span class="hljs-comment">// 不是分层图中节点或者不再残量网络中就不搜索</span>
+		<span class="hljs-keyword">int</span> k=<span class="hljs-built_in">dinic</span>(y,<span class="hljs-built_in">min</span>(res,z)); <span class="hljs-comment">// 取最小值</span>
+		<span class="hljs-keyword">if</span>(!k) d[y]=<span class="hljs-number">0</span>;
+		<span class="hljs-keyword">else</span> w[i]-=k, w[i^<span class="hljs-number">1</span>]+=k, res-=k;
+        <span class="hljs-comment">// 优化。移出分层图</span>
+		<span class="hljs-keyword">if</span>(!res) <span class="hljs-keyword">return</span> flow;
+        <span class="hljs-comment">// 加这句话快在洛谷的板子 700ms -&gt; 50ms</span>
+	&#125;
+	<span class="hljs-keyword">return</span> flow-res;
+    <span class="hljs-comment">// 返回的其实就是所有k的和，表示从这个点出发能够增广的值之和</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	n=<span class="hljs-built_in">read</span>(), m=<span class="hljs-built_in">read</span>(), s=<span class="hljs-built_in">read</span>(), t=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) &#123;
+		<span class="hljs-keyword">int</span> x=<span class="hljs-built_in">read</span>(), y=<span class="hljs-built_in">read</span>(), z=<span class="hljs-built_in">read</span>();
+		<span class="hljs-built_in">add</span>(x,y,z), <span class="hljs-built_in">add</span>(y,x,<span class="hljs-number">0</span>);
+	&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">bfs</span>()) maxflow+=<span class="hljs-built_in">dinic</span>(s,inf);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,maxflow);
+&#125;</code></pre></div>
 <h3 id="二分图最大匹配">二分图最大匹配</h3>
 <p>对于一张 <span class="math inline">\(n\)</span> 个节点，<span
 class="math inline">\(m\)</span> 条边的二分图，可以新增一个源点 <span

@@ -283,14 +283,27 @@ class="math inline">\(j\)</span> 点卖出任意商品的最大利润。</p>
 class="math inline">\(g(i,j)\)</span> 。注意这里要枚举 <span
 class="math inline">\(i\)</span> 的所有入边与 <span
 class="math inline">\(j\)</span> 的所有出边，并将其差取最大值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=k_;++j) &#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld%lld&quot;</span>,&amp;b[i][j],&amp;s[i][j]);<br>    <span class="hljs-keyword">if</span>(b[i][j]==<span class="hljs-number">-1</span>) b[i][j]=inf;<br>    <span class="hljs-keyword">if</span>(s[i][j]==<span class="hljs-number">-1</span>) s[i][j]=<span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 对于无法购买的两个集市，将其值改为相减为-inf 的值，以免影响后面的运算</span><br>&#125;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> t=<span class="hljs-number">1</span>;t&lt;=k_;++t)<br>    g[i][j]=<span class="hljs-built_in">max</span>(g[i][j],s[j][t]-b[i][t]);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=k_;++j) &#123;
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld%lld&quot;</span>,&amp;b[i][j],&amp;s[i][j]);
+    <span class="hljs-keyword">if</span>(b[i][j]==<span class="hljs-number">-1</span>) b[i][j]=inf;
+    <span class="hljs-keyword">if</span>(s[i][j]==<span class="hljs-number">-1</span>) s[i][j]=<span class="hljs-number">0</span>;
+    <span class="hljs-comment">// 对于无法购买的两个集市，将其值改为相减为-inf 的值，以免影响后面的运算</span>
+&#125;
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> t=<span class="hljs-number">1</span>;t&lt;=k_;++t)
+    g[i][j]=<span class="hljs-built_in">max</span>(g[i][j],s[j][t]-b[i][t]);</code></pre></div>
 <p>设 <span class="math inline">\(d(i,j)\)</span> 为从 <span
 class="math inline">\(i\)</span> 到 <span
 class="math inline">\(j\)</span>
 所用的最短时间，初始化为正无穷，读入所有两个点距离之后进行 floyd
 算法求出。 这里用<code>memset(d,0x3f,sizeof(d))</code>的话只有
 82pts，血的教训。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) &#123;<br>    <span class="hljs-keyword">int</span> x, y, z; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld%lld%lld&quot;</span>,&amp;x,&amp;y,&amp;z);<br>    d[x][y]=z;<br>&#125;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) <span class="hljs-keyword">if</span>(!d[i][j]) d[i][j]=inf;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">1</span>;k&lt;=n;++k) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j)<br>    <span class="hljs-keyword">if</span>(d[i][j]&gt;d[i][k]+d[k][j]) d[i][j]=d[i][k]+d[k][j];<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) &#123;
+    <span class="hljs-keyword">int</span> x, y, z; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld%lld%lld&quot;</span>,&amp;x,&amp;y,&amp;z);
+    d[x][y]=z;
+&#125;
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) <span class="hljs-keyword">if</span>(!d[i][j]) d[i][j]=inf;
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">1</span>;k&lt;=n;++k) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j)
+    <span class="hljs-keyword">if</span>(d[i][j]&gt;d[i][k]+d[k][j]) d[i][j]=d[i][k]+d[k][j];</code></pre></div>
 <p>设计完状态之后，就可以列出盈利效率的式子了。</p>
 <p>不难想到，二分一个 <span
 class="math inline">\(mid\)</span>，表示盈利效率为 <span
@@ -320,10 +333,24 @@ d(i,j) \ge 0
 f(i,j)=g(i,j)-mid \times d(i,j) \quad i,j \in V
 \]</span> 然后跑 Floyd
 算法，判断有无环并取最大值，再判断最大值是否大于等于 0。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> ans=-inf;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j)<br>        <span class="hljs-keyword">if</span>(i==j) f[i][j]=-inf; <span class="hljs-keyword">else</span> f[i][j]=g[i][j]-x*d[i][j];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">1</span>;k&lt;=n;++k) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j)<br>        f[i][j]=<span class="hljs-built_in">max</span>(f[i][j],f[i][k]+f[k][j]);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) ans=<span class="hljs-built_in">max</span>(ans,f[i][i]);<br>    <span class="hljs-comment">// i 到达 i，表示有环。</span><br>    <span class="hljs-comment">// 因为初始 f[i][i] 设置的是-inf 所以不影响答案</span><br>    <span class="hljs-keyword">return</span> ans&gt;=<span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> ans=-inf;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j)
+        <span class="hljs-keyword">if</span>(i==j) f[i][j]=-inf; <span class="hljs-keyword">else</span> f[i][j]=g[i][j]-x*d[i][j];
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">1</span>;k&lt;=n;++k) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j)
+        f[i][j]=<span class="hljs-built_in">max</span>(f[i][j],f[i][k]+f[k][j]);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) ans=<span class="hljs-built_in">max</span>(ans,f[i][i]);
+    <span class="hljs-comment">// i 到达 i，表示有环。</span>
+    <span class="hljs-comment">// 因为初始 f[i][i] 设置的是-inf 所以不影响答案</span>
+    <span class="hljs-keyword">return</span> ans&gt;=<span class="hljs-number">0</span>;
+&#125;</code></pre></div>
 <p>二分过程。其中初始 <span class="math inline">\(l=0\)</span>，<span
 class="math inline">\(r=\max{\{ g(i,j) \}}\)</span>。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span>(l&lt;r) &#123;<br>	<span class="hljs-keyword">int</span> mid=(l+r+<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">check</span>(mid)) l=mid; <span class="hljs-keyword">else</span> r=mid<span class="hljs-number">-1</span>;<br>&#125;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,l);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span>(l&lt;r) &#123;
+	<span class="hljs-keyword">int</span> mid=(l+r+<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>;
+	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">check</span>(mid)) l=mid; <span class="hljs-keyword">else</span> r=mid<span class="hljs-number">-1</span>;
+&#125;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,l);</code></pre></div>
 <p>几个细节。</p>
 <ul>
 <li>值域是 <span

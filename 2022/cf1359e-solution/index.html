@@ -282,7 +282,33 @@ class="math inline">\(k-1\)</span> 个数作为其他项，所以答案就是 <s
 class="math display">\[
 \sum_{i=1} ^n C_{\lfloor \frac{n}{i} \rfloor -1} ^ {k-1}
 \]</span> 统计就好了。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> R register</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rep(i,j,k) for(i=(j);i&lt;=(k);++i)</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">5e5</span>+<span class="hljs-number">5</span>;<br><span class="hljs-keyword">const</span> ll p=<span class="hljs-number">998244353</span>;<br><span class="hljs-keyword">int</span> n, k;<br>ll fac[N], inv[N], ans;<br><span class="hljs-function">ll <span class="hljs-title">C</span><span class="hljs-params">(ll n,ll m)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(!m) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">return</span> fac[n]*inv[m]%p*inv[n-m]%p;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    R <span class="hljs-keyword">int</span> i;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;k);<br>    fac[<span class="hljs-number">0</span>]=<span class="hljs-number">1ll</span>, inv[<span class="hljs-number">0</span>]=inv[<span class="hljs-number">1</span>]=<span class="hljs-number">1ll</span>;<br>    <span class="hljs-built_in">rep</span>(i,<span class="hljs-number">1</span>,<span class="hljs-number">5e5</span>) &#123;<br>        fac[i]=fac[i<span class="hljs-number">-1</span>]*i%p;<br>        <span class="hljs-keyword">if</span>(i!=<span class="hljs-number">1</span>) inv[i]=(p-p/i)*inv[p%i]%p;<br>    &#125;<br>    <span class="hljs-built_in">rep</span>(i,<span class="hljs-number">1</span>,<span class="hljs-number">5e5</span>) inv[i]=inv[i]*inv[i<span class="hljs-number">-1</span>]%p;<br>    <span class="hljs-built_in">rep</span>(i,<span class="hljs-number">1</span>,n) &#123;<br>        <span class="hljs-keyword">if</span>(n/i&lt;k) <span class="hljs-keyword">break</span>;<br>        (ans+=<span class="hljs-built_in">C</span>(n/i<span class="hljs-number">-1</span>,k<span class="hljs-number">-1</span>))%=p;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> R register</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rep(i,j,k) for(i=(j);i&lt;=(k);++i)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">5e5</span>+<span class="hljs-number">5</span>;
+<span class="hljs-keyword">const</span> ll p=<span class="hljs-number">998244353</span>;
+<span class="hljs-keyword">int</span> n, k;
+ll fac[N], inv[N], ans;
+<span class="hljs-function">ll <span class="hljs-title">C</span><span class="hljs-params">(ll n,ll m)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(!m) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> fac[n]*inv[m]%p*inv[n-m]%p;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    R <span class="hljs-keyword">int</span> i;
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;k);
+    fac[<span class="hljs-number">0</span>]=<span class="hljs-number">1ll</span>, inv[<span class="hljs-number">0</span>]=inv[<span class="hljs-number">1</span>]=<span class="hljs-number">1ll</span>;
+    <span class="hljs-built_in">rep</span>(i,<span class="hljs-number">1</span>,<span class="hljs-number">5e5</span>) &#123;
+        fac[i]=fac[i<span class="hljs-number">-1</span>]*i%p;
+        <span class="hljs-keyword">if</span>(i!=<span class="hljs-number">1</span>) inv[i]=(p-p/i)*inv[p%i]%p;
+    &#125;
+    <span class="hljs-built_in">rep</span>(i,<span class="hljs-number">1</span>,<span class="hljs-number">5e5</span>) inv[i]=inv[i]*inv[i<span class="hljs-number">-1</span>]%p;
+    <span class="hljs-built_in">rep</span>(i,<span class="hljs-number">1</span>,n) &#123;
+        <span class="hljs-keyword">if</span>(n/i&lt;k) <span class="hljs-keyword">break</span>;
+        (ans+=<span class="hljs-built_in">C</span>(n/i<span class="hljs-number">-1</span>,k<span class="hljs-number">-1</span>))%=p;
+    &#125;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);
+&#125;</code></pre></div>
 
                 
               </div>

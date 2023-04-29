@@ -279,7 +279,55 @@ class="math inline">\(cnt(x) &gt; 1\)</span></li>
 <p>没啥难度，但是好像会卡掉常规 SPFA。</p>
 <p>顺带一提样例 2 里面，2 个点 5 条边，稠密图警告。</p>
 <h2 id="code">CODE</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PII pair<span class="hljs-meta-string">&lt;ll,int&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> mp make_pair</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e5</span>+<span class="hljs-number">5</span>, M=<span class="hljs-number">3e5</span>+<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> n, m, k, ans, u[N], v[N], cnt[N];<br>ll d[N];<br><span class="hljs-keyword">int</span> c, h[N], ver[M*<span class="hljs-number">4</span>], nxt[M*<span class="hljs-number">4</span>], w[M*<span class="hljs-number">4</span>];<br><span class="hljs-keyword">bool</span> vis[N];<br>priority_queue&lt;PII &gt; q;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span> </span>&#123;<br>	ver[++c]=y, w[c]=z, nxt[c]=h[x], h[x]=c;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dijkstra</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">memset</span>(d,<span class="hljs-number">0x3f</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(d));<br>	d[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>, q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">mp</span>(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>));<br>	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) &#123;<br>		<span class="hljs-keyword">int</span> x=q.<span class="hljs-built_in">top</span>().second; q.<span class="hljs-built_in">pop</span>();<br>		<span class="hljs-keyword">if</span>(vis[x]) <span class="hljs-keyword">continue</span>;<br>		vis[x]=<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) &#123;<br>			<span class="hljs-keyword">int</span> y=ver[i], z=w[i];<br>			<span class="hljs-keyword">if</span>(d[y]&gt;d[x]+z) &#123;<br>				d[y]=d[x]+z, cnt[y]=<span class="hljs-number">1</span>;<br>                <span class="hljs-comment">// 此时长度为d[x]+z的到达y的最短路只有1条</span><br>				q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">mp</span>(-d[y],y));<br>			&#125;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(d[y]==d[x]+z) ++cnt[y]; <span class="hljs-comment">// 长度相等，另一条最短路。</span><br>		&#125;<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;k);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>,x,y,z;i&lt;=m;++i) &#123;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);<br>		<span class="hljs-built_in">add</span>(x,y,z), <span class="hljs-built_in">add</span>(y,x,z);<br>	&#125;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=k;++i) &#123;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;u[i],&amp;v[i]);<br>		<span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>,u[i],v[i]), <span class="hljs-built_in">add</span>(u[i],<span class="hljs-number">1</span>,v[i]);<br>	&#125;<br>	<span class="hljs-built_in">dijkstra</span>();<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=k;++i) &#123;<br>		<span class="hljs-keyword">if</span>(d[u[i]]&lt;v[i]) ++ans; <br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(d[u[i]]==v[i]&amp;&amp;cnt[u[i]]&gt;<span class="hljs-number">1</span>) ++ans, --cnt[u[i]];<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,ans);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PII pair<span class="hljs-meta-string">&lt;ll,int&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> mp make_pair</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e5</span>+<span class="hljs-number">5</span>, M=<span class="hljs-number">3e5</span>+<span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> n, m, k, ans, u[N], v[N], cnt[N];
+ll d[N];
+<span class="hljs-keyword">int</span> c, h[N], ver[M*<span class="hljs-number">4</span>], nxt[M*<span class="hljs-number">4</span>], w[M*<span class="hljs-number">4</span>];
+<span class="hljs-keyword">bool</span> vis[N];
+priority_queue&lt;PII &gt; q;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span> </span>&#123;
+	ver[++c]=y, w[c]=z, nxt[c]=h[x], h[x]=c;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dijkstra</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">memset</span>(d,<span class="hljs-number">0x3f</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(d));
+	d[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>, q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">mp</span>(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>));
+	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) &#123;
+		<span class="hljs-keyword">int</span> x=q.<span class="hljs-built_in">top</span>().second; q.<span class="hljs-built_in">pop</span>();
+		<span class="hljs-keyword">if</span>(vis[x]) <span class="hljs-keyword">continue</span>;
+		vis[x]=<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) &#123;
+			<span class="hljs-keyword">int</span> y=ver[i], z=w[i];
+			<span class="hljs-keyword">if</span>(d[y]&gt;d[x]+z) &#123;
+				d[y]=d[x]+z, cnt[y]=<span class="hljs-number">1</span>;
+                <span class="hljs-comment">// 此时长度为d[x]+z的到达y的最短路只有1条</span>
+				q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">mp</span>(-d[y],y));
+			&#125;
+			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(d[y]==d[x]+z) ++cnt[y]; <span class="hljs-comment">// 长度相等，另一条最短路。</span>
+		&#125;
+	&#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;k);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>,x,y,z;i&lt;=m;++i) &#123;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);
+		<span class="hljs-built_in">add</span>(x,y,z), <span class="hljs-built_in">add</span>(y,x,z);
+	&#125;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=k;++i) &#123;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;u[i],&amp;v[i]);
+		<span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>,u[i],v[i]), <span class="hljs-built_in">add</span>(u[i],<span class="hljs-number">1</span>,v[i]);
+	&#125;
+	<span class="hljs-built_in">dijkstra</span>();
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=k;++i) &#123;
+		<span class="hljs-keyword">if</span>(d[u[i]]&lt;v[i]) ++ans; 
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(d[u[i]]==v[i]&amp;&amp;cnt[u[i]]&gt;<span class="hljs-number">1</span>) ++ans, --cnt[u[i]];
+	&#125;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,ans);
+&#125;</code></pre></div>
 
                 
               </div>

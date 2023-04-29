@@ -291,7 +291,40 @@ g(a,b,i)=(\lfloor a/i \rfloor ) \times (\lfloor b/i \rfloor) \text{
 都相同}
 \]</span></p>
 <p>所以实现的时候求出 $ (x)$ 的前缀和，直接处理一个区间的信息。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">5e4</span>+<span class="hljs-number">10</span>;<br><span class="hljs-keyword">int</span> n, a, b, k, Mobius[N];<br><span class="hljs-keyword">bool</span> v[N];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sol</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> x, gx, ans=<span class="hljs-number">0</span>;<br>    a/=k, b/=k;<br>    <span class="hljs-keyword">if</span>(a&gt;b) <span class="hljs-built_in">swap</span>(a,b);<br>    <span class="hljs-keyword">for</span>(x=<span class="hljs-number">1</span>;x&lt;=a;x=gx+<span class="hljs-number">1</span>) &#123;<br>        gx=<span class="hljs-built_in">min</span>(a/(a/x),b/(b/x));<br>        ans+=(Mobius[gx]-Mobius[x<span class="hljs-number">-1</span>])*(a/x)*(b/x);<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> i, j;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">5e4</span>;++i) Mobius[i]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=<span class="hljs-number">5e4</span>;++i) <span class="hljs-keyword">if</span>(!v[i]) &#123;<br>        Mobius[i]=<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">for</span>(j=(i&lt;&lt;<span class="hljs-number">1</span>);j&lt;=<span class="hljs-number">5e4</span>;j+=i) &#123;<br>            v[j]=<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">if</span>(j/i%i==<span class="hljs-number">0</span>) Mobius[j]=<span class="hljs-number">0</span>; <span class="hljs-keyword">else</span> Mobius[j]*=<span class="hljs-number">-1</span>;<br>        &#125; <br>    &#125;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">5e4</span>;++i) Mobius[i]+=Mobius[i<span class="hljs-number">-1</span>];<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>    <span class="hljs-keyword">while</span>(n --&gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;b,&amp;k);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,<span class="hljs-built_in">sol</span>());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">5e4</span>+<span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> n, a, b, k, Mobius[N];
+<span class="hljs-keyword">bool</span> v[N];
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sol</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">int</span> x, gx, ans=<span class="hljs-number">0</span>;
+    a/=k, b/=k;
+    <span class="hljs-keyword">if</span>(a&gt;b) <span class="hljs-built_in">swap</span>(a,b);
+    <span class="hljs-keyword">for</span>(x=<span class="hljs-number">1</span>;x&lt;=a;x=gx+<span class="hljs-number">1</span>) &#123;
+        gx=<span class="hljs-built_in">min</span>(a/(a/x),b/(b/x));
+        ans+=(Mobius[gx]-Mobius[x<span class="hljs-number">-1</span>])*(a/x)*(b/x);
+    &#125;
+    <span class="hljs-keyword">return</span> ans;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">int</span> i, j;
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">5e4</span>;++i) Mobius[i]=<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=<span class="hljs-number">5e4</span>;++i) <span class="hljs-keyword">if</span>(!v[i]) &#123;
+        Mobius[i]=<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">for</span>(j=(i&lt;&lt;<span class="hljs-number">1</span>);j&lt;=<span class="hljs-number">5e4</span>;j+=i) &#123;
+            v[j]=<span class="hljs-number">1</span>;
+            <span class="hljs-keyword">if</span>(j/i%i==<span class="hljs-number">0</span>) Mobius[j]=<span class="hljs-number">0</span>; <span class="hljs-keyword">else</span> Mobius[j]*=<span class="hljs-number">-1</span>;
+        &#125; 
+    &#125;
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">5e4</span>;++i) Mobius[i]+=Mobius[i<span class="hljs-number">-1</span>];
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);
+    <span class="hljs-keyword">while</span>(n --&gt; <span class="hljs-number">0</span>) &#123;
+        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;b,&amp;k);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,<span class="hljs-built_in">sol</span>());
+    &#125;
+&#125;</code></pre></div>
 
                 
               </div>

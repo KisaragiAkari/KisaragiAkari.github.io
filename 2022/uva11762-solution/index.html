@@ -301,7 +301,45 @@ f(x) = \frac{\sum _{y \in P_x} { f(\frac{x}{y})} + p(x)} {g(x)}
 \]</span> 这样就可以记忆化搜索了。</p>
 <p>注意要预处理范围内的所有质数。</p>
 <h2 id="code">CODE</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e6</span>+<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> t, _, l, n, pr[N];<br><span class="hljs-keyword">double</span> f[N];<br><span class="hljs-keyword">bool</span> v[N], vis[N];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">primes</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=<span class="hljs-number">1e6</span>;++i) &#123;<br>		<span class="hljs-keyword">if</span>(!v[i]) pr[++l]=i;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=l&amp;&amp;i*pr[j]&lt;=<span class="hljs-number">1e6</span>;++j) &#123;<br>			v[i*pr[j]]=<span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">if</span>(!(i%pr[j])) <span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>    <span class="hljs-comment">// 线性筛预处理[1,10^6]之间的质数</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">dp</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">if</span>(vis[x]) <span class="hljs-keyword">return</span> f[x];<br>    <span class="hljs-comment">// vis[]与f[]不必清空，因为对于同样的x，对应的f[x]肯定是一样的</span><br>    <span class="hljs-comment">// 相当于“跨数据记忆化”</span><br>	vis[x]=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">int</span> g=<span class="hljs-number">0</span>, p=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=l&amp;&amp;pr[i]&lt;=x;++i) &#123;<br>		++p;<br>		<span class="hljs-keyword">if</span>(!(x%pr[i])) ++g, f[x]+=<span class="hljs-built_in">dp</span>(x/pr[i]);<br>	&#125;<br>	<span class="hljs-keyword">return</span> f[x]=(f[x]+p)/g;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sol</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Case %d: %.10lf\n&quot;</span>,++_,<span class="hljs-built_in">dp</span>(n));<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">primes</span>();<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;t);<br>	<span class="hljs-keyword">while</span>(t--) <span class="hljs-built_in">sol</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e6</span>+<span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> t, _, l, n, pr[N];
+<span class="hljs-keyword">double</span> f[N];
+<span class="hljs-keyword">bool</span> v[N], vis[N];
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">primes</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=<span class="hljs-number">1e6</span>;++i) &#123;
+		<span class="hljs-keyword">if</span>(!v[i]) pr[++l]=i;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=l&amp;&amp;i*pr[j]&lt;=<span class="hljs-number">1e6</span>;++j) &#123;
+			v[i*pr[j]]=<span class="hljs-number">1</span>;
+			<span class="hljs-keyword">if</span>(!(i%pr[j])) <span class="hljs-keyword">break</span>;
+		&#125;
+	&#125;
+    <span class="hljs-comment">// 线性筛预处理[1,10^6]之间的质数</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">dp</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">if</span>(vis[x]) <span class="hljs-keyword">return</span> f[x];
+    <span class="hljs-comment">// vis[]与f[]不必清空，因为对于同样的x，对应的f[x]肯定是一样的</span>
+    <span class="hljs-comment">// 相当于“跨数据记忆化”</span>
+	vis[x]=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">int</span> g=<span class="hljs-number">0</span>, p=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=l&amp;&amp;pr[i]&lt;=x;++i) &#123;
+		++p;
+		<span class="hljs-keyword">if</span>(!(x%pr[i])) ++g, f[x]+=<span class="hljs-built_in">dp</span>(x/pr[i]);
+	&#125;
+	<span class="hljs-keyword">return</span> f[x]=(f[x]+p)/g;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sol</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Case %d: %.10lf\n&quot;</span>,++_,<span class="hljs-built_in">dp</span>(n));
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">primes</span>();
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;t);
+	<span class="hljs-keyword">while</span>(t--) <span class="hljs-built_in">sol</span>();
+&#125;</code></pre></div>
 
                 
               </div>

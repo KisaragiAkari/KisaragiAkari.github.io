@@ -341,7 +341,27 @@ A\)</span>，所以将两式相加，<span class="math inline">\(a\)</span>
 \frac{(k+l)^{nm} + (k-l)^{nm}}{2}
 \]</span></p>
 <h2 id="code">CODE</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span><br><span class="hljs-keyword">const</span> ll p=<span class="hljs-number">998244353</span>;<br>ll n, m, L, R;<br><span class="hljs-function">ll <span class="hljs-title">fp</span><span class="hljs-params">(ll x,ll y)</span> </span>&#123;<br>	ll z=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(;y;x=x*x%p,y&gt;&gt;=<span class="hljs-number">1</span>) <span class="hljs-keyword">if</span>(y&amp;<span class="hljs-number">1</span>) z=z*x%p;<br>	<span class="hljs-keyword">return</span> z;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld%lld%lld%lld&quot;</span>,&amp;n,&amp;m,&amp;L,&amp;R);<br>	ll w=R-L+<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span>((n&amp;<span class="hljs-number">1</span>)&amp;&amp;(m&amp;<span class="hljs-number">1</span>)) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,<span class="hljs-built_in">fp</span>(w,n*m));<br>	<span class="hljs-keyword">else</span> &#123;<br>		ll k=R/<span class="hljs-number">2</span>-(L<span class="hljs-number">-1</span>)/<span class="hljs-number">2</span>;<br>		ll l=w-k;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,(<span class="hljs-built_in">fp</span>((k+l)%p,n*m)+<span class="hljs-built_in">fp</span>(k-l+p,n*m))*<span class="hljs-number">499122177</span>%p);<br>        <span class="hljs-comment">// 499122177是2在模998244353意义下的逆元</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-keyword">const</span> ll p=<span class="hljs-number">998244353</span>;
+ll n, m, L, R;
+<span class="hljs-function">ll <span class="hljs-title">fp</span><span class="hljs-params">(ll x,ll y)</span> </span>&#123;
+	ll z=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(;y;x=x*x%p,y&gt;&gt;=<span class="hljs-number">1</span>) <span class="hljs-keyword">if</span>(y&amp;<span class="hljs-number">1</span>) z=z*x%p;
+	<span class="hljs-keyword">return</span> z;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld%lld%lld%lld&quot;</span>,&amp;n,&amp;m,&amp;L,&amp;R);
+	ll w=R-L+<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">if</span>((n&amp;<span class="hljs-number">1</span>)&amp;&amp;(m&amp;<span class="hljs-number">1</span>)) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,<span class="hljs-built_in">fp</span>(w,n*m));
+	<span class="hljs-keyword">else</span> &#123;
+		ll k=R/<span class="hljs-number">2</span>-(L<span class="hljs-number">-1</span>)/<span class="hljs-number">2</span>;
+		ll l=w-k;
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,(<span class="hljs-built_in">fp</span>((k+l)%p,n*m)+<span class="hljs-built_in">fp</span>(k-l+p,n*m))*<span class="hljs-number">499122177</span>%p);
+        <span class="hljs-comment">// 499122177是2在模998244353意义下的逆元</span>
+	&#125;
+&#125;</code></pre></div>
 
                 
               </div>

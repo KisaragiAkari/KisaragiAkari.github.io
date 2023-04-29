@@ -290,7 +290,28 @@ class="math inline">\(i\)</span> 个约数。</p>
 2 \times  (\sum_{i=1}^m{\varphi(\frac{n}{p_i})}) - m
 \]</span></p>
 <p>实现的时候用欧拉筛，<del>更加毒瘤了</del></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e7</span>+<span class="hljs-number">6</span>;<br>ll n, m, ans, v[N], p[N], phi[N];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> i, j;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;n);<br>    phi[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=n;++i) &#123;<br>        <span class="hljs-keyword">if</span>(!v[i]) v[i]=i, p[++m]=i, phi[i]=i<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=m;++j) &#123;<br>            <span class="hljs-keyword">if</span>(p[j]&gt;v[i]||p[j]*i&gt;n) <span class="hljs-keyword">break</span> ;<br>            v[p[j]*i]=p[j];<br>            phi[p[j]*i]=phi[i]*(i%p[j]?p[j]<span class="hljs-number">-1</span>:p[j]);<br>        &#125;<br>        phi[i]+=phi[i<span class="hljs-number">-1</span>];<br>    &#125;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=m;++i) ans+=phi[n/p[i]];<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,(ans&lt;&lt;<span class="hljs-number">1</span>)-m);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e7</span>+<span class="hljs-number">6</span>;
+ll n, m, ans, v[N], p[N], phi[N];
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">int</span> i, j;
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;n);
+    phi[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=n;++i) &#123;
+        <span class="hljs-keyword">if</span>(!v[i]) v[i]=i, p[++m]=i, phi[i]=i<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=m;++j) &#123;
+            <span class="hljs-keyword">if</span>(p[j]&gt;v[i]||p[j]*i&gt;n) <span class="hljs-keyword">break</span> ;
+            v[p[j]*i]=p[j];
+            phi[p[j]*i]=phi[i]*(i%p[j]?p[j]<span class="hljs-number">-1</span>:p[j]);
+        &#125;
+        phi[i]+=phi[i<span class="hljs-number">-1</span>];
+    &#125;
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=m;++i) ans+=phi[n/p[i]];
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,(ans&lt;&lt;<span class="hljs-number">1</span>)-m);
+&#125;</code></pre></div>
 
                 
               </div>

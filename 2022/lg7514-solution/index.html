@@ -292,7 +292,41 @@ class="math inline">\(r\)</span>。</p>
 提前。最后不断让 <span class="math inline">\(r\)</span> 向前，贪心地提前
 <span class="math inline">\(l\)</span>，记录答案就好了。</p>
 <h2 id="code">CODE</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e6</span>+<span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> n, m, ans=<span class="hljs-number">0x3f3f3f3f</span>;<br><span class="hljs-keyword">bool</span> v[N];<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">card</span> &#123;</span> <span class="hljs-keyword">int</span> x, id, fg; &#125; c[N*<span class="hljs-number">2</span>];<br><span class="hljs-comment">// 数字，属于的牌的编号，翻到反面操作几次</span><br><span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>&lt;(card a,card b) &#123; <span class="hljs-keyword">return</span> a.x&lt;b.x; &#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;c[i].x), c[i].id=i, c[i].fg=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;c[i+n].x), c[i+n].id=i, c[i+n].fg=<span class="hljs-number">0</span>;<br>	<span class="hljs-built_in">sort</span>(c+<span class="hljs-number">1</span>,c+<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>);<br>	<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>, r=<span class="hljs-number">2</span>*n, cnt=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(cnt+c[r].fg&lt;=m&amp;&amp;!v[c[r].id]) &#123;<br>		cnt+=c[r].fg, v[c[r].id]=<span class="hljs-number">1</span>;<br>		--r;<br>	&#125;<br>	<span class="hljs-keyword">while</span>(cnt+c[l].fg&lt;=m&amp;&amp;!v[c[l].id]) &#123;<br>		cnt+=c[l].fg, v[c[l].id]=<span class="hljs-number">1</span>;<br>		++l;<br>	&#125;<br>    <span class="hljs-comment">// 有标记数组v的存在，不用担心l&gt;r的情况</span><br>	<span class="hljs-keyword">while</span>(r&lt;n*<span class="hljs-number">2</span>) &#123;<br>		ans=<span class="hljs-built_in">min</span>(ans,c[r].x-c[l].x);	<br>		cnt-=c[r+<span class="hljs-number">1</span>].fg, v[c[r+<span class="hljs-number">1</span>].id]=<span class="hljs-number">0</span>;<br>		++r;<br>		<span class="hljs-keyword">while</span>(cnt+c[l].fg&lt;=m&amp;&amp;!v[c[l].id]) &#123;<br>			cnt+=c[l].fg, v[c[l].id]=<span class="hljs-number">1</span>, ++l;<br>		&#125;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,<span class="hljs-built_in">min</span>(ans,c[r].x-c[l].x));<br>    <span class="hljs-comment">// 这里少比较了一次，所以最后要取min</span><br><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e6</span>+<span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> n, m, ans=<span class="hljs-number">0x3f3f3f3f</span>;
+<span class="hljs-keyword">bool</span> v[N];
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">card</span> &#123;</span> <span class="hljs-keyword">int</span> x, id, fg; &#125; c[N*<span class="hljs-number">2</span>];
+<span class="hljs-comment">// 数字，属于的牌的编号，翻到反面操作几次</span>
+<span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>&lt;(card a,card b) &#123; <span class="hljs-keyword">return</span> a.x&lt;b.x; &#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;c[i].x), c[i].id=i, c[i].fg=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;c[i+n].x), c[i+n].id=i, c[i+n].fg=<span class="hljs-number">0</span>;
+	<span class="hljs-built_in">sort</span>(c+<span class="hljs-number">1</span>,c+<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>);
+	<span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>, r=<span class="hljs-number">2</span>*n, cnt=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span>(cnt+c[r].fg&lt;=m&amp;&amp;!v[c[r].id]) &#123;
+		cnt+=c[r].fg, v[c[r].id]=<span class="hljs-number">1</span>;
+		--r;
+	&#125;
+	<span class="hljs-keyword">while</span>(cnt+c[l].fg&lt;=m&amp;&amp;!v[c[l].id]) &#123;
+		cnt+=c[l].fg, v[c[l].id]=<span class="hljs-number">1</span>;
+		++l;
+	&#125;
+    <span class="hljs-comment">// 有标记数组v的存在，不用担心l&gt;r的情况</span>
+	<span class="hljs-keyword">while</span>(r&lt;n*<span class="hljs-number">2</span>) &#123;
+		ans=<span class="hljs-built_in">min</span>(ans,c[r].x-c[l].x);	
+		cnt-=c[r+<span class="hljs-number">1</span>].fg, v[c[r+<span class="hljs-number">1</span>].id]=<span class="hljs-number">0</span>;
+		++r;
+		<span class="hljs-keyword">while</span>(cnt+c[l].fg&lt;=m&amp;&amp;!v[c[l].id]) &#123;
+			cnt+=c[l].fg, v[c[l].id]=<span class="hljs-number">1</span>, ++l;
+		&#125;
+	&#125;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,<span class="hljs-built_in">min</span>(ans,c[r].x-c[l].x));
+    <span class="hljs-comment">// 这里少比较了一次，所以最后要取min</span>
+
+&#125;</code></pre></div>
 
                 
               </div>

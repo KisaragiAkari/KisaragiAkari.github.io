@@ -275,7 +275,58 @@ ld$，到右端点距离为 $ rd$。</p>
 <p>若 $ d=rd$，则令 $ r=i$。</p>
 <p>若 <span class="math inline">\(d=ld\)</span>，则令 <span
 class="math inline">\(l=i\)</span>，且只会进行一次，这是因为我们的遍历顺序是从右到左。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> R register</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">2e5</span>+<span class="hljs-number">10</span>;<br><span class="hljs-keyword">int</span> n, f[N];<br><span class="hljs-keyword">int</span> c, h[N], ver[N&lt;&lt;<span class="hljs-number">1</span>], nxt[N&lt;&lt;<span class="hljs-number">1</span>], w[N&lt;&lt;<span class="hljs-number">1</span>];<br>ll p, mxd, d[N];<br><span class="hljs-keyword">bool</span> v[N];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span> </span>&#123; ver[++c]=y, w[c]=z, nxt[c]=h[x], h[x]=c; &#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span> </span>&#123;<br>    f[x]=fa;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) <span class="hljs-keyword">if</span>(ver[i]!=fa) &#123;<br>        <span class="hljs-keyword">int</span> y=ver[i], z=w[i];<br>        d[y]=d[x]+z;<br>        <span class="hljs-keyword">if</span>(d[y]&gt;mxd) &#123; mxd=d[y], p=y; &#125;<br>        <span class="hljs-built_in">dfs</span>(y,x);<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">kawaii</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span> </span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) <span class="hljs-keyword">if</span>(ver[i]!=fa&amp;&amp;!v[ver[i]]) &#123;<br>        <span class="hljs-keyword">int</span> y=ver[i], z=w[i];<br>        d[y]=d[x]+z;<br>        <span class="hljs-keyword">if</span>(d[y]&gt;mxd) mxd=d[y];<br>        <span class="hljs-built_in">kawaii</span>(y,x);<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> ans, l=<span class="hljs-number">0</span>, r=<span class="hljs-number">0</span>, fg=<span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;++i) &#123;<br>        <span class="hljs-keyword">int</span> x, y, z; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);<br>        <span class="hljs-built_in">add</span>(x,y,z), <span class="hljs-built_in">add</span>(y,x,z);<br>    &#125;<br>    <span class="hljs-built_in">dfs</span>(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>), l=p, mxd=d[p]=<span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">dfs</span>(p,<span class="hljs-number">0</span>), r=p;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,mxd);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=r;i;i=f[i]) v[i]=<span class="hljs-number">1</span>;<br>    <span class="hljs-comment">// 直径上的点打标记</span><br>    <span class="hljs-keyword">int</span> l_=l, r_=r;<br>    <span class="hljs-keyword">for</span>(i=f[r_];i!=l_;i=f[i]) &#123;<br>        <span class="hljs-keyword">int</span> ld=d[i], rd=d[r_]-d[i];<br>        <span class="hljs-comment">// </span><br>        mxd=d[i]=<span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">kawaii</span>(i,<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span>(mxd==rd) r=i;<br>        <span class="hljs-keyword">if</span>(mxd==ld&amp;&amp;!fg) fg=<span class="hljs-number">1</span>, l=i;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(i=f[r];i!=l;i=f[i]) ++ans;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,ans);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> R register</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">2e5</span>+<span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> n, f[N];
+<span class="hljs-keyword">int</span> c, h[N], ver[N&lt;&lt;<span class="hljs-number">1</span>], nxt[N&lt;&lt;<span class="hljs-number">1</span>], w[N&lt;&lt;<span class="hljs-number">1</span>];
+ll p, mxd, d[N];
+<span class="hljs-keyword">bool</span> v[N];
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span> </span>&#123; ver[++c]=y, w[c]=z, nxt[c]=h[x], h[x]=c; &#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span> </span>&#123;
+    f[x]=fa;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) <span class="hljs-keyword">if</span>(ver[i]!=fa) &#123;
+        <span class="hljs-keyword">int</span> y=ver[i], z=w[i];
+        d[y]=d[x]+z;
+        <span class="hljs-keyword">if</span>(d[y]&gt;mxd) &#123; mxd=d[y], p=y; &#125;
+        <span class="hljs-built_in">dfs</span>(y,x);
+    &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">kawaii</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span> </span>&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=h[x];i;i=nxt[i]) <span class="hljs-keyword">if</span>(ver[i]!=fa&amp;&amp;!v[ver[i]]) &#123;
+        <span class="hljs-keyword">int</span> y=ver[i], z=w[i];
+        d[y]=d[x]+z;
+        <span class="hljs-keyword">if</span>(d[y]&gt;mxd) mxd=d[y];
+        <span class="hljs-built_in">kawaii</span>(y,x);
+    &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">int</span> ans, l=<span class="hljs-number">0</span>, r=<span class="hljs-number">0</span>, fg=<span class="hljs-number">0</span>;
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;++i) &#123;
+        <span class="hljs-keyword">int</span> x, y, z; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);
+        <span class="hljs-built_in">add</span>(x,y,z), <span class="hljs-built_in">add</span>(y,x,z);
+    &#125;
+    <span class="hljs-built_in">dfs</span>(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>), l=p, mxd=d[p]=<span class="hljs-number">0</span>;
+    <span class="hljs-built_in">dfs</span>(p,<span class="hljs-number">0</span>), r=p;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,mxd);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=r;i;i=f[i]) v[i]=<span class="hljs-number">1</span>;
+    <span class="hljs-comment">// 直径上的点打标记</span>
+    <span class="hljs-keyword">int</span> l_=l, r_=r;
+    <span class="hljs-keyword">for</span>(i=f[r_];i!=l_;i=f[i]) &#123;
+        <span class="hljs-keyword">int</span> ld=d[i], rd=d[r_]-d[i];
+        <span class="hljs-comment">// </span>
+        mxd=d[i]=<span class="hljs-number">0</span>;
+        <span class="hljs-built_in">kawaii</span>(i,<span class="hljs-number">0</span>);
+        <span class="hljs-keyword">if</span>(mxd==rd) r=i;
+        <span class="hljs-keyword">if</span>(mxd==ld&amp;&amp;!fg) fg=<span class="hljs-number">1</span>, l=i;
+    &#125;
+    <span class="hljs-keyword">for</span>(i=f[r];i!=l;i=f[i]) ++ans;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,ans);
+&#125;</code></pre></div>
 
                 
               </div>
