@@ -433,7 +433,7 @@ sup > a::before,
   .navbar .dropdown-collapse,
   .top-nav-collapse,
   .navbar-col-show {
-    background: rgba(63,81,181,0.9);
+    background: #3f51b5;
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
   }
@@ -899,7 +899,7 @@ i.iconfont {
     :root:not([data-user-color-scheme]) .navbar .dropdown-collapse,
     :root:not([data-user-color-scheme]) .top-nav-collapse,
     :root:not([data-user-color-scheme]) .navbar-col-show {
-      background: rgba(31,49,68,0.9);
+      background: #1f3144;
       -webkit-backdrop-filter: blur(3px);
       backdrop-filter: blur(3px);
     }
@@ -950,7 +950,7 @@ i.iconfont {
   [data-user-color-scheme="dark"] .navbar .dropdown-collapse,
   [data-user-color-scheme="dark"] .top-nav-collapse,
   [data-user-color-scheme="dark"] .navbar-col-show {
-    background: rgba(31,49,68,0.9);
+    background: #1f3144;
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
   }
