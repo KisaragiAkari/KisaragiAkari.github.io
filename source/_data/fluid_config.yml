@@ -1,0 +1,57 @@
+navbar:
+  blog_title: yozora0908's blog
+  ground_glass: true
+index:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db6fb2257ac.jpg
+  banner_img_height: 97
+post:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db75d1e0be8.png
+  banner_img_height: 70
+  default_index_img: https://cdn-us.imgs.moe/2023/02/02/63db75d1e0be8.png
+archive:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db7b846ac00.jpg
+  banner_img_height: 100
+category:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db75b55a99e.jpg
+  banner_img_height: 97
+tag:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db76d7a6dd8.jpg
+  banner_img_height: 96
+about:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db75b6d81dc.jpg
+  banner_img_height: 77
+  avatar: https://cdn-us.imgs.moe/2023/02/02/63db6fb1a391b.jpg
+  name: yozora0908
+  intro: Record
+links:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db7cee8c701.png
+  banner_img_height: 70
+  items:
+    - title: Tommy_Keen
+      link: https://www.luogu.com.cn/user/393407
+      avatar: https://cdn.luogu.com.cn/upload/usericon/393407.png
+    - title: TwoJie
+      link: https://www.luogu.com.cn/user/393410
+      avatar: https://cdn.luogu.com.cn/upload/usericon/393410.png
+    - title: uniqueharry
+      intro: ""
+      link: https://www.luogu.com.cn/user/385093
+      avatar: https://cdn.luogu.com.cn/upload/usericon/385093.png
+    - title: May_wind
+      link: https://www.luogu.com.cn/user/141368
+      avatar: https://cdn.luogu.com.cn/upload/usericon/141368.png
+    - title: __frj
+      link: https://www.luogu.com.cn/user/89338
+      avatar: https://cdn.luogu.com.cn/upload/usericon/89338.png
+    - title: 4SunnyH
+      link: https://www.luogu.com.cn/user/83535
+      avatar: https://cdn.luogu.com.cn/upload/usericon/83535.png
+    - title: ReverBer
+      link: https://www.luogu.com.cn/user/303531
+      avatar: https://cdn.luogu.com.cn/upload/usericon/303531.png
+    - title: 飞行穿甲弹
+      link: https://www.luogu.com.cn/user/231028
+      avatar: https://cdn.luogu.com.cn/upload/usericon/231028.png
+    - title: Cynun
+      link: https://www.luogu.com.cn/user/118036
+      avatar: https://cdn.luogu.com.cn/upload/usericon/118036.png
