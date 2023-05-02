@@ -1,0 +1,917 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/null">
+  <link rel="icon" href="https://cdn-us.imgs.moe/2023/01/26/63d1eb385309a.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#3F51B5">
+  <meta name="author" content="yozora">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言 好强的状态设计啊，从来没有见过。 可是暴力分竟然给到了一半，连一半都拿不到吗？ 那个时候连记忆化搜索都写不熟练，总是止步于似懂非懂的家伙。 我承认，那时候的遗憾，和我即将面临的抉择，没有任何关系。但是，连续地与期望失之交臂，真的会感觉自己是彻头彻尾地废物。 25 号，什么时候到来啊！马上要见分晓了！ 卷王同学们在一次迷惑的提前批招生后安定下来，只有一面之缘的朋友的情况也渐入佳境。">
+  
+  
+  
+  <title>luogu7961 数列 题解 - yozora&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yozora0908.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":null,"onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>yozora&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://cdn-us.imgs.moe/2023/02/02/63db75d1e0be8.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="luogu7961 数列 题解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-21 18:08" pubdate>
+          2022年6月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">luogu7961 数列 题解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言">前言</h2>
+<p>好强的状态设计啊，从来没有见过。</p>
+<p>可是暴力分竟然给到了一半，连一半都拿不到吗？</p>
+<p>那个时候连记忆化搜索都写不熟练，总是止步于似懂非懂的家伙。</p>
+<p>我承认，那时候的遗憾，和我即将面临的抉择，没有任何关系。但是，连续地与期望失之交臂，真的会感觉自己是彻头彻尾地废物。</p>
+<p>25 号，什么时候到来啊！马上要见分晓了！</p>
+<p>卷王同学们在一次迷惑的提前批招生后安定下来，只有一面之缘的朋友的情况也渐入佳境。</p>
+<p>我只能不去关心“他们”的事情，这般沉溺于夏日，沉溺在自己的世界中。</p>
+<span id="more"></span>
+<h2 id="暴力">暴力</h2>
+<h3 id="分析">分析</h3>
+<p>首先明确 <span class="math inline">\(a_i \in [0,m]\)</span>。</p>
+<p>设 <span class="math inline">\(f(x,S)\)</span> 为当前 <span
+class="math inline">\(\{a_i\}\)</span> 有 <span
+class="math inline">\(x\)</span> 项，其中 <span class="math inline">\(S
+= \sum_{i=1}^x 2^{a_i}\)</span>，还能够产生的权值和。</p>
+<p>状态总数为 <span
+class="math inline">\(O(2^{m}nm)\)</span>，只要保证转移在 <span
+class="math inline">\(O(m)\)</span> 之内实现就可行。</p>
+<p>这个状态明显是记忆化搜索。</p>
+<p>如果多选 <span class="math inline">\(a_{x+1}=k\)</span>，那么必然
+<span class="math inline">\(k \in [0,m]\)</span>，同时 <span
+class="math inline">\(S+2^k\)</span>，状态变成了 <span
+class="math inline">\(f(x+1,S+2^k)\)</span>，对 <span
+class="math inline">\(f(x,S)\)</span> 产生的贡献为 <span
+class="math inline">\(f(x+1,S+2^k) \cdot
+v_k\)</span>。这个状态的每一个前继状态都必定要在算权值的时候乘上 <span
+class="math inline">\(v_k\)</span>，由于乘法结合律与分配律，只要边界设置对了，这样做就是对的。枚举
+<span class="math inline">\(k\)</span>，转移 <span
+class="math inline">\(O(m)\)</span>。 <span class="math display">\[
+f(x,S) = \sum_{i=0}^m f(x+1,S+2^{m}) \cdot v_i
+\]</span> 然后就是边界，如果上面我们这么干，那么必须 <span
+class="math inline">\(x=n\)</span> 且 1 的个数小于 <span
+class="math inline">\(k\)</span> 的状态的贡献为 1，否则为 0。</p>
+<p>最终答案 <span class="math inline">\(f(0,0)\)</span></p>
+<p>复杂度 <span class="math inline">\(O(2^m m^2 n)\)</span></p>
+<p>期望得分 <span class="math inline">\(50pts\)</span></p>
+<h3 id="code">CODE</h3>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">35</span>, M=<span class="hljs-number">105</span>;
+<span class="hljs-keyword">const</span> ll mod=<span class="hljs-number">998244353</span>;
+<span class="hljs-keyword">int</span> n, m, k, v[N];
+ll f[N][<span class="hljs-number">123000</span>];
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">int</span> a=<span class="hljs-number">0</span>; <span class="hljs-keyword">char</span> c=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">for</span>(;!<span class="hljs-built_in">isdigit</span>(c);c=<span class="hljs-built_in">getchar</span>());
+	<span class="hljs-keyword">for</span>(;<span class="hljs-built_in">isdigit</span>(c);a=a*<span class="hljs-number">10</span>+(c^<span class="hljs-number">48</span>),c=<span class="hljs-built_in">getchar</span>());
+	<span class="hljs-keyword">return</span> a;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">count</span><span class="hljs-params">(ll x)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> cnt=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span>(x) cnt+=x&amp;<span class="hljs-number">1</span>, x&gt;&gt;=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">return</span> cnt;	
+&#125;
+<span class="hljs-comment">// 统计x中1的个数</span>
+<span class="hljs-function">ll <span class="hljs-title">dp</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,ll s)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(x&gt;=n) <span class="hljs-keyword">return</span> <span class="hljs-built_in">count</span>(s)&lt;=k;
+	<span class="hljs-keyword">if</span>(f[x][s]!=<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> f[x][s];
+	ll dlt=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=m;++i) (dlt+=<span class="hljs-built_in">dp</span>(x+<span class="hljs-number">1</span>,s+(<span class="hljs-number">1</span>&lt;&lt;i))*v[i])%=mod;
+	<span class="hljs-keyword">return</span> f[x][s]=dlt;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	n=<span class="hljs-built_in">read</span>(), m=<span class="hljs-built_in">read</span>(), k=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=m;++i) v[i]=<span class="hljs-built_in">read</span>();
+	<span class="hljs-built_in">memset</span>(f,<span class="hljs-number">-1</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(f));
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,<span class="hljs-built_in">dp</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>));
+&#125;</code></pre></div>
+<h2 id="正解">正解</h2>
+<h3 id="分析-1">分析</h3>
+<p>暴力状态无论如何优化都无法承受了，考虑重新设计状态。</p>
+<p>暴力状态瓶颈的原因在与状态数量太多，十进制下 <span
+class="math inline">\(S\)</span>
+实在是太大了。那么可以试着按照二进制位设计状态。</p>
+<p>建议好好品一下<strong>样例解释 #1</strong>……</p>
+<p>当一个 <span class="math inline">\(a_i\)</span> 确定时，只会发生 2
+种情况。</p>
+<ol type="1">
+<li><span class="math inline">\(a_i\)</span> 这个数首次出现，那么 <span
+class="math inline">\(S\)</span> 的二进制中 1 的个数增加 1。</li>
+<li><span class="math inline">\(a_i\)</span> 这个数之前出现过了，那么
+<span class="math inline">\(S\)</span> 的二进制中那一位就要向前一位进
+1，同时变成 0。由于不知道下一位是啥所以无法预测 1 的数量变化。</li>
+</ol>
+<p>但是对于任何一位，他只能向更高的一位进，至于最后到了那里不重要，可以到更高位的时候再考虑。从高位状态转移到低位状态无后效性，还是记忆化搜索。</p>
+<p>那么一个神级状态就要产生了！</p>
+<p><span class="math inline">\(f(k,i,x,y)\)</span>，表示已经确定了 <span
+class="math inline">\(S\)</span> 二进制的 <span
+class="math inline">\(k\)</span> 位，其中 <span
+class="math inline">\(\{a\}\)</span> 数列确定了 <span
+class="math inline">\(i\)</span> 项，有 <span
+class="math inline">\(x\)</span> 个 1，同时第 <span
+class="math inline">\(k-1\)</span> 位进了 <span
+class="math inline">\(y\)</span> 个 1 到 <span
+class="math inline">\(k\)</span> 位，还能够产生的贡献。</p>
+<p>为什么这么设计呢？首先它能够唯一确定地表示 <span
+class="math inline">\(S\)</span> 与 <span
+class="math inline">\(\{a\}\)</span>，并且状态数量级别是 <span
+class="math inline">\(O(mn^3)\)</span>。要知道测试点中 <span
+class="math inline">\(m \in [7,100]\)</span>，<span
+class="math inline">\(n \in
+[5,30]\)</span>，这是相当大的优化了。而且样例的做法启发我们用组合数求出方案，用
+<span class="math inline">\(v_k\)</span> 的不同次方来统计贡献。</p>
+<p><span class="math inline">\(k\)</span> 其实隐式代表着 <span
+class="math inline">\(v_k\)</span>。转移的时候枚举 <span
+class="math inline">\(j \in [0,n-i]\)</span>，表示剩下的 <span
+class="math inline">\(n-i\)</span> 项中，<span
+class="math inline">\(k\)</span> 用几项。那么从 <span
+class="math inline">\(n-i\)</span> 个位置里任选 <span
+class="math inline">\(j\)</span> 个为 <span
+class="math inline">\(k\)</span>，方案数为 <span
+class="math inline">\(C_{n-i}^j\)</span>，都会产生 <span
+class="math inline">\(v_k^j\)</span> 的贡献。</p>
+<p>最关键的是剩下两个状态如何表示。</p>
+<p>上一位进了 <span class="math inline">\(y\)</span> 个 1，这一位多了
+<span class="math inline">\(j\)</span> 个
+1，二进制下满二进一，那么就是进 <span class="math inline">\(\lfloor
+\frac{y+j}{2} \rfloor\)</span> 个 1 到 <span
+class="math inline">\(k+1\)</span> 位。</p>
+<p>由于规定了进位顺序，当 <span class="math inline">\(y+j\)</span>
+是奇数时，<span class="math inline">\(k\)</span> 位上必定留下 1，<span
+class="math inline">\(x+1\)</span>，否则 <span
+class="math inline">\(x\)</span> 不变。</p>
+<p>好的！转移 <span class="math inline">\(O(n)\)</span>！ <span
+class="math display">\[
+f(k,i,x,y) = \sum_{j=0}^{n-i} f(k+1,i+j,x+d(y+j),\lfloor \frac{y+j}{2}
+\rfloor) \cdot C^j_{n-i} \cdot v_k^j
+\]</span> 当 <span class="math inline">\(t\)</span> 为奇数时，<span
+class="math inline">\(d(t)\)</span> 为 1，反之为 0。</p>
+<p>边界依然很重要。当 <span class="math inline">\(k&gt;m\)</span>
+时，不存在这样的 <span
+class="math inline">\(S\)</span>，这个状态直接返回 0。</p>
+<p>当 <span class="math inline">\(i=n\)</span> 的时候，此时 <span
+class="math inline">\([1,k]\)</span> 位上有 <span
+class="math inline">\(x\)</span> 个 1，前面进了 <span
+class="math inline">\(y\)</span> 个 1。由于 <span
+class="math inline">\((k,m]\)</span> 此时全为 0，那么 <span
+class="math inline">\(y\)</span> 个 1 最后产生的 1 数量是它的二进制中 1
+的个数。所以就像暴力方法一样，如果 1 的数量合法，那么返回 1，否则返回
+0。</p>
+<p>答案 <span class="math inline">\(f(0,0,0,0)\)</span></p>
+<p>复杂度 <span class="math inline">\(O(mn^4)\)</span></p>
+<p>期望得分 <span class="math inline">\(100pts\)</span></p>
+<h3 id="code-1">CODE</h3>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">35</span>, M=<span class="hljs-number">105</span>;
+<span class="hljs-keyword">const</span> ll mod=<span class="hljs-number">998244353</span>;
+<span class="hljs-keyword">int</span> n, m, kk;
+ll c[N][N], v[M][N], f[M][N][N][N];
+<span class="hljs-comment">// c[i][j]是组合数，v[i][j]是v[i]的j次幂</span>
+<span class="hljs-function">ll <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;
+	ll a=<span class="hljs-number">0</span>; <span class="hljs-keyword">char</span> c=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">for</span>(;!<span class="hljs-built_in">isdigit</span>(c);c=<span class="hljs-built_in">getchar</span>());
+	<span class="hljs-keyword">for</span>(;<span class="hljs-built_in">isdigit</span>(c);a=a*<span class="hljs-number">10</span>+(c^<span class="hljs-number">48</span>),c=<span class="hljs-built_in">getchar</span>());
+	<span class="hljs-keyword">return</span> a;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">count</span><span class="hljs-params">(ll x)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> cnt=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span>(x) cnt+=x&amp;<span class="hljs-number">1</span>, x&gt;&gt;=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">return</span> cnt;	
+&#125;
+<span class="hljs-function">ll <span class="hljs-title">dp</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k,<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(i&gt;=n) <span class="hljs-keyword">return</span> x+<span class="hljs-built_in">count</span>(y)&lt;=kk;
+	<span class="hljs-keyword">if</span>(k&gt;m) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">if</span>(f[k][i][x][y]!=<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> f[k][i][x][y];
+	ll dlt=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;=n-i;++j) (dlt+=<span class="hljs-built_in">dp</span>(k+<span class="hljs-number">1</span>,i+j,x+(y+j)%<span class="hljs-number">2</span>,(y+j)/<span class="hljs-number">2</span>)*c[n-i][j]%mod*v[k][j]%mod)%=mod;
+	<span class="hljs-keyword">return</span> f[k][i][x][y]=dlt;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	n=<span class="hljs-built_in">read</span>(), m=<span class="hljs-built_in">read</span>(), kk=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=m;++i) v[i][<span class="hljs-number">1</span>]=<span class="hljs-built_in">read</span>();
+	c[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		c[i][<span class="hljs-number">0</span>]=c[i][i]=<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;i;++j) c[i][j]=(c[i<span class="hljs-number">-1</span>][j]+c[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>])%mod;
+	&#125;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=m;++i) &#123;
+		v[i][<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">2</span>;j&lt;=n;++j) v[i][j]=(v[i][j<span class="hljs-number">-1</span>]*v[i][<span class="hljs-number">1</span>])%mod;
+	&#125;
+    <span class="hljs-comment">// 预处理组合数与次幂</span>
+	<span class="hljs-built_in">memset</span>(f,<span class="hljs-number">-1</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(f));
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,<span class="hljs-built_in">dp</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">00</span>));
+&#125;</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/DP/">#DP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>luogu7961 数列 题解</div>
+      <div>https://yozora0908.github.io/2022/lg7961-solution/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>yozora</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年6月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/notes-graph-3/" title="「图论学习笔记」#3 二分图匹配">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">「图论学习笔记」#3 二分图匹配</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/lg7960-solution/" title="luogu7960 报数 题解">
+                        <span class="hidden-mobile">luogu7960 报数 题解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"yozora0908/My_giscus","repo-id":"R_kgDOImcT6w","category":"General","category-id":"DIC_kwDOImcT684CTB4r","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.staticfile.org/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.staticfile.org/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

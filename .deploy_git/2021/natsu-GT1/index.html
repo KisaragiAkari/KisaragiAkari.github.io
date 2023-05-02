@@ -1,0 +1,833 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/null">
+  <link rel="icon" href="https://cdn-us.imgs.moe/2023/01/26/63d1eb385309a.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#3F51B5">
+  <meta name="author" content="yozora">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="今晚上出去吃了顿饭，回家就已经9点了qwq 闲话 自从夏令营结束就一直在颓废，整天摸鱼🐟，昨天终于开始卷OI了 消え去ってしまってよ　行ってしまうなら 	   除去掉了啊　起行了的话 	   僕はここで止まらないで 	   那我就绝不会止步于此啊                  ------- ウミユリ海底譚  这就像海底谭一样令人感动不是吗（bushi  快乐水没了，，，烟花马上登">
+  
+  
+  
+  <title>图论α_暑假day26-27-28 - yozora&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yozora0908.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":null,"onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>yozora&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://cdn-us.imgs.moe/2023/02/02/63db75d1e0be8.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="图论α_暑假day26-27-28"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-28 23:25" pubdate>
+          2021年7月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">图论α_暑假day26-27-28</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>今晚上出去吃了顿饭，回家就已经9点了qwq</p>
+<h2 id="闲话">闲话</h2>
+<p>自从夏令营结束就一直在颓废，整天摸鱼🐟，昨天终于开始卷OI了</p>
+<div class="code-wrapper"><pre><code class="hljs markdown">消え去ってしまってよ　行ってしまうなら
+<span class="hljs-code">	   除去掉了啊　起行了的话</span>
+<span class="hljs-code">	   僕はここで止まらないで</span>
+<span class="hljs-code">	   那我就绝不会止步于此啊</span>
+<span class="hljs-code">                 ------- ウミユリ海底譚 </span></code></pre></div>
+<p>这就像海底谭一样令人感动不是吗（bushi </p>
+<p>快乐水没了，，，烟花马上登录山东！</p>
+<p>今天中午出去吃饭，看到蜜雪冰城前堆满了人，生意红红火火恍恍惚惚哼哼嘿嘿哈哈</p>
+<p>所以我就像在夏令营那样去了阿水</p>
+<p>真的懒得等了，orz</p>
+<h2 id="言归正传">言归正传</h2>
+<span id="more"></span>
+<hr />
+<p>前几天我搞了一个图论&amp;树上问题的题单，其实有一部分是我觉得不错的题目，其他的随便挑的题，具体好不好就不能保证了。。</p>
+<p>感觉POI题目质量不错啊</p>
+<h3 id="section">7.26</h3>
+<p>写了一个割点的模板，没了</p>
+<h3 id="section-1">7.27 &amp; 7.28</h3>
+<p>通过 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2939">Revamping
+Trails</a> 接触了分层图的概念与简单应用</p>
+<p>所谓分层图，即</p>
+<p><img src="https://cdn.luogu.com.cn/upload/pic/10006.png" srcset="/img/loading.gif" lazyload /></p>
+<p>(图片来源于 <span class="citation"
+data-cites="fy1234567ok">@fy1234567ok</span>，侵删)</p>
+<p>适用于把一张图多次修改的情况</p>
+<p>建多层图，每一层对应每一种情况（具体做法就不说了</p>
+<p>这样的话，最终可以求出每一种情况的答案，取合适值即可</p>
+<p>相应地，其时空复杂度也是随层数上升（常数通常上升的很离谱</p>
+<p>然后又学习了<strong>分数规划</strong>及其在图论上的应用</p>
+<p>经典例题</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2868">Sightseeing
+Cows</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4377">Talent Show</a></p>
+<p>这两题式子很像</p>
+<p>0/1分数规划模型为：</p>
+<p>对于给定的 <span class="math inline">\(a_1,a_2,a_3,...,a_n\)</span>
+与 <span class="math inline">\(b_1,b_2,b_3,...,b_n\)</span>，求一组解
+<span class="math inline">\(x_i(1 \le i \le
+n,x_i=0/1)\)</span>，使下式最大化</p>
+<p>$ $</p>
+<p>分数值必然存在单调性，所以我们二分一个 <span
+class="math inline">\(mid\)</span>，使</p>
+<p>$ mid $</p>
+<p>经过变形不难得到 ( $ $ 炸了的话就将就看把。。。)</p>
+<p>$ ^n_{i=1} (a_i-mid b_i) x_i $</p>
+<p>所以就有了t2这样的0/1背包的规划</p>
+<p>当然这只是基本形式，本质是从两个集合中各选若干元素，是他们各自之和之商最大</p>
+<p>实际上式子不会是这样的，但其形式无非是</p>
+<p>$ ^n _{i=1} z_i $​</p>
+<p>其中 <span class="math inline">\(z_i\)</span> 是某多项式</p>
+<p>如果 <span class="math inline">\(z_i\)</span>
+是图上的权，你会想到什么？</p>
+<p>负环！</p>
+<p>如果一张图中存在负环，那么上式<strong>不会成立</strong>，并且上式成立与否是判断
+<span class="math inline">\(mid\)</span> 是否可行的关键！</p>
+<p>所以对于关于图论的题
+(t1)，推出式子后二分答案转判定，不断使用某个已经死掉的算法判断是否有负环，最终求得答案</p>
+<p>对于那个已经死掉的算法，可以用</p>
+<ul>
+<li>最短路长度不超过 <span class="math inline">\(n\)</span></li>
+<li>每个点入队次数不超过 <span class="math inline">\(n\)</span></li>
+<li>最快的dfs形式</li>
+</ul>
+<p>可在最短路问题上，它还是死了</p>
+<p>随随便便就能卡掉，虽然有各种优化，但是正式比赛只有比阿伟还勇的勇士敢写</p>
+<p>但是网络流、判负环、差分约束等非最短路问题上，它还活着 o((&gt;ω&lt;
+))o</p>
+<p>一个最短路算法，如今基本不用在最短路问题上……</p>
+<p>那么不是图论呢？</p>
+<p>t2实质上是背包，那么通过dp求出最终的答案，判断是否大于等于0，实质是一样的</p>
+<p>下面是几道题</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3199">最小圈</a></p>
+<p>双倍经验：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA11090">Going
+in Cycle!!</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3288">方伯伯运椰子</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3705">新生舞会</a>
+与网络流结合</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4322">最佳团体</a> 与树形
+dp 结合</p>
+<p><span class="math inline">\(updata\)</span> 2021.8.6 23:51</p>
+<p>站外题 <a
+target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/350/">最优比率生成树</a>
+（我还没做</p>
+<p>综上，分数规划可以当作加了一个多项式的二分答案来做，不需要很强的数学推导能力，而且是相对冷门的内容。出了二分以外，还有
+Dinkelbach 迭代法，然而我不会</p>
+<p> </p>
+<p>然后是两道 Floyd 算法的题目</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2419">Cow Contest</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2047">社交网络</a></p>
+<p>这两道题本质上是对考察对 Floyd 算法的理解</p>
+<p>通过松弛操作解决传递闭包有关问题</p>
+<p>$ X Y,Y Z X Z$​​</p>
+<p>大概长这样</p>
+<p>和通过松弛操作求出最短路数</p>
+<p>本来今天还想学一下强连通分量，无奈时间喂给了 <span
+class="math inline">\(osu!\)</span></p>
+<p> </p>
+<hr />
+<p>好多内容还没讲</p>
+<p>但现在是 7.28 23:10</p>
+<p>今天就到这啦~</p>
+<p> </p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/OI/" class="category-chain-item">OI</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%BE%E8%AE%BA/">#图论</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>图论α_暑假day26-27-28</div>
+      <div>https://yozora0908.github.io/2021/natsu-GT1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>yozora</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年7月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/natsu-GT2/" title="图论β">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">图论β</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/SDSC2021/" title="山东OI夏令营2021 游记">
+                        <span class="hidden-mobile">山东OI夏令营2021 游记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"yozora0908/My_giscus","repo-id":"R_kgDOImcT6w","category":"General","category-id":"DIC_kwDOImcT684CTB4r","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.staticfile.org/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.staticfile.org/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
