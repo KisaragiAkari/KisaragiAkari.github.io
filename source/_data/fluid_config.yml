@@ -1,0 +1,25 @@
+index:
+  banner_img: https://cdn-us.imgs.moe/2023/09/02/64f3347b3e91b.jpg
+  banner_img_height: 100
+post:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db75d1e0be8.png
+  default_index_img: https://cdn-us.imgs.moe/2023/02/02/63db75d1e0be8.png
+  banner_img_height: 70
+archive:
+  banner_img: https://cdn-us.imgs.moe/2023/05/14/646095dd07a60.jpg
+  banner_img_height: 100
+category:
+  banner_img: https://cdn-us.imgs.moe/2023/06/15/648acb95a3f6b.png
+  banner_img_height: 100
+tag:
+  banner_img: https://cdn-us.imgs.moe/2023/09/02/64f334a94f3a4.jpeg
+  banner_img_height: 100
+about:
+  banner_img: https://cdn-us.imgs.moe/2023/09/02/64f334a927c5c.jpg
+  banner_img_height: 80
+  avatar: https://cdn-us.imgs.moe/2023/08/23/64e5ee788ddaf.png
+  name: yozora0908's blog
+  intro: OI Blog
+links:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db75b94fd5c.png
+  banner_img_height: 80
