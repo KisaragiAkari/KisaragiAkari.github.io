@@ -1,0 +1,53 @@
+index:
+  banner_img: https://cdn-us.imgs.moe/2023/09/02/64f3347b3e91b.jpg
+  banner_img_height: 100
+post:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db75d1e0be8.png
+  default_index_img: https://cdn-us.imgs.moe/2023/02/02/63db75d1e0be8.png
+  banner_img_height: 70
+archive:
+  banner_img: https://cdn-us.imgs.moe/2023/05/14/646095dd07a60.jpg
+  banner_img_height: 100
+category:
+  banner_img: https://cdn-us.imgs.moe/2023/06/15/648acb95a3f6b.png
+  banner_img_height: 100
+tag:
+  banner_img: https://cdn-us.imgs.moe/2023/09/02/64f334a94f3a4.jpeg
+  banner_img_height: 100
+about:
+  avatar: https://cdn-us.imgs.moe/2023/08/23/64e5ee788ddaf.png
+  banner_img: https://cdn-us.imgs.moe/2023/09/02/64f334a927c5c.jpg
+  banner_img_height: 80
+  name: yozora0908's blog
+  intro: OI Blog
+links:
+  banner_img: https://cdn-us.imgs.moe/2023/02/02/63db75b94fd5c.png
+  banner_img_height: 80
+  items:
+    - title: Ardoryna
+      link: http://ardoryna.cn/
+      avatar: https://cdn.luogu.com.cn/upload/usericon/710170.png
+    - title: Tommy_Keen
+      link: https://www.luogu.com.cn/user/393407
+      avatar: https://cdn.luogu.com.cn/upload/usericon/393407.png
+    - title: TwoJie
+      link: https://www.luogu.com.cn/user/393410
+      avatar: https://cdn.luogu.com.cn/upload/usericon/393410.png
+    - title: uniqueharry
+      link: https://www.luogu.com.cn/user/385093
+      avatar: https://cdn.luogu.com.cn/upload/usericon/385093.png
+    - title: May_wind
+      link: https://www.luogu.com.cn/user/141368
+      avatar: https://cdn.luogu.com.cn/upload/usericon/141368.png
+    - title: __frj
+      link: https://www.luogu.com.cn/user/89338
+      avatar: https://cdn.luogu.com.cn/upload/usericon/89338.png
+    - title: __qhd
+      link: https://www.luogu.com.cn/user/231028
+      avatar: https://cdn.luogu.com.cn/upload/usericon/231028.png
+    - title: ReverBer
+      link: https://www.luogu.com.cn/user/303531
+      avatar: https://cdn.luogu.com.cn/upload/usericon/303531.png
+    - title: 飞行穿甲弹
+      link: https://www.luogu.com.cn/user/302225
+      avatar: https://cdn.luogu.com.cn/upload/usericon/302225.png
