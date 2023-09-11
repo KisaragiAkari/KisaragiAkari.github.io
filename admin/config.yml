@@ -46,9 +46,9 @@ collections:
     name: pages
     delete: false
     files:
-      - name: tags-index.md
-        label: 标签
-        file: source\tags\index.md
+      - name: about-index.md
+        label: 关于
+        file: source\about\index.md
         editor:
           preview: true
         fields: *ref_0
@@ -58,9 +58,9 @@ collections:
         editor:
           preview: true
         fields: *ref_0
-      - name: about-index.md
-        label: 关于
-        file: source\about\index.md
+      - name: tags-index.md
+        label: 标签
+        file: source\tags\index.md
         editor:
           preview: true
         fields: *ref_0
