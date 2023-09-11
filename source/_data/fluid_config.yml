@@ -1,3 +1,5 @@
+navbar:
+  ground_glass: true
 index:
   banner_img: https://cdn-us.imgs.moe/2023/09/02/64f3347b3e91b.jpg
   banner_img_height: 100
