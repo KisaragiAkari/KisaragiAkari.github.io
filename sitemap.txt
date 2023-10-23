@@ -1,3 +1,4 @@
+https://yozora0908.top/2023/lg5772-solution/
 https://yozora0908.top/2023/loj3463-solution/
 https://yozora0908.top/2023/loj3212-solution/
 https://yozora0908.top/2023/lg9655-solution/
@@ -6,7 +7,6 @@ https://yozora0908.top/2023/lg8595-solution/
 https://yozora0908.top/2023/lg8593-solution/
 https://yozora0908.top/2023/lg8476-solution/
 https://yozora0908.top/2023/lg6419-solution/
-https://yozora0908.top/2023/null/
 https://yozora0908.top/2023/loj3213-solution/
 https://yozora0908.top/2023/lg5188-solution/
 https://yozora0908.top/2023/lg4582-solution/
@@ -131,8 +131,8 @@ https://yozora0908.top/2022/at5759-solution/
 https://yozora0908.top/2022/cf1067a-solution/
 https://yozora0908.top/2021/cf1083e-solution/
 https://yozora0908.top/2022/cf1312e-solution/
-https://yozora0908.top/2022/cf1699-solution/
 https://yozora0908.top/2022/cf1701-solution/
+https://yozora0908.top/2022/cf1699-solution/
 https://yozora0908.top/2022/abc256g-solution/
 https://yozora0908.top/2022/abc258-solution/
 https://yozora0908.top/2022/abs259g-solution/
