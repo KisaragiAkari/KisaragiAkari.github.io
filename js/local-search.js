@@ -4,7 +4,6 @@
   // Modified from [hexo-generator-search](https://github.com/wzpan/hexo-generator-search)
   function localSearchFunc(path, searchSelector, resultSelector) {
     'use strict';
-    //path='https://fastly.jsdelivr.net/gh/yozora0908/yozora0908.github.io/local-search.xml';
     // 0x00. environment initialization
     var $input = jQuery(searchSelector);
     var $result = jQuery(resultSelector);
@@ -24,7 +23,6 @@
 
     jQuery.ajax({
       // 0x01. load xml file
-       //url     : 'https://fastly.jsdelivr.net/gh/yozora0908/yozora0908.github.io/local-search.xml',
       url     : path,
       dataType: 'xml',
       success : function(xmlResponse) {
@@ -150,7 +148,6 @@
   var resultSelector = '#local-search-result';
   modal.on('show.bs.modal', function() {
     var path = CONFIG.search_path || '/local-search.xml';
-    //var path = 'https://fastly.jsdelivr.net/gh/yozora0908/yozora0908.github.io/search.xml';
     localSearchFunc(path, searchSelector, resultSelector);
   });
   modal.on('shown.bs.modal', function() {
