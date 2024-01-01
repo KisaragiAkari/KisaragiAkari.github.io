@@ -123,9 +123,9 @@ f_{x,i} = &#92;Big( &#92;sum_{y &#92;in son(x)} f_{y,i+&#92;Delta} &#92;Big) + 1
     
     <category term="DP" scheme="https://yozora0908.top/tags/DP/"/>
     
-    <category term="树形DP" scheme="https://yozora0908.top/tags/%E6%A0%91%E5%BD%A2DP/"/>
-    
     <category term="树论" scheme="https://yozora0908.top/tags/%E6%A0%91%E8%AE%BA/"/>
+    
+    <category term="树形DP" scheme="https://yozora0908.top/tags/%E6%A0%91%E5%BD%A2DP/"/>
     
     <category term="启发式合并" scheme="https://yozora0908.top/tags/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/"/>
     
@@ -208,9 +208,9 @@ f(x,0) = 1 + &#92;sum_{y &#92;in son(x)} &#92;min&#92;Big&#92;{ f(y,0),f(y,1),f(
     
     <category term="DP" scheme="https://yozora0908.top/tags/DP/"/>
     
-    <category term="树形DP" scheme="https://yozora0908.top/tags/%E6%A0%91%E5%BD%A2DP/"/>
-    
     <category term="贪心" scheme="https://yozora0908.top/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="树形DP" scheme="https://yozora0908.top/tags/%E6%A0%91%E5%BD%A2DP/"/>
     
   </entry>
   
@@ -437,11 +437,11 @@ d&#92;)&lt;/span&gt;，那么说明深度为 &lt;span class=&quot;math inline&qu
     <category term="题解" scheme="https://yozora0908.top/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="换根法" scheme="https://yozora0908.top/tags/%E6%8D%A2%E6%A0%B9%E6%B3%95/"/>
-    
     <category term="树论" scheme="https://yozora0908.top/tags/%E6%A0%91%E8%AE%BA/"/>
     
     <category term="树上倍增" scheme="https://yozora0908.top/tags/%E6%A0%91%E4%B8%8A%E5%80%8D%E5%A2%9E/"/>
+    
+    <category term="换根法" scheme="https://yozora0908.top/tags/%E6%8D%A2%E6%A0%B9%E6%B3%95/"/>
     
   </entry>
   
@@ -507,9 +507,9 @@ y)&#92;)&lt;/span&gt;，把 &lt;span class=&quot;math inline&quot;&gt;&#92;((y+n
     <category term="题解" scheme="https://yozora0908.top/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="DP" scheme="https://yozora0908.top/tags/DP/"/>
-    
     <category term="图论" scheme="https://yozora0908.top/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+    <category term="DP" scheme="https://yozora0908.top/tags/DP/"/>
     
     <category term="矩阵" scheme="https://yozora0908.top/tags/%E7%9F%A9%E9%98%B5/"/>
     
@@ -622,9 +622,9 @@ class=&quot;math inline&quot;&gt;&#92;(g_x&#92;)&lt;/span&gt; 为</summary>
     <category term="题解" scheme="https://yozora0908.top/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="DP" scheme="https://yozora0908.top/tags/DP/"/>
-    
     <category term="图论" scheme="https://yozora0908.top/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+    <category term="DP" scheme="https://yozora0908.top/tags/DP/"/>
     
   </entry>
   
@@ -682,9 +682,9 @@ class=&quot;math inline&quot;&gt;&#92;(x&#92;)&lt;/span&gt;</summary>
     
     <category term="DP" scheme="https://yozora0908.top/tags/DP/"/>
     
-    <category term="树形DP" scheme="https://yozora0908.top/tags/%E6%A0%91%E5%BD%A2DP/"/>
-    
     <category term="树论" scheme="https://yozora0908.top/tags/%E6%A0%91%E8%AE%BA/"/>
+    
+    <category term="树形DP" scheme="https://yozora0908.top/tags/%E6%A0%91%E5%BD%A2DP/"/>
     
     <category term="启发式合并" scheme="https://yozora0908.top/tags/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/"/>
     
